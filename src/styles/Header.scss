@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+
+.custom-header {
+  width: 1440px;
+  height: 128px;
+  background: #FFFFF1;
+  border-bottom: 1px solid #DDDDDD;
+  position: relative;
+  margin: 0 auto;
+  font-family: 'Montserrat', sans-serif;
+  padding-top: 0;
+
+  nav {
+    max-width: 518px;
+    margin: 0 auto;
+    position: absolute;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 70px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    ul {
+      list-style: none;
+      display: flex;
+      gap: 32px;
+      padding: 0;
+      margin: 0;
+
+      li a {
+        display: block;
+        height: 26px;
+        padding: 0 16px;
+        font-weight: 500;
+        font-size: 20px;
+        line-height: 130%;
+        text-align: center;
+        text-decoration: none;
+        color: #000;
+      }
+    }
+  }
+
+  .center-box {
+    position: absolute;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 518px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .promo-button-image {
+    width: 151px;
+    height: 32px;
+    display: block;
+    cursor: pointer;
+    padding: 6px 16px;
+  }
+
+  .header-left {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    .logo-image {
+      width: 70px;
+      height: 70px;
+    }
+
+    .mode-toggle-image {
+      width: 60px;
+      height: 32px;
+      cursor: pointer;
+    }
+  }
+
+  .header-right {
+    position: absolute;
+    top: 40px;
+    left: 1280px;
+    display: flex;
+    gap: 24px;
+
+    .header-icon {
+      width: 48px;
+      height: 48px;
+      cursor: pointer;
+    }
+  }
+}

@@ -1,0 +1,140 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+
+body {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.items-container {
+  width: 1360px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); 
+  grid-template-rows: repeat(2, 1fr);    
+  gap: 32px;
+  background: #FFFFF1;
+  position: relative;
+  padding-top: 52px;
+  padding-bottom: 52px;
+}
+
+
+.item-card {
+  width: 316px;
+  height: 422px;
+  border-radius: 24px;
+  border: 1px solid #040404;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  overflow: hidden;
+  background-color: white;
+  position: relative;
+
+  .discount-badge {
+    position: absolute;
+    top: 4px;
+    left: 8px;
+    width: 68px;
+    height: 34px;
+    background: #F26D22;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 130%;
+    padding: 4px 8px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+  }
+
+  .icon-bar {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    position: absolute;
+    top: 16px;
+    right: 16px;
+
+    .icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      background-color: #f4f5f0;
+      padding: 8px;
+      object-fit: contain;
+
+      svg {
+        width: 24px;
+        height: 24px;
+        fill: white;
+      }
+    }
+  }
+
+  .item-image {
+    width: 316px;
+    height: 220px;
+    object-fit: cover;
+    border-bottom: 1px solid #ccc;
+  }
+
+  .item-text {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 130%;
+    text-align: center;
+    height: 24px;
+    color: #424436;
+  }
+
+  .item-prices {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    font-family: 'Montserrat', sans-serif;
+    color: #424436;
+
+    .new-price {
+      font-size: 40px;
+      font-weight: 600;
+      line-height: 110%;
+    }
+
+    .old-price {
+      font-size: 20px;
+      font-weight: 500;
+      line-height: 130%;
+      color: #999;
+      text-decoration: line-through;
+    }
+  }
+}
+
+.saleitems-header {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-left: 40px;
+  height: 70px;
+  background: #FFFFF1;
+  margin-top: 40px;
+}
+
+.saleitems-title {
+  width: 140px;
+  height: 70px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 64px;
+  line-height: 110%;
+  color: #424436;
+}
