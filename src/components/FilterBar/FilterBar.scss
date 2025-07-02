@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+
+.filter-bar {
+  font-family: 'Montserrat', sans-serif;
+  .filter-bar {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 130%;
+  letter-spacing: 0;
+ 
+}
+
+ 
+}
+
+.filter-bar {
+  display: flex;
+  align-items: center;
+  background: #FFFFF1;
+  padding: 24px 32px;
+  gap: 24px;
+  font-family: 'Montserrat', sans-serif;
+
+  .filter-label {
+    font-size: 20px;
+    font-weight: 500;
+    color: #424436;
+    margin-right: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .filter-input {
+    width: 80px;
+    height: 36px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background: #fff;
+    font-size: 18px;
+    color: #424436;
+    padding: 0 10px;
+    margin-right: 12px;
+  }
+
+  .filter-checkbox {
+    width: 24px;
+    height: 24px;
+    margin-left: 8px;
+    accent-color: #f26d22;
+    border-radius: 6px;
+  }
+
+  .filter-select {
+    width: 160px;
+    height: 36px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background: #fff;
+    font-size: 18px;
+    color: #424436;
+    padding: 0 8px;
+  }
+}
