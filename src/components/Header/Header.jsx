@@ -1,8 +1,10 @@
 import React from 'react';
 import './Header.scss';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const Header = () => {
+  const location = useLocation();
+
   return (
     <header className="custom-header">
       <div className="header-left">
@@ -11,14 +13,42 @@ const Header = () => {
       </div>
 
       <div className="center-box">
-        <button>1 day discount!</button>    
+        <button>1 day discount!</button>
 
         <nav>
           <ul>
-            <li><Link to="/" className="active">Main Page</Link></li>
-            <li><Link to="/categories">Categories</Link></li>
-            <li><Link to="/products">All products</Link></li>
-            <li><Link to="/sales">All sales</Link></li>
+            <li>
+              <Link 
+                to="/" 
+                className={location.pathname === "/" ? "active" : ""}
+              >
+                Main Page
+              </Link>
+            </li>
+            <li>
+              <Link 
+                to="/categories" 
+                className={location.pathname === "/categories" ? "active" : ""}
+              >
+                Categories
+              </Link>
+            </li>
+            <li>
+              <Link 
+                to="/products" 
+                className={location.pathname === "/products" ? "active" : ""}
+              >
+                All products
+              </Link>
+            </li>
+            <li>
+              <Link 
+                to="/sales" 
+                className={location.pathname === "/sales" ? "active" : ""}
+              >
+                All sales
+              </Link>
+            </li>
           </ul>
         </nav>
       </div>
