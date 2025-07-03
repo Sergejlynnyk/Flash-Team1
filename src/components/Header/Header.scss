@@ -112,22 +112,146 @@
 //   }
 // }
 
+// .custom-header {
+//   display: flex;
+//   justify-content: space-between;
+//   align-items: center;
+
+//   .center-box{
+//     display: flex;
+//     flex-direction: column;
+
+//     nav {
+//       display: flex;
+//       align-items: center;
+//     }
+//   }
+
+//   .header-right {
+//     display: flex;
+//   }
+// }
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap');
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family:"Montserrat",serif;
+  line-height: 1.5;
+}
 .custom-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+   background: #FFFFF1;
+  
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Montserrat", serif;
+  line-height: 1.5;
+  height: 128px;
 
-  .center-box{
+
+  .header-left {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+    .logo-image {
+      width: 48px;
+      height: 48px;
+      // padding: 0px 0px 0px 0px; 
+   
+    }
+
+    .mode-toggle-image {
+      width: 48px;
+      height: 48px;
+      cursor: pointer;
+    }
+  }
+
+  .center-box {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    gap: 32px;
+    padding: 30px 0 28px 0;
+    background: #FFFFF1;
+
+    
+    
 
     nav {
       display: flex;
       align-items: center;
+      justify-content: space-between;
+
+      ul {
+        list-style: none;
+        display: flex;
+        gap: 32px;
+        align-items: center;
+        padding: 12px 0px 28px 0px; 
+        margin: 0;
+
+        li {
+          a {
+            display: block;
+             color: #424436;
+             margin-top: -30px;
+             padding: 0 0 0 0;
+  font-size: 18px;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+            &:hover {
+              color: #55610B;
+              background: #f3f3f3;
+              border-radius: 6px;
+            }
+          }
+        }
+      }
+    }
+
+    button {
+      width: 280px;
+      height: 48px;
+      font-size: 16px;
+      font-weight: 600;
+      border: none;
+      border-radius: 12px;
+      background-color: #92A134;
+// padding: px 10px 18px 0px; 
+      color: white;
+      cursor: pointer;
+      margin-top: 12px; 
+      transition: background 0.2s;
+
+      &:hover {
+        background-color: #d95e17;
+      }
     }
   }
 
   .header-right {
     display: flex;
+    align-items: center;
+    gap: 24px;
+    padding: 40px 40px 40px;
+  
+
+    .header-icon {
+      width: 48px;
+    
+      height: 48px;
+      border-radius: 12px;
+      padding: 8px;
+      object-fit: contain;
+      cursor: pointer;
+    }
   }
 }
