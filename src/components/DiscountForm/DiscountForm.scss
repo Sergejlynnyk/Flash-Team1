@@ -1,106 +1,139 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap');
+
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Montserrat", serif;
+  line-height: 1.5;
+}
 .discount-section {
-  padding: 48px 0;
-  
-  background:
-    linear-gradient(80.46deg, #87933D -0.68%, #55610B 66.66%);
+  padding: 48px;
+  background: linear-gradient(80.46deg, #87933D -0.68%, #55610B 66.66%);
   border-radius: 20px;
-  margin: 48px 0;
+  margin: 48px auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 24px;
-}
+  width: 100%;
+  max-width: 1360px;
 
-.discount-title {
-  font-size: 2rem;
-  font-weight: 700;
-  margin-bottom: 16px;
-  color:#FFFFFF;
-font-family: Montserrat;
-font-weight: 700;
-font-size: 64px;
-line-height: 110.00000000000001%;
-letter-spacing: 0%;
-text-align: center;
+  .discount-title {
+     margin: 40px 0;
+    font-size: clamp(2rem, 5vw, 64px);
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: #fff;
+    font-family: Montserrat;
+    line-height: 110%;
+    letter-spacing: 0;
+    text-align: center;
+    
+  }
 
+  .discount-form-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 10px;
   text-align: center;
 }
 
-.discount-content {
-  display: grid;
-  
-  
-  grid-template-columns: 1fr 1fr;
-  gap: 32px;
-  align-items: center;
-  width: 100%;
-  max-width: 800px;
-  
-}
 
-.discount-image img {
-  width: 748;
-height: 360;
+  .discount-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    width: 100%;
+    max-width: 1200px;
+    align-items: center;
+    margin: 0 auto;
+    padding: 32px;
+    box-sizing: border-box;
 
-  border-radius: 14px;
-  object-fit: cover;
-}
+    .discount-image img {
+      width: 100%;
+      width: 748px;
+      height: auto;
+      border-radius: 14px;
+      object-fit: cover;
+      display: block;
+    }
 
-.discount-form {
-  display: flex;
-  flex-direction: column;
-  
-  gap: 16px;
-  background: #55610B;
-  padding: 32px 24px;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(160,179,77,0.12);
-}
+    .discount-form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      background: #55610B;
+      padding: 32px 24px;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(160,179,77,0.12);
 
-.discount-input {
-  font-size: 1rem;
-  padding: 12px;
-  background: #55610B;
+      .discount-input {
+        font-size: 20px;
+        padding: 12px;
+        background: #55610B;
+        font-family: Montserrat;
+        font-weight: 500;
+        color: #fff;
+        border: 1px solid #c8cfb0;
+        border-radius: 8px;
+        outline: none;
+        transition: border 0.2s;
+        &:focus {
+          border: 1.5px solid #A0B34D;
+        }
+      }
 
-  font-family: Montserrat;
-font-weight: 500;
-font-size: 20px;
-line-height: 130%;
-letter-spacing: 0%;
-vertical-align: middle;
-color: #FFFFFF;
-
-
-  border: 1px solid #c8cfb0;
-  border-radius: 8px;
-  outline: none;
-  transition: border 0.2s;
-  &:focus {
-    border: 1.5px solid #A0B34D;
+      .discount-button {
+        font-size: 20px;
+        font-weight: 600;
+        background: #fff;
+        color: #282828;
+        border: none;
+        border-radius: 8px;
+        padding: 12px 0;
+        cursor: pointer;
+        font-family: Montserrat;
+        line-height: 130%;
+        text-align: center;
+        vertical-align: middle;
+      }
+    }
   }
-}
 
-.discount-button {
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: #fff;
-  background: #fff;
-  border: none;
-  border-radius: 8px;
-  padding: 12px 0;
-  cursor: pointer;
-  font-family: Montserrat;
-  color: #282828;
+  @media (max-width: 900px) {
+    .discount-content {
+      grid-template-columns: 1fr;
+      gap: 24px;
+      padding: 18px;
 
-font-weight: 600;
-font-size: 20px;
-line-height: 130%;
-letter-spacing: 0%;
-text-align: center;
-vertical-align: middle;
+      .discount-image img {
+        max-width: 100%;
+        margin: 0 auto;
+        height: auto;
+      }
+    }
+    padding: 28px 2vw;
+    border-radius: 10px;
+    .discount-title {
+      font-size: clamp(1.4rem, 5vw, 2.5rem);
+    }
+  }
 
-  // transition: background 0.2s;
-  // &:hover {
-  //   background: #7d9737;
-  // }
+  @media (max-width: 600px) {
+    padding: 14px 2vw;
+    .discount-content {
+      gap: 14px;
+      padding: 8px;
+    }
+    .discount-title {
+      font-size: 1.3rem;
+    }
+    .discount-form {
+      padding: 14px 8px;
+    }
+  }
 }

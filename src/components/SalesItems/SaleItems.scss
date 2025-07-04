@@ -4,17 +4,40 @@ body {
   font-family: 'Montserrat', sans-serif;
 }
 
+.saleitems-outer-container {
+  max-width: 1500px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 0 24px;
+}
+
+.saleitems-section {
+  width: 100%;
+  background: #FFFFF1;
+  padding: 40px 0 40px 0; 
+}
+
+.saleitems-title {
+  width: 100%;
+  text-align: center;
+  font-size: clamp(2rem, 6vw, 64px);
+  font-weight: 700;
+  color: #424436;
+  padding: 0 0 40px 40px ; 
+  letter-spacing: 0;
+}
+
 .items-container {
-  width: 1360px;
-  height: 422px;
+  max-width: 1360px;
+  margin: 0 auto;
+  width: 100%;
   display: flex;
   gap: 32px;
-  background: #FFFFF1;
+  background: #d8d8d0;
   position: relative;
-    padding-top: 52px;
-      padding-bottom: 52px;
-
-
+  padding-top: 52px;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .item-card {
@@ -26,7 +49,7 @@ body {
   flex-direction: column;
   align-items: center;
   padding: 0;
-  gap: 16px;
+  gap: 32px;
   overflow: hidden;
   background-color: white;
   position: relative;
@@ -68,20 +91,9 @@ body {
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      fill-opacity: #f4f5f0;
-       width: 48px;
-      height: 48px;
-      border-radius: 12px;
+      background: #f4f5f0;
       padding: 8px;
       object-fit: contain;
-      cursor: pointer;
-
-
-      svg {
-        width: 24px;
-        height: 24px;
-        fill: white;
-      }
     }
   }
 
@@ -125,30 +137,5 @@ body {
       color: #999;
       text-decoration: line-through;
     }
-
-
-.saleitems-header {
-  width: 100%;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  padding-left: 40px;
-  height: 70px;
-  background: #FFFFF1;
-  margin-top: 40px;
-}
-
-.saleitems-title {
-  width: 140px;
-  height: 70px;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 700;
-  font-size: 64px;
-  line-height: 110%;
-  letter-spacing: 0%;
-  color: #424436;
-}
-
-
   }
 }
