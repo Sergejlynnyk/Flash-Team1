@@ -1,0 +1,50 @@
+.notfound-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 20px;
+  text-align: center;
+  background-color: #FFFFF1;
+}
+
+.notfound-404 {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.notfound-digit,
+.notfound-cactus {
+  width: 100px;
+  height: auto;
+}
+
+.notfound-title {
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: #424436;
+}
+
+.notfound-text {
+  font-size: 18px;
+  color: #8B8B8B; 
+  margin-bottom: 8px;
+}
+
+.notfound-button {
+  display: inline-block;
+  margin-top: 24px;
+  padding: 12px 24px;
+  background-color: #92A134;
+  color: #fff;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: #72851c;
+  }
+}
