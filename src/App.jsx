@@ -11,6 +11,9 @@ import Footer from './components/Footer/Footer';
 import ProductsPage from './pages/ProductsPage';
 import ToolsAndEquipment from './components/ToolsAndEquipment/ToolsAndEquipment';
 import AllProducts from './components/AllProducts/AllProducts';
+import ProductDetails from './pages/ProductDetails';
+
+
 
 // import Page404 from './components/Page404'; 
 
@@ -50,6 +53,8 @@ function App() {
           <Route path="/tools-and-equipment" element={<ToolsAndEquipment />} />
           <Route path="/all-products" element={<AllProducts />} />
           {/* <Route path="*" element={<Page404 />} /> <- Korrekt! */}
+          <Route path="/product/:id" element={<ProductDetails />} />
+          
         </Routes>
 
         <Footer />

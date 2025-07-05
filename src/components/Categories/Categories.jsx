@@ -4,7 +4,7 @@ import FilterBar from "../FilterBar/FilterBar";
 import './Categories.scss';
 
 export default function Categories() {
-  const [categories, setCategories] = useState([]);
+  const [Categories, setCategories] = useState([]);
   const [randomCategories, setRandomCategories] = useState([]);
 
   function getRandomItems(arr, n) {
@@ -25,6 +25,7 @@ export default function Categories() {
     fetch('https://exam-server-5c4e.onrender.com/categories/all')
       .then(res => res.json())
       .then(data => {
+        
         setCategories(data);
         setRandomCategories(getRandomItems(data, 4));
       })
@@ -67,7 +68,12 @@ export default function Categories() {
               className="category-card"
               style={{ textDecoration: 'none', color: 'inherit' }}
             >
-              <img src={category.image} alt={category.title} className="category-image" />
+              {/* <img src={category.image} alt={category.title} className="category-image" /> */}
+               <img
+        src={`https://exam-server-5c4e.onrender.com${category.image}`} // ← вот здесь!
+        alt={category.title}
+        className="category-image"
+      />
               <div className="category-label">{category.title}</div>
             </Link>
           ))}
