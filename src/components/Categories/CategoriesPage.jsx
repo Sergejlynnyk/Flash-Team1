@@ -1,11 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { categories } from '../../data/CategoriesData';
+import Breadcrumbs from '../components/Breadcrumbs'; 
 import './Categories.scss';
 
 export default function Categories() {
+  const breadcrumbItems = [
+    { label: "Home", href: "/" },
+    { label: "Categories", href: "/categories" }
+  ];
+
   return (
     <section className="categories-section">
+      <Breadcrumbs items={breadcrumbItems} />
+
       <div className="categories-title">
         <h2>Categories</h2>
       </div>

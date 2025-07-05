@@ -14,7 +14,6 @@ const Header = () => {
 
       <div className="center-box">
         <button>1 day discount!</button>
-
         <nav>
           <ul>
             <li>

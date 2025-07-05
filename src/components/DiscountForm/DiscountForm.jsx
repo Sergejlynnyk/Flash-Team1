@@ -13,7 +13,7 @@ export default function DiscountForm() {
       setError('Wrong input. Try please again.');
     } else {
       setError('');
-      alert('emial sent!');
+      alert('email sent!');
       setName('');
       setPhone('');
       setEmail('');
@@ -28,6 +28,7 @@ export default function DiscountForm() {
           <img src="/image11.png" alt="Hands with garden tools" />
         </div>
         <form className="discount-form" onSubmit={handleSubmit}>
+          <h3 className="discount-form-title">Discount Form</h3>
           <div>
             <input
               type="text"
