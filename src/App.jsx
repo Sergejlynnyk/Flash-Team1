@@ -10,7 +10,7 @@ import Footer from './components/Footer/Footer';
 import ProductsPage from './pages/ProductsPage';
 import ToolsAndEquipment from './components/ToolsAndEquipment/ToolsAndEquipment';
 import AllProducts from './components/AllProducts/AllProducts';
-
+import ProductDetails from './pages/ProductDetails';
 import NotFound from './pages/NotFound/NotFound'; 
 
 import './index.css';
@@ -47,7 +47,8 @@ function App() {
           <Route path="/products" element={<ProductsPage />} />
           <Route path="/tools-and-equipment" element={<ToolsAndEquipment />} />
           <Route path="/all-products" element={<AllProducts />} />
-          <Route path="*" element={<NotFound />} /> {/* ✅ Добавлен маршрут */}
+          <Route path="/product/:id" element={<ProductDetails />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
 
         <Footer />
