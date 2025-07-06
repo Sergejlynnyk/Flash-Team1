@@ -1,7 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-
 import Header from './components/Header/Header';
 import Hero from './components/Hero/Hero';
 import Categories from './components/Categories/Categories';
@@ -12,10 +11,7 @@ import ProductsPage from './pages/ProductsPage';
 import ToolsAndEquipment from './components/ToolsAndEquipment/ToolsAndEquipment';
 import AllProducts from './components/AllProducts/AllProducts';
 import ProductDetails from './pages/ProductDetails';
-
-
-
-// import Page404 from './components/Page404'; 
+import NotFound from './pages/NotFound/NotFound'; 
 
 import './index.css';
 
@@ -39,7 +35,6 @@ function CategoriesPage() {
   );
 }
 
-
 function App() {
   return (
     <Router>
@@ -52,9 +47,8 @@ function App() {
           <Route path="/products" element={<ProductsPage />} />
           <Route path="/tools-and-equipment" element={<ToolsAndEquipment />} />
           <Route path="/all-products" element={<AllProducts />} />
-          {/* <Route path="*" element={<Page404 />} /> <- Korrekt! */}
           <Route path="/product/:id" element={<ProductDetails />} />
-          
+          <Route path="*" element={<NotFound />} />
         </Routes>
 
         <Footer />
