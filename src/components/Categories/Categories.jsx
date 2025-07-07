@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import FilterBar from "../FilterBar/FilterBar";
 import './Categories.scss';
 
 export default function Categories() {
@@ -25,7 +24,6 @@ export default function Categories() {
     fetch('https://exam-server-5c4e.onrender.com/categories/all')
       .then(res => res.json())
       .then(data => {
-        
         setCategories(data);
         setRandomCategories(getRandomItems(data, 4));
       })
@@ -57,8 +55,7 @@ export default function Categories() {
           <h2>Categories</h2>
         </div>
         
-        {/* FilterBar direkt unter dem Titel */}
-        <FilterBar />
+        {/* FilterBar entfernt */}
 
         <div className="categories-grid">
           {randomCategories.map(category => (
@@ -68,12 +65,11 @@ export default function Categories() {
               className="category-card"
               style={{ textDecoration: 'none', color: 'inherit' }}
             >
-              {/* <img src={category.image} alt={category.title} className="category-image" /> */}
-               <img
-        src={`https://exam-server-5c4e.onrender.com${category.image}`} // ← вот здесь!
-        alt={category.title}
-        className="category-image"
-      />
+              <img
+                src={`https://exam-server-5c4e.onrender.com${category.image}`}
+                alt={category.title}
+                className="category-image"
+              />
               <div className="category-label">{category.title}</div>
             </Link>
           ))}
