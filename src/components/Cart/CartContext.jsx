@@ -1,0 +1,49 @@
+import React, { createContext, useContext, useState } from "react";
+
+const CartContext = createContext();
+
+export const useCart = () => useContext(CartContext);
+
+export const CartProvider = ({ children }) => {
+  const [cart, setCart] = useState([]);
+
+  const addToCart = (item) => {
+    setCart(prev =>
+      prev.find(i => i.id === item.id)
+        ? prev.map(i =>
+            i.id === item.id
+              ? { ...i, quantity: (i.quantity || 1) + (item.quantity || 1) }
+              : i
+          )
+        : [...prev, { ...item, quantity: item.quantity || 1 }]
+    );
+  };
+
+  const removeFromCart = (id) => {
+    setCart(prev => prev.filter(item => item.id !== id));
+  };
+
+  const changeQuantity = (id, qty) => {
+    setCart(prev =>
+      prev.map(item =>
+        item.id === id
+          ? { ...item, quantity: Math.max(1, qty) }
+          : item
+      )
+    );
+  };
+
+  const clearCart = () => setCart([]);
+
+  return (
+    <CartContext.Provider value={{
+      cart,
+      addToCart,
+      removeFromCart,
+      changeQuantity,
+      clearCart,
+    }}>
+      {children}
+    </CartContext.Provider>
+  );
+};
