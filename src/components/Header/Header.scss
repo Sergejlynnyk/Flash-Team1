@@ -4,7 +4,7 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  font-family:"Montserrat",serif;
+  font-family: "Montserrat", serif;
   line-height: 1.5;
 }
 .custom-header {
@@ -12,25 +12,22 @@
   width: 100vw;
   justify-content: space-between;
   align-items: center;
-   background: #FFFFF1;
-  
+  background: #FFFFF1;
   margin: 0;
   box-sizing: border-box;
   font-family: "Montserrat", serif;
   line-height: 1.5;
   height: 128px;
 
-
   .header-left {
     display: flex;
     align-items: center;
     gap: 20px;
+    padding-left: 40px;
 
     .logo-image {
       width: 48px;
       height: 48px;
-      // padding: 0px 0px 0px 0px; 
-   
     }
 
     .mode-toggle-image {
@@ -48,9 +45,6 @@
     padding: 30px 0 28px 0;
     background: #FFFFF1;
 
-    
-    
-
     nav {
       display: flex;
       align-items: center;
@@ -67,13 +61,13 @@
         li {
           a {
             display: block;
-             color: #424436;
-             margin-top: -30px;
-             padding: 0 0 0 0;
-  font-size: 18px;
-  text-decoration: none;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 500;
+            color: #424436;
+            margin-top: -30px;
+            padding: 0;
+            font-size: 18px;
+            text-decoration: none;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
             &:hover {
               color: #55610B;
               background: #f3f3f3;
@@ -92,7 +86,6 @@
       border: none;
       border-radius: 12px;
       background-color: #92A134;
-// padding: px 10px 18px 0px; 
       color: white;
       cursor: pointer;
       margin-top: 12px; 
@@ -109,17 +102,38 @@
     align-items: center;
     gap: 24px;
     padding: 40px 40px 40px;
-  
 
     .header-icon {
       width: 48px;
-    
       height: 48px;
       border-radius: 12px;
       padding: 8px;
       object-fit: contain;
       cursor: pointer;
     }
+
+    //CART
+    .cart-link {
+      position: relative;
+      display: inline-block;
+    }
+    .cart-count {
+      position: absolute;
+      top: 0;
+      right: 0;
+      transform: translate(45%, -45%);
+      background: #a4b94c;
+      color: #fff;
+      border-radius: 50%;
+      font-size: 0.85rem;
+      padding: 2px 7px;
+      min-width: 18px;
+      text-align: center;
+      font-weight: bold;
+      pointer-events: none;
+    }
+   
   }
 }
+
 

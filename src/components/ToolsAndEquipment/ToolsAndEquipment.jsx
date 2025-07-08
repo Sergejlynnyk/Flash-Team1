@@ -1,8 +1,8 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./ToolsAndEquipment.scss";
-
 import FilterBar from "../FilterBar/FilterBar";
+import { useCart } from "../Cart/CartContext";
 
 const items = [
   {
@@ -80,11 +80,34 @@ const items = [
 ];
 
 function ItemCard({ id, image, alt, text, discount, newPrice, oldPrice }) {
+  const { addToCart } = useCart();
+  const navigate = useNavigate();
+
+  const handleAddToCart = (e) => {
+    e.preventDefault();
+    addToCart({
+      id,
+      name: text,
+      image,
+      price: newPrice,
+      oldPrice,
+      quantity: 1,
+    });
+    alert(`${text} added to cart!`);
+    // navigate("/cart");
+  };
+
   return (
     <Link to={`/product/${id}`} className="item-card">
       <div className="discount-badge">-{discount}%</div>
       <div className="icon-bar">
-        <img src="/basket=empty.svg" alt="Cart" className="icon" />
+        <img
+          src="/basket=empty.svg"
+          alt="Cart"
+          className="icon"
+          style={{ cursor: "pointer" }}
+          onClick={handleAddToCart}
+        />
         <img src="/basket=heart empty.svg" alt="Like" className="icon" />
       </div>
       <img src={image} alt={alt} className="item-image" />
@@ -110,4 +133,5 @@ export default function ToolsAndEquipment() {
     </div>
   );
 }
+
 
