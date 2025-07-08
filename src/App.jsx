@@ -13,6 +13,7 @@ import AllProducts from './components/AllProducts/AllProducts';
 import ProductDetails from './pages/ProductDetails';
 import NotFound from './pages/NotFound/NotFound'; 
 
+
 import { CartProvider } from "./components/Cart/CartContext";
 
 import Cart from "./components/Cart/Cart";
