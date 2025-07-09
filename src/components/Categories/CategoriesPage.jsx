@@ -12,8 +12,6 @@ export default function Categories() {
 
   return (
     <section className="categories-section">
-      {/* <Breadcrumbs items={breadcrumbItems} /> */}
-
       <div className="categories-title">
         <h2>Categories</h2>
       </div>

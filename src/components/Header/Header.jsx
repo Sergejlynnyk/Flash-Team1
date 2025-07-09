@@ -60,6 +60,7 @@
 import React from 'react';
 import './Header.scss';
 import { Link, useLocation } from 'react-router-dom';
+
 import { useCart } from "../Cart/CartContext";
 import ToggleSwitch from '../Toggle/ToggleSwitch'; 
 
@@ -109,10 +110,10 @@ const Header = () => {
           <img src="/basket=empty.svg" alt="Basket" className="header-icon" />
           {itemCount > 0 && <span className="cart-count">{itemCount}</span>}
         </Link>
-        
       </div>
     </header>
   );
 };
 
 export default Header;
+

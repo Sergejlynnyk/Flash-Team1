@@ -21,6 +21,21 @@ body {
 
 
 .items-container {
+  padding: 40px 0 40px 0; 
+}
+
+.saleitems-title {
+  width: 100%;
+  text-align: center;
+  font-size: clamp(2rem, 6vw, 64px);
+  font-weight: 700;
+  color: #424436;
+  padding: 0 0 40px 40px ; 
+  letter-spacing: 0;
+}
+
+.items-container {
+  max-width: 1360px;
   margin: 0 auto;
   width: 100%;
   display: flex;
@@ -46,8 +61,9 @@ body {
 
   .discount-badge {
     position: absolute;
-    top: 12px; //!important;
-    left: 12px;
+
+    top: 4px;
+    left: 8px;
     background: #F26D22;
     color: white;
     font-family: 'Montserrat', sans-serif;
@@ -86,7 +102,6 @@ body {
 
   .item-image {
     width: 316px;
-    height: 284px;
     object-fit: cover;
     border-bottom: 1px solid #ccc;
   }
@@ -100,8 +115,6 @@ body {
     letter-spacing: 0%;
     height: 24px;
     color: #424436;
-    padding-left: 32px;
-    padding-bottom: 16px;
   }
 
   .item-prices {
@@ -110,7 +123,6 @@ body {
     align-items: center;
     font-family: 'Montserrat', sans-serif;
     color: #424436;
-    padding-left: 32px;
 
     .new-price {
       font-size: 40px;
@@ -128,12 +140,4 @@ body {
       text-decoration: line-through;
     }
   }
-  .saleitems-outer-container .saleitems-section .saleitems-title {
-  font-size: clamp(2rem, 6vw, 64px);
-  font-weight: 700;
-  color: #424436;
-  text-align: center;
-  width: 100%;
-  margin-bottom: 40px;
-}
 }

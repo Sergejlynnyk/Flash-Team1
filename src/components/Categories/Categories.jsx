@@ -33,8 +33,7 @@ export default function Categories() {
   return (
     <div className="categories-container">
       <section className="categories-section">
-        {/* Breadcrumbs entfernt */}
-
+    
         <div className="categories-title">
           <h2>Categories</h2>
         </div>
