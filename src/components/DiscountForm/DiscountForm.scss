@@ -1,13 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap');
 
-
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-  font-family: "Montserrat", serif;
-  line-height: 1.5;
-}
 .discount-section {
   padding: 48px;
   background: linear-gradient(80.46deg, #87933D -0.68%, #55610B 66.66%);
@@ -54,9 +46,8 @@
     box-sizing: border-box;
 
     .discount-image img {
-      width: 100%;
       width: 748px;
-      height: auto;
+      width: auto;
       border-radius: 14px;
       object-fit: cover;
       display: block;
@@ -71,38 +62,59 @@
       border-radius: 12px;
       box-shadow: 0 2px 8px rgba(160,179,77,0.12);
 
-      .discount-input {
-        font-size: 20px;
-        padding: 12px;
-        background: #55610B;
-        font-family: Montserrat;
-        font-weight: 500;
-        color: #fff;
-        border: 1px solid #c8cfb0;
-        border-radius: 8px;
-        outline: none;
-        transition: border 0.2s;
-        &:focus {
-          border: 1.5px solid #A0B34D;
-        }
-      }
+     .discount-input {
+  font-size: 20px;
+  padding: 12px;
+  background: #55610B;
+  font-family: Montserrat, sans-serif;
+  font-weight: 500;
+  color: #fff;
+  border: 1px solid #c8cfb0;
+  border-radius: 8px;
+  outline: none;
+  width: 100%;
+  min-width: 320px;
+  max-width: 640px;
+  box-sizing: border-box;
+  transition: border 0.2s;
+  &::placeholder {
+    color: #c8cfb0;
+  }
+  &:focus {
+    border: 1.5px solid #A0B34D;
+}
 
-      .discount-button {
-        font-size: 20px;
-        font-weight: 600;
-        background: #fff;
-        color: #282828;
-        border: none;
-        border-radius: 8px;
-        padding: 12px 0;
-        cursor: pointer;
-        font-family: Montserrat;
-        line-height: 130%;
-        text-align: center;
-        vertical-align: middle;
-      }
+
+
+ .discount-button {
+  font-size: 20px;
+  font-weight: 600;
+  background: #fff;
+  color: #282828;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 0;
+  font-family: Montserrat;
+  line-height: 130%;
+  text-align: center;
+  vertical-align: middle;
+  width: 100%;
+  min-width: 320px;
+  max-width: 640px;
+  box-sizing: border-box;
+  cursor: pointer;
+  margin-top: 8px;
+}
+
     }
   }
+
+  @media (max-width: 900px) {
+    .discount-content {
+      grid-template-columns: 1fr;
+      gap: 24px;
+      padding: 18px;
+
 
   @media (max-width: 900px) {
     .discount-content {
@@ -114,6 +126,7 @@
         max-width: 100%;
         margin: 0 auto;
         height: auto;
+        padding-left: 32px;
       }
     }
     padding: 28px 2vw;

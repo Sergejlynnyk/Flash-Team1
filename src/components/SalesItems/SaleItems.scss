@@ -14,6 +14,13 @@ body {
 .saleitems-section {
   width: 100%;
   background: #FFFFF1;
+  padding: 40px 0 0 0;
+}
+
+
+
+
+.items-container {
   padding: 40px 0 40px 0; 
 }
 
@@ -41,8 +48,6 @@ body {
 }
 
 .item-card {
-  width: 316px;
-  height: 422px;
   border-radius: 24px;
   border: 1px solid #040404;
   display: flex;
@@ -56,10 +61,9 @@ body {
 
   .discount-badge {
     position: absolute;
+
     top: 4px;
     left: 8px;
-    width: 68px;
-    height: 34px;
     background: #F26D22;
     color: white;
     font-family: 'Montserrat', sans-serif;
@@ -92,14 +96,12 @@ body {
       justify-content: center;
       cursor: pointer;
       background: #f4f5f0;
-      padding: 8px;
       object-fit: contain;
     }
   }
 
   .item-image {
     width: 316px;
-    height: 220px;
     object-fit: cover;
     border-bottom: 1px solid #ccc;
   }

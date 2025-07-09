@@ -1,18 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap');
 
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-  font-family: "Montserrat", serif;
-  line-height: 1.5;
-}
 .custom-header {
   display: flex;
   width: 100vw;
   justify-content: space-between;
   align-items: center;
   background: #FFFFF1;
+
   margin: 0;
   box-sizing: border-box;
   font-family: "Montserrat", serif;
@@ -41,8 +35,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 32px;
-    padding: 30px 0 28px 0;
+    gap: 12px;
     background: #FFFFF1;
 
     nav {
@@ -55,15 +48,11 @@
         display: flex;
         gap: 32px;
         align-items: center;
-        padding: 12px 0px 28px 0px; 
-        margin: 0;
 
         li {
           a {
             display: block;
             color: #424436;
-            margin-top: -30px;
-            padding: 0;
             font-size: 18px;
             text-decoration: none;
             font-family: 'Montserrat', sans-serif;
@@ -79,8 +68,6 @@
     }
 
     button {
-      width: 280px;
-      height: 48px;
       font-size: 16px;
       font-weight: 600;
       border: none;
@@ -101,7 +88,6 @@
     display: flex;
     align-items: center;
     gap: 24px;
-    padding: 40px 40px 40px;
 
     .header-icon {
       width: 48px;

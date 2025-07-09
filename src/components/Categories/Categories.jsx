@@ -30,27 +30,10 @@ export default function Categories() {
       .catch(err => console.error('Fehler beim Laden der Kategorien:', err));
   }, []);
 
-  const breadcrumbItems = [
-    { label: "Home", href: "/" },
-    { label: "Categories", href: "/categories" }
-  ];
-
   return (
     <div className="categories-container">
       <section className="categories-section">
-        <nav className="breadcrumbs" style={{ marginBottom: "24px", fontSize: "1.1rem", display: "flex", alignItems: "center" }}>
-          {breadcrumbItems.map((item, idx) => (
-            <span key={item.label}>
-              <Link to={item.href} style={{ color: "#48493b", textDecoration: "none", fontWeight: 500 }}>
-                {item.label}
-              </Link>
-              {idx < breadcrumbItems.length - 1 && (
-                <span style={{ margin: "0 8px", color: "#bbb" }}>&gt;</span>
-              )}
-            </span>
-          ))}
-        </nav>
-
+    
         <div className="categories-title">
           <h2>Categories</h2>
         </div>
