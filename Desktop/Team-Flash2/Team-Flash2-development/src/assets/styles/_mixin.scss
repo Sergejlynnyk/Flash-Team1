@@ -1,0 +1,32 @@
+// src/assets/styles/_mixin.scss
+@use './colors' as *;
+
+@mixin on-design { @content; }
+@mixin buttonOutlined { @content; }
+@mixin linkSectionNav { @content; }
+@mixin  borderFilter { @content; }
+@mixin  productCartBtn { @content; }
+
+@mixin on-mobile {
+  @media (max-width: 480px) { @content; }
+}
+@mixin on-tablet {
+  @media (max-width: 768px) { @content; }
+}
+@mixin on-laptop {
+  @media (max-width: 1000px) { @content; }
+}
+
+/* Пример миксинов из Варианта 2 */
+@mixin btn-default {
+  border: none;
+  border-radius: 4px;
+  background: $green;
+  color: $txt-white;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 0 32px;
+  border: 1px solid $green;
+}

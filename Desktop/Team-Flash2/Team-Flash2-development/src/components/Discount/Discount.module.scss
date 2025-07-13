@@ -1,0 +1,149 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap');
+
+.discountSection {
+  padding: 36px;
+  background: linear-gradient(80.46deg, #87933D -0.68%, #55610B 66.66%);
+  border-radius: 18px;
+  margin: 40px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  box-sizing: border-box;
+}
+
+.discountTitle {
+  width: 100%;
+  font-size: clamp(2.1rem, 5vw, 54px);
+  font-weight: 700;
+  color: #fff;
+  font-family: 'Montserrat', sans-serif;
+  line-height: 1.15;
+  text-align: center;
+  margin-bottom: 18px;
+  letter-spacing: 0.01em;
+}
+
+.discountContent {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  width: 100%;
+  align-items: center;
+  background: none;
+}
+
+.discountImageContainer {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.discountImage {
+  width: 100%;
+  max-width: 410px;
+  min-width: 220px;
+  object-fit: contain;
+  background: transparent;
+  display: block;
+}
+
+.discountForm {
+  background: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 16px;
+  width: 100%;
+  max-width: 420px;
+}
+
+.discountInput {
+  font-size: 20px;
+  padding: 15px 18px;
+  background: #fff;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  color: #424436;
+  border: none;
+  border-radius: 10px;
+  outline: none;
+  width: 100%;
+  box-sizing: border-box;
+  transition: box-shadow 0.2s, border 0.2s;
+  box-shadow: 0 2px 8px rgba(160,179,77,0.07);
+
+  &::placeholder {
+    color: #aab282;
+    opacity: 1;
+  }
+  &:focus {
+    border: 2px solid #A0B34D;
+    box-shadow: 0 4px 16px rgba(160,179,77,0.10);
+  }
+}
+
+.discountButton {
+  font-size: 20px;
+  font-weight: 700;
+  background: #fffdeb;
+  color: #424436;
+  border: none;
+  border-radius: 10px;
+  padding: 15px 0;
+  font-family: 'Montserrat', sans-serif;
+  line-height: 130%;
+  text-align: center;
+  width: 100%;
+  cursor: pointer;
+  margin-top: 8px;
+  box-shadow: 0 2px 8px rgba(160,179,77,0.07);
+  transition: background 0.2s, color 0.2s;
+  letter-spacing: 0.01em;
+
+  &:hover {
+    background: #92A134;
+    color: #fff;
+  }
+}
+
+@media (max-width: 900px) {
+  .discountSection {
+    padding: 18px 2vw;
+    border-radius: 12px;
+  }
+  .discountContent {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .discountImage {
+    max-width: 300px;
+  }
+}
+
+@media (max-width: 600px) {
+  .discountSection {
+    padding: 10px 1vw;
+  }
+  .discountTitle {
+    font-size: 1.3rem;
+    margin-bottom: 8px;
+  }
+  .discountContent {
+    gap: 14px;
+  }
+  .discountImage {
+    max-width: 170px;
+  }
+  .discountForm {
+    padding: 0;
+    max-width: 100%;
+  }
+  .discountInput, .discountButton {
+    font-size: 1rem;
+    padding: 10px 8px;
+  }
+
+}

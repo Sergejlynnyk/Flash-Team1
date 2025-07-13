@@ -1,0 +1,235 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap');
+
+/* Farbvariablen (aus Beispiel und Annahme, ggf. anpassen) */
+:root {
+  --green: #92A134;
+  --light-green: #a4b94c;
+  --txt-white: #fff;
+  --light-grey: #e0e0e0;
+  --link-color-light: #424436;
+  --link-color-dark: #fff;
+  --link-color: var(--link-color-light);
+}
+
+body.light {
+  --link-color: var(--link-color-light);
+}
+body.dark {
+  --link-color: var(--link-color-dark);
+}
+
+a {
+  color: var(--link-color);
+  transition: color 0.2s;
+}
+a:hover {
+  color: var(--green);
+}
+
+/* HEADER GRUNDLAYOUT */
+.custom-header,
+.header {
+  display: flex;
+  width: 100vw;
+  justify-content: space-between;
+  align-items: center;
+  background: #FFFFF1;
+  font-family: "Montserrat", sans-serif;
+  line-height: 1.5;
+  height: 128px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  border-bottom: 1px solid var(--light-grey);
+  max-width: 1440px;
+}
+
+.headerWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+}
+
+@media (max-width: 600px) {
+  .headerWrapper {
+    padding: 30px 0;
+  }
+}
+
+/* LEFT */
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding-left: 40px;
+}
+
+.logo-image, .mode-toggle-image {
+  width: 48px;
+  height: 48px;
+}
+.mode-toggle-image {
+  cursor: pointer;
+}
+
+/* MITTE */
+.center-box, .navWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  background: #FFFFF1;
+  max-width: 518px;
+}
+
+.center-box nav, .navWrapper nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.center-box nav ul, .navWrapper nav ul {
+  list-style: none;
+  display: flex;
+  gap: 32px;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+.center-box nav ul li a, .navWrapper nav ul li a {
+  display: block;
+  color: #424436;
+  font-size: 18px;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  border-radius: 6px;
+  padding: 2px 8px;
+  transition: color 0.2s, background 0.2s;
+}
+
+.center-box nav ul li a:hover, .navWrapper nav ul li a:hover {
+  color: #55610B;
+  background: #f3f3f3;
+}
+
+/* BUTTONS */
+.center-box button, .discountBtn {
+  font-size: 16px;
+  font-weight: 600;
+  border: 1px solid var(--green);
+  border-radius: 12px;
+  background-color: var(--green);
+  color: var(--txt-white);
+  cursor: pointer;
+  margin-top: 12px; 
+  transition: background 0.2s, color 0.2s;
+  padding: 8px 20px;
+}
+
+.center-box button:hover, .discountBtn:hover {
+  color: var(--green);
+  background-color: var(--light-green);
+}
+
+/* RECHTS */
+.header-right, .icons {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  position: relative;
+}
+
+.icons {
+  gap: 20px;
+}
+
+.header-icon, .svgBtn {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  padding: 8px;
+  object-fit: contain;
+  cursor: pointer;
+  stroke-width: 1.3;
+}
+
+.svgBtn {
+  width: 44px;
+  height: 44px;
+  stroke-width: 1.3;
+}
+
+.navIcons {
+  display: flex;
+  gap: 12px;
+  cursor: pointer;
+}
+
+.svgLink {
+  stroke-width: 1.1;
+  width: 32px;
+  height: 32px;
+}
+
+@media (max-width: 900px) {
+  .svgLink {
+    width: 44px;
+    height: 44px;
+  }
+}
+
+@media (max-width: 600px) {
+  .svgLink {
+    width: 46px;
+    height: 46px;
+  }
+}
+
+.burgerBtn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+/* CART / COUNTER */
+.cart-link, .icons a {
+  position: relative;
+  display: inline-block;
+}
+
+.cart-count, .icons .сounter {
+  position: absolute;
+  left: 1px;
+  top: 7px;
+  background-color: var(--green);
+  color: var(--txt-white);
+  border-radius: 50%;
+  width: 17px;
+  height: 17px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  pointer-events: none;
+}
+
+@media (max-width: 900px) {
+  .cart-count, .icons .сounter {
+    width: 23px;
+    height: 23px;
+    font-size: 11px;
+    top: 4px;
+  }
+}
+@media (max-width: 600px) {
+  .cart-count, .icons .сounter {
+    width: 26px;
+    height: 26px;
+    font-size: 12px;
+    top: 5px;
+  }
+}

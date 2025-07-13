@@ -1,0 +1,123 @@
+@use '../../assets/styles/mixin' as *;
+@use '../../assets/styles/colors' as *;
+
+%wrapper {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  padding: 24px 0 56px;
+
+  @include on-mobile {
+    grid-template-columns: repeat(2, minmax(200px, 1fr));
+    column-gap: 20px;
+    row-gap: 20px;
+  }
+  @include on-tablet {
+    grid-template-columns: repeat(2, minmax(200px, 1fr));
+    padding: 32px 0 60px;
+  }
+  @include on-laptop {
+    grid-template-columns: repeat(4, minmax(316px, 1fr));
+    padding: 40px 0 80px;
+  }
+}
+
+.onHomePage {
+  @extend %wrapper;
+
+  &_button__outlined {
+    @include buttonOutlined;
+    margin: auto;
+    margin-bottom: 56px;
+
+    &:hover {
+      background-color: $light_green;
+      cursor: pointer;
+    }
+    @include on-mobile {
+      display: none;
+    }
+  }
+}
+
+.onCategoriesPage {
+  @extend %wrapper;
+
+  @include on-design {
+    grid-template-columns: repeat(5, minmax(200px, 1fr));
+    padding: 40px 0 80px;
+  }
+}
+
+.itemWrapper {
+  width: 316px;
+  height: 350px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  background: #fff;
+  border-radius: 18px; // "radius big" laut Figma/Screenshot!
+  box-shadow: 0 2px 12px #2221;
+  overflow: hidden;
+  transition: box-shadow 0.2s, transform 0.2s;
+
+  &:hover {
+    box-shadow: 0 6px 20px #2223;
+    transform: translateY(-4px) scale(1.03);
+
+    .categoriesImage {
+      transform: scale(1.07);
+    }
+  }
+
+  @include on-mobile {
+    width: 100%;
+    height: 260px;
+    border-radius: 14px;
+  }
+  @include on-tablet {
+    height: 280px;
+  }
+  @include on-design {
+    width: 316px;
+    height: 350px;
+    border-radius: 18px;
+  }
+}
+
+.imageContainer {
+  width: 100%;
+  height: 100%;
+  flex: 1 1 auto;
+  overflow: hidden;
+  border-radius: 18px 18px 0 0;
+  background: #fffef6;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.categoriesImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 18px 18px 0 0;
+  display: block;
+  transition: transform 0.2s;
+}
+
+.categoriesTitle, .categoryLabel {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 130%;
+  text-align: center;
+  color: #424436;
+  margin-top: 18px;
+  margin-bottom: 10px;
+  width: 100%;
+  letter-spacing: 0;
+  // kein "leading-trim" nötig
+  padding: 0;
+}
