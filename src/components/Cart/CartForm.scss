@@ -1,0 +1,40 @@
+.cart-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 8px;
+
+  input {
+    width: 100%;
+    margin-bottom: 8px;
+    padding: 12px;
+    font-size: 1.12rem;
+    border-radius: 8px;
+    border: 1px solid #e5e6e8;
+    background: #fff;
+  }
+  button {
+    width: 100%;
+    padding: 12px;
+    font-size: 1.13rem;
+    background: #b7be57;
+    border-radius: 8px;
+    color: #fff;
+    font-weight: 600;
+    border: none;
+    margin-top: 2px;
+    cursor: pointer;
+    transition: background 0.15s;
+    &:hover {
+      background: #929b3e;
+    }
+  }
+
+  .form-error {
+    font-size: 0.98rem;
+    color: #e1555a;
+    margin-bottom: 6px;
+    margin-left: 3px;
+    display: block;
+  }
+}

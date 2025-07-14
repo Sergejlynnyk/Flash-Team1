@@ -1,7 +1,7 @@
-
 import { useParams } from 'react-router-dom';
 import './ProductDetails.scss';
 import { useState } from 'react';
+import { useCart } from '../components/Cart/CartContext';
 
 const items = [
   {
@@ -81,9 +81,22 @@ const items = [
 export default function ProductDetails() {
   const { id } = useParams();
   const [quantity, setQuantity] = useState(1);
+  const { addToCart } = useCart();
   const product = items.find(p => p.id === parseInt(id));
 
   if (!product) return <div className="product-not-found">Product not found</div>;
+
+  const handleAddToCart = () => {
+    addToCart({
+      id: product.id,
+      name: product.text,
+      image: product.image,
+      price: product.newPrice,
+      oldPrice: product.oldPrice,
+      quantity: quantity,
+    });
+    setQuantity(1);
+  };
 
   return (
     <div className="product-details-wrapper">
@@ -113,7 +126,7 @@ export default function ProductDetails() {
               <span>{quantity}</span>
               <button onClick={() => setQuantity(quantity + 1)}>+</button>
             </div>
-            <button className="add-to-cart">Add to cart</button>
+            <button className="add-to-cart" onClick={handleAddToCart}>Add to cart</button>
           </div>
 
           <div className="description">

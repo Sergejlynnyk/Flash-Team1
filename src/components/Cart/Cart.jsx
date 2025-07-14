@@ -1,4 +1,6 @@
 import React from "react";
+import "./Cart.scss";
+
 import CartItem from "./CartItem";
 import CartForm from "./CartForm";
 import { useCart } from "./CartContext";
