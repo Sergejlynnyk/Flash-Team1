@@ -13,12 +13,11 @@
   max-width: 1360px;
 
   .discount-title {
-    margin: 40px 0;
+    margin: 40px 0 16px 0;
     font-size: clamp(2rem, 5vw, 64px);
     font-weight: 700;
-    margin-bottom: 16px;
     color: #fff;
-    font-family: Montserrat;
+    font-family: Montserrat, sans-serif;
     line-height: 110%;
     letter-spacing: 0;
     text-align: center;
@@ -44,8 +43,8 @@
     box-sizing: border-box;
 
     .discount-image img {
-      width: 748px;
-      width: auto;
+      width: 100%;
+      max-width: 748px;
       border-radius: 14px;
       object-fit: cover;
       display: block;
@@ -75,6 +74,7 @@
         max-width: 640px;
         box-sizing: border-box;
         transition: border 0.2s;
+
         &::placeholder {
           color: #c8cfb0;
         }
@@ -91,7 +91,7 @@
         border: none;
         border-radius: 8px;
         padding: 12px 0;
-        font-family: Montserrat;
+        font-family: Montserrat, sans-serif;
         line-height: 130%;
         text-align: center;
         vertical-align: middle;
@@ -104,8 +104,17 @@
       }
     }
   }
+}
 
-  @media (max-width: 900px) {
+// Медиазапросы вне основной вложенности
+@media (max-width: 900px) {
+  .discount-section {
+    padding: 28px 2vw;
+    border-radius: 10px;
+
+    .discount-title {
+      font-size: clamp(1.4rem, 5vw, 2.5rem);
+    }
     .discount-content {
       grid-template-columns: 1fr;
       gap: 24px;
@@ -118,25 +127,22 @@
         padding-left: 32px;
       }
     }
-    padding: 28px 2vw;
-    border-radius: 10px;
-    .discount-title {
-      font-size: clamp(1.4rem, 5vw, 2.5rem);
-    }
   }
+}
 
-  @media (max-width: 600px) {
+@media (max-width: 600px) {
+  .discount-section {
     padding: 14px 2vw;
+
+    .discount-title {
+      font-size: 1.3rem;
+    }
     .discount-content {
       gap: 14px;
       padding: 8px;
-    }
-    .discount-title {
-      font-size: 1.3rem;
     }
     .discount-form {
       padding: 14px 8px;
     }
   }
-
 }
