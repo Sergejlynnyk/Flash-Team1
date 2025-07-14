@@ -1,16 +1,37 @@
+import React, { useState } from "react";
+import { useCart } from "../Cart/CartContext";
 
+const ProductCard = ({ product }) => {
+  const { addToCart } = useCart();
+  const [quantity, setQuantity] = useState(1);
 
-import { Link } from 'react-router-dom';
+  const increase = () => setQuantity(q => q + 1);
+  const decrease = () => setQuantity(q => (q > 1 ? q - 1 : 1));
 
-const ProductsCard = ({ product }) => {
+  const handleAddToCart = () => {
+    addToCart({ ...product, quantity });
+  };
+
   return (
-    <Link to={`/product/${product.id}`} className="block border rounded p-2 hover:shadow-md">
-      <img src={product.image} alt={product.title} className="w-full h-40 object-cover" />
-      <h2 className="text-lg font-semibold">{product.title}</h2>
-      <p>{product.price} €</p>
-    </Link>
+    <div className="product-card">
+      <img src={product.image} alt={product.name} width={150} />
+      <h3>{product.name}</h3>
+      <p>${product.price}</p>
+
+      <div className="quantity-controls">
+        <button onClick={decrease}>-</button>
+        <input
+          type="number"
+          value={quantity}
+          min={1}
+          onChange={e => setQuantity(Math.max(1, Number(e.target.value)))}
+        />
+        <button onClick={increase}>+</button>
+      </div>
+
+      <button onClick={handleAddToCart}>Add to cart</button>
+    </div>
   );
 };
 
-export default ProductsCard;
-                                          
+export default ProductCard;
