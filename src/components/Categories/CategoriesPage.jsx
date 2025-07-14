@@ -4,7 +4,7 @@ import { categories } from '../../data/CategoriesData';
 import Breadcrumbs from '../components/Breadcrumbs'; 
 import './Categories.scss';
 
-export default function Categories() {
+export default function CategoriesPage() {
   const breadcrumbItems = [
     { label: "Home", href: "/" },
     { label: "Categories", href: "/categories" }

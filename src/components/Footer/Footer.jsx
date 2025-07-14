@@ -2,9 +2,11 @@ import React from 'react';
 import './Footer.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faInstagram } from '@fortawesome/free-brands-svg-icons';
+// import Container_Two from '../container_two/Container_Two';
 
-const Footer = () => {
+export default function Footer  ()  {
   return (
+    // <Container_Two>
     <footer className="footer">
       <div className="footer__header">Contact</div>
       <div className="footer__content">
@@ -65,7 +67,8 @@ const Footer = () => {
         ></iframe>
       </div>
     </footer>
+    // </Container_Two>
   );
 };
 
-export default Footer;
+

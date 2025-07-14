@@ -1,19 +1,36 @@
+// import React from 'react';
+// import './Hero.scss'; 
+
+// const Hero = () => {
+//   return (
+//     <div className="hero-section">
+//       {/* <img src="/public/img-4.png" alt="Hero" className="hero-image" /> */}
+//       <img src="/img-4.png" alt="Hero" className="hero-image" /> 
+//       {/* Выше поменяла путь, потому что не подгружалась картинка Hero */}
+
+//       <div className="hero-content">
+//         <h1 className="hero-text">Amazing Discounts on Garden Products!</h1>
+//         <button className="hero-button">Check out</button>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default Hero;
 import React from 'react';
-import './Hero.scss'; 
+import Container_Two from '../container_two/Container_Two';
+import './Hero.scss';
 
-const Hero = () => {
+export default function Hero() {
   return (
-    <div className="hero-section">
-      {/* <img src="/public/img-4.png" alt="Hero" className="hero-image" /> */}
-      <img src="/img-4.png" alt="Hero" className="hero-image" /> 
-      {/* Выше поменяла путь, потому что не подгружалась картинка Hero */}
-
-      <div className="hero-content">
-        <h1 className="hero-text">Amazing Discounts on Garden Products!</h1>
-        <button className="hero-button">Check out</button>
+    <section className="hero">
+      <Container_Two>
+      <div className="hero__inner">
+        <h1 className="hero__title">Amazing Discounts on Garden Products!</h1>
+        <button className="hero__button">Check out</button>
       </div>
-    </div>
+      <img src="/img-4.png" alt="Hero" className="hero__image" />
+      </Container_Two>
+    </section>
   );
-};
-
-export default Hero;
+}
