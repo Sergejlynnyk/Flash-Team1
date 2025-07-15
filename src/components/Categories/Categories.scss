@@ -5,12 +5,17 @@
   box-sizing: border-box;
   font-family: "Montserrat", serif;
   line-height: 1.5;
+
+  
+}
+body{
+   background: #FFFFF1; 
 }
 
 .categories-container {
   max-width: 1500px;
   margin: 0 auto;
-  padding: 0 24px;
+  padding: 0 124px;
 }
 
 .categories-section {
@@ -19,6 +24,8 @@
   font-family: 'Montserrat', sans-serif;
   max-width: 1360px;
   padding-bottom: 80px;
+  
+  
 
   .categories-title {
     height: 70px;
@@ -51,6 +58,7 @@
       align-items: center;
       transition: box-shadow 0.2s;
       cursor: pointer;
+      background: #FFFFF1; 
 
       .category-image {
         width: 100%;
