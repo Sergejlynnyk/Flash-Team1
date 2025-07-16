@@ -48,6 +48,8 @@
       border-radius: 14px;
       object-fit: cover;
       display: block;
+           
+
     }
 
     .discount-form {
@@ -106,7 +108,7 @@
   }
 }
 
-// Медиазапросы вне основной вложенности
+
 @media (max-width: 900px) {
   .discount-section {
     padding: 28px 2vw;
