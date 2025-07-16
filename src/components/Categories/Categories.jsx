@@ -1,6 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import './Categories.scss';
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import "./Categories.scss";
+import Section from "../Section/Section";
+import CategoryCard from "../CategoryCard/CategoryCard";
 
 export default function Categories() {
   const [categories, setCategories] = useState([]);
@@ -21,40 +23,21 @@ export default function Categories() {
   }
 
   useEffect(() => {
-    fetch('https://exam-server-5c4e.onrender.com/categories/all')
-      .then(res => res.json())
-      .then(data => {
+    fetch("https://exam-server-5c4e.onrender.com/categories/all")
+      .then((res) => res.json())
+      .then((data) => {
         setCategories(data);
         setRandomCategories(getRandomItems(data, 5));
       })
-      .catch(err => console.error('Fehler beim Laden der Kategorien:', err));
+      .catch((err) => console.error("Fehler beim Laden der Kategorien:", err));
   }, []);
 
   return (
-    <div className="categories-container">
-      <section className="categories-section">
-        <div className="categories-title">
-          <h2>Categories</h2>
-        </div>
-
-        <div className="categories-grid">
-          {randomCategories.map(category => (
-            <Link
-              to={`/${category.slug || 'tools-and-equipment'}`}
-              key={category.id}
-              className="category-card"
-              style={{ textDecoration: 'none', color: 'inherit' }}
-            >
-              <img
-                src={`https://exam-server-5c4e.onrender.com${category.image}`}
-                alt={category.title}
-                className="category-image"
-              />
-              <div className="category-label">{category.title}</div>
-            </Link>
-          ))}
-        </div>
-      </section>
-    </div>
+    <Section title="Categories">
+      {randomCategories &&
+        randomCategories.map((category) => (
+          <CategoryCard key={category.id} category={category} />
+        ))}
+    </Section>
   );
 }

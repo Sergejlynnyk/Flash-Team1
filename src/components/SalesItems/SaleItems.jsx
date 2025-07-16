@@ -1,6 +1,7 @@
 import React from 'react';
 import './SaleItems.scss';
 import { useCart } from '../Cart/CartContext';
+import Section from '../Section/Section';
 
 const items = [
   {
@@ -46,11 +47,8 @@ const SaleItems = () => {
   };
 
   return (
-    <div className="saleitems-outer-container">
-      <section className="saleitems-section">
-        <h2 className="saleitems-title">Sale</h2>
-        <div className="items-container">
-          {items.map((item) => (
+    <Section title={"Products"}>
+        {items.map((item) => (
             <div className="item-card" key={item.id}>
               <div className="discount-badge">{item.discount}</div>
               <div className="icon-bar">
@@ -72,9 +70,7 @@ const SaleItems = () => {
               </div>
             </div>
           ))}
-        </div>
-      </section>
-    </div>
+    </Section>
   );
 };
 
