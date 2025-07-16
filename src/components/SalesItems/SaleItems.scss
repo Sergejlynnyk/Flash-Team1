@@ -18,19 +18,18 @@ body {
 }
 
 .saleitems-title {
-  width: 100%;
+  // width: 100%;
   text-align: center;
-  font-size: clamp(2rem, 6vw, 64px);
-  font-weight: 700;
-  color: #424436;
+  // font-size: clamp(2rem, 6vw, 64px);
+  // font-weight: 700;
+  // color: #424436;
   padding: 0 0 40px 40px;
   letter-spacing: 0;
 }
 
-/* Responsive Grid */
 .items-container {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  // grid-template-columns: repeat(4, 1fr);
   gap: 32px;
   max-width: 1360px;
   margin: 0 auto;
@@ -139,7 +138,7 @@ body {
 
   .item-prices {
    display: flex;
-  flex-direction: row; // Цена и скидка всегда в одной строке
+  flex-direction: row; 
   align-items: center;
   margin-top: 1rem;
   gap: 1rem;
