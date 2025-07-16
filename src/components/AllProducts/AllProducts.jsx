@@ -83,7 +83,7 @@ export default function AllProducts() {
         ))}
       </div>
 
-      <div className="contact-section">
+      {/* <div className="contact-section">
         <h2>Contact</h2>
         <div className="contact-grid">
           <div><strong>Phone</strong><br />+49 999 999 99 99</div>
@@ -101,7 +101,7 @@ export default function AllProducts() {
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
         />
-      </div>
+      </div> */}
     </div>
   );
 }
