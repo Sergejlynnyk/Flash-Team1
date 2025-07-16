@@ -12,6 +12,7 @@ import ToolsAndEquipment from './components/ToolsAndEquipment/ToolsAndEquipment'
 import AllProducts from './components/AllProducts/AllProducts';
 import ProductDetails from './pages/ProductDetails';
 import NotFound from './pages/NotFound/NotFound'; 
+import Breadcrumbs from './components/Breadcrumbs/Breadcrumbs';
 
 import { CartProvider } from "./components/Cart/CartContext";
 
@@ -31,8 +32,14 @@ function Home() {
 }
 
 function CategoriesPage() {
+  const breadcrumbItems = [
+    { label: "Main page", href: "/" },
+    { label: "Categories" }
+  ];
+
   return (
     <div className="p-4">
+      <Breadcrumbs items={breadcrumbItems} />
       <h1 className="text-2xl font-bold mb-4">All Categories</h1>
       <Categories />
     </div>

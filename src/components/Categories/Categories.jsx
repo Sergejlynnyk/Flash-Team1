@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import './Categories.scss';
 
 export default function Categories() {
-  const [Categories, setCategories] = useState([]);
+  const [categories, setCategories] = useState([]);
   const [randomCategories, setRandomCategories] = useState([]);
 
   function getRandomItems(arr, n) {
@@ -25,7 +25,7 @@ export default function Categories() {
       .then(res => res.json())
       .then(data => {
         setCategories(data);
-        setRandomCategories(getRandomItems(data, 4));
+        setRandomCategories(getRandomItems(data, 5));
       })
       .catch(err => console.error('Fehler beim Laden der Kategorien:', err));
   }, []);
@@ -33,17 +33,19 @@ export default function Categories() {
   return (
     <div className="categories-container">
       <section className="categories-section">
-    
         <div className="categories-title">
           <h2>Categories</h2>
         </div>
+<<<<<<< HEAD
         
      
+=======
+>>>>>>> origin/development
 
         <div className="categories-grid">
           {randomCategories.map(category => (
             <Link
-              to="/tools-and-equipment"
+              to={`/${category.slug || 'tools-and-equipment'}`}
               key={category.id}
               className="category-card"
               style={{ textDecoration: 'none', color: 'inherit' }}
