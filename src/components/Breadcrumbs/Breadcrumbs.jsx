@@ -1,21 +1,25 @@
 import React from "react";
-import "./Breadcrumbs.css"; // optional, für eigenes Styling
+import { Link } from "react-router-dom";
+import "./Breadcrumbs.scss";
 
 const Breadcrumbs = ({ items }) => {
   return (
     <nav className="breadcrumbs">
       {items.map((item, idx) => (
-        <span key={idx}>
+        <span key={idx} className="breadcrumb-item">
           {item.href ? (
-            <a href={item.href}>{item.label}</a>
+            <Link to={item.href}>{item.label}</Link>
           ) : (
-            <span>{item.label}</span>
+            <span className="active">{item.label}</span>
           )}
-          {idx < items.length - 1 && <span className="breadcrumb-separator"> &gt; </span>}
         </span>
       ))}
     </nav>
   );
 };
 
-export default Breadcrumbs;
+export default Breadcrumbs; 
+
+
+
+
