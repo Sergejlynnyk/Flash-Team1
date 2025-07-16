@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './SaleItems.scss';
 import { useCart } from '../Cart/CartContext';
 
@@ -39,10 +39,13 @@ const items = [
 
 const SaleItems = () => {
   const { addToCart } = useCart();
+  const [addedId, setAddedId] = useState(null);
 
   const handleAddToCart = (item, e) => {
     e.stopPropagation();
-    addToCart({ ...item, quantity: 1 });
+    addToCart({ ...item, price: item.newPrice, quantity: 1 });
+    setAddedId(item.id);
+    setTimeout(() => setAddedId(null), 900);
   };
 
   return (
@@ -60,7 +63,10 @@ const SaleItems = () => {
                   onClick={(e) => handleAddToCart(item, e)}
                   type="button"
                 >
-                  <img src="/basket=empty.svg" alt="Cart" className="icon" />
+                  {addedId === item.id
+                    ? <img src="/checkmark.svg" alt="Added" className="icon" />
+                    : <img src="/basket=empty.svg" alt="Cart" className="icon" />
+                  }
                 </button>
                 <img src="/basket=heart empty.svg" alt="Like" className="icon" />
               </div>

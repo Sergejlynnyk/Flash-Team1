@@ -38,7 +38,7 @@ export default function Categories() {
           <h2>Categories</h2>
         </div>
         
-        {/* FilterBar entfernt */}
+     
 
         <div className="categories-grid">
           {randomCategories.map(category => (

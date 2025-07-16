@@ -122,6 +122,8 @@ body {
     width: 316px;
     object-fit: cover;
     border-bottom: 1px solid #ccc;
+    
+    
   }
 
   .item-text {
@@ -136,11 +138,12 @@ body {
   }
 
   .item-prices {
-    display: flex;
-    gap: 12px;
-    align-items: center;
-    font-family: 'Montserrat', sans-serif;
-    color: #424436;
+   display: flex;
+  flex-direction: row; // Цена и скидка всегда в одной строке
+  align-items: center;
+  margin-top: 1rem;
+  gap: 1rem;
+  align-items: flex-end;
 
     .new-price {
       font-size: 40px;
@@ -157,5 +160,7 @@ body {
       color: #999;
       text-decoration: line-through;
     }
+    
   }
+  
 }
