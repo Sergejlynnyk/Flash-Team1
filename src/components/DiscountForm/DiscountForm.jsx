@@ -10,14 +10,23 @@ export default function DiscountForm() {
   function handleSubmit(e) {
     e.preventDefault();
     if (!name.trim()) {
-      setError('Wrong input. Try please again.');
-    } else {
-      setError('');
-      alert('email sent!');
-      setName('');
-      setPhone('');
-      setEmail('');
+      setError('Please enter your name');
+      return;
     }
+    if (!phone.trim()) {
+      setError('Please enter your phone number');
+      return;
+    }
+    if (!email.trim()) {
+      setError('Please enter your email');
+      return;
+    }
+    
+    setError('');
+    alert('Discount request sent!');
+    setName('');
+    setPhone('');
+    setEmail('');
   }
 
   return (
@@ -25,7 +34,8 @@ export default function DiscountForm() {
       <h2 className="discount-title">5% off on the first order</h2>
       <div className="discount-content">
         <div className="discount-image">
-          <img src="/image11.png" alt="Hands with garden tools" />
+
+          <img src="/images/image11.png" alt="Gardening tools" />
         </div>
         <form className="discount-form" onSubmit={handleSubmit}>
           <h3 className="discount-form-title">Discount Form</h3>
@@ -36,11 +46,7 @@ export default function DiscountForm() {
               placeholder="Name"
               value={name}
               onChange={e => setName(e.target.value)}
-              required
             />
-            {error && (
-              <p className="error-message">{error}</p>
-            )}
           </div>
           <input
             type="tel"
@@ -48,7 +54,6 @@ export default function DiscountForm() {
             placeholder="Phone number"
             value={phone}
             onChange={e => setPhone(e.target.value)}
-            required
           />
           <input
             type="email"
@@ -56,8 +61,10 @@ export default function DiscountForm() {
             placeholder="Email"
             value={email}
             onChange={e => setEmail(e.target.value)}
-            required
           />
+          {error && (
+            <p className="error-message">{error}</p>
+          )}
           <button type="submit" className="discount-button">
             Get a discount
           </button>

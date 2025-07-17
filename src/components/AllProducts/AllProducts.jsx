@@ -1,4 +1,3 @@
-// src/AllProducts/AllProducts.jsx
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './AllProducts.scss';
@@ -8,31 +7,50 @@ export default function AllProducts() {
   const [filtered, setFiltered] = useState([]);
   const [sort, setSort] = useState('default');
   const [query, setQuery] = useState('');
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
+    setLoading(true);
     fetch('https://exam-server-5c4e.onrender.com/products/all')
-      .then(res => res.json())
+      .then(res => {
+        if (!res.ok) throw new Error('Failed to fetch products');
+        return res.json();
+      })
       .then(data => {
         setProducts(data);
         setFiltered(data);
+        setLoading(false);
       })
-      .catch(err => console.error('Error loading products:', err));
+      .catch(err => {
+        console.error('Error loading products:', err);
+        setError(err.message);
+        setLoading(false);
+      });
   }, []);
 
   useEffect(() => {
     let sorted = [...products];
-
+    
     if (sort === 'asc') sorted.sort((a, b) => a.price - b.price);
     if (sort === 'desc') sorted.sort((a, b) => b.price - a.price);
-
+    
     if (query) {
       sorted = sorted.filter(p =>
         p.title.toLowerCase().includes(query.toLowerCase())
       );
     }
-
+    
     setFiltered(sorted);
   }, [sort, query, products]);
+
+  if (loading) {
+    return <div className="loading">Loading products...</div>;
+  }
+
+  if (error) {
+    return <div className="error">Error: {error}</div>;
+  }
 
   return (
     <div className="all-products-container">
@@ -42,46 +60,67 @@ export default function AllProducts() {
           placeholder="Search by title..."
           value={query}
           onChange={e => setQuery(e.target.value)}
+          className="search-input"
         />
-        <select value={sort} onChange={e => setSort(e.target.value)}>
+        <select 
+          value={sort} 
+          onChange={e => setSort(e.target.value)}
+          className="sort-select"
+        >
           <option value="default">Default</option>
           <option value="asc">Price: Low to high</option>
           <option value="desc">Price: High to low</option>
         </select>
       </div>
 
-      <div className="product-grid">
-        {filtered.map(product => (
-          <Link
-            to={`/product/${product.id}`}
-            key={product.id}
-            className="product-card"
-          >
-            {product.discountPercentage && (
-              <div className="discount-badge">-{product.discountPercentage}%</div>
-            )}
+      {filtered.length === 0 ? (
+        <div className="no-results">
+          No products found. Try another search term.
+        </div>
+      ) : (
+        <div className="product-grid">
+          {filtered.map(product => (
+            <Link
+              to={`/product/${product.id}`}
+              key={product.id}
+              className="product-card"
+            >
+              {product.discountPercentage && (
+                <div className="discount-badge">
+                  -{product.discountPercentage}%
+                </div>
+              )}
 
-            <button className="like-button">
-              {product.isLiked ? '💖' : '🤍'}
-            </button>
+              <button className="like-button">
+                {product.isLiked ? '💖' : '🤍'}
+              </button>
 
-            <img
-              src={`https://exam-server-5c4e.onrender.com${product.image}`}
-              alt={product.title}
-            />
-
-            <div className="product-info">
-              <h4>{product.title}</h4>
-              <div className="price">
-                <span>{product.price} €</span>
-                {product.oldPrice && (
-                  <span className="old-price">{product.oldPrice} €</span>
-                )}
+              <div className="image-container">
+                <img
+                  src={`https://exam-server-5c4e.onrender.com${product.image}`}
+                  alt={product.title}
+                  onError={(e) => {
+                    e.target.onerror = null;
+                    e.target.src = '/placeholder-image.jpg';
+                  }}
+                />
               </div>
-            </div>
-          </Link>
-        ))}
-      </div>
+
+              <div className="product-info">
+                <h4>{product.title}</h4>
+                <div className="price">
+                  <span>{product.price.toFixed(2)} €</span>
+                  {product.oldPrice && (
+                    <span className="old-price">
+                      {product.oldPrice.toFixed(2)} €
+                    </span>
+                  )}
+                </div>
+              </div>
+            </Link>
+          ))}
+        </div>
+      )}
 
       {/* <div className="contact-section">
         <h2>Contact</h2>
