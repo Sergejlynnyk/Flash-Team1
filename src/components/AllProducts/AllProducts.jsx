@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './AllProducts.scss';
+import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs';
 
 export default function AllProducts() {
   const [products, setProducts] = useState([]);
@@ -34,8 +35,14 @@ export default function AllProducts() {
     setFiltered(sorted);
   }, [sort, query, products]);
 
+  const breadcrumbItems = [
+  { label: 'Main page', href: '/' },
+  { label: 'All products' }
+];
+
   return (
     <div className="all-products-container">
+       <Breadcrumbs items={breadcrumbItems} />
       <div className="filter-bar">
         <input
           type="text"
