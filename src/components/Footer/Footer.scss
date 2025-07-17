@@ -23,36 +23,16 @@
   }
 
   &__content {
-    display: flex;
+    display: grid;
     gap: 32px;
-    width: 100%;
+    grid-template-columns: 1.5fr 1fr;
+
+    @media (max-width: 968px){
+      grid-template-columns: 1fr;
+    }
     
   }
 
-  &__left, &__right {
-    flex: 1 1 0;
-    display: flex;
-    flex-direction: column;
-    gap: 32px;
-    
-    
-  }
-
-  &__row {
-    display: flex;
-    gap: 32px;
-    width: 100%;
-    > * {
-      flex: 1 1 0;
-      min-width: 0;
-    }
-    &--150 {
-      min-height: 150px;
-    }
-    &--194 {
-      min-height: 194px;
-    }
-  }
 
   &__label {
     font-size: 16px;
@@ -69,39 +49,28 @@
   &__hours {
     background: #F2F6D3;
     padding: 32px;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
     border-radius: 12px;
-    font-family: Montserrat;
     font-weight: 500;
     font-size: 20px;
-    line-height: 130%;
-    letter-spacing: 0%;
-    min-height: 150px;
-    flex: 1 1 0;
     gap: 16px;
   }
 
   &__phone {
-    min-height: 44px;
     background: #F2F6D3;
     color: #424436;
     font-weight: 600;
     font-size: 40px;
-    line-height: 110%;
     justify-content: flex-start;
     padding-left: 24px;
     border-radius: 12px;
     gap: 16px;
-    padding: 3px;
     display: flex;
     align-items: center;
   }
 
   &__socials {
     align-items: flex-start;
+
     .footer__icons {
       display: flex;
       gap: 16px;
@@ -117,42 +86,26 @@
 
   &__address {
     font-weight: 600;
-    font-family: Montserrat;
     font-size: 40px;
-    line-height: 110.00000000000001%;
-    letter-spacing: 0%;
     gap: 16px;
   }
 
   &__hours {
     gap: 16px;
-  
-
   }
 
   &__info {
     font-size: 20px;
     font-weight: 600;
-    line-height: 130%;
     color: #333;
-  
-    font-family: Montserrat;
     font-size: 40px;
-    line-height: 110.00000000000001%;
-    letter-spacing: 0%;
   }
 
-  // &__map {
-  //   width: 100%;
-  //   align-self: center;
-  //   border-radius: 12px;
-  //   overflow: hidden;
     &__map {
-    grid-column: 1 / -1;
-    width: 100%;
-    margin-top: 32px;
-    border-radius: 12px;
-    overflow: hidden;
+      grid-column: 1 / -1;
+      margin-top: 32px;
+      border-radius: 12px;
+      overflow: hidden;
 
     iframe {
       width: 100%;
