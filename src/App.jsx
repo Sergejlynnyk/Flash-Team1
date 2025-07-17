@@ -14,7 +14,7 @@ import ProductDetails from './pages/ProductDetails';
 import Home from './pages/Home/Home';
 import Categories from './pages/Categories/Categories';
 import NotFound from './pages/NotFound/NotFound'; 
-
+import AllSales from './pages/AllSales/AllSales';
 
 import { CartProvider } from "./components/Cart/CartContext";
 
@@ -33,6 +33,7 @@ function App() {
             <Route path="/products" element={<ProductsPage />} />
             <Route path="/tools-and-equipment" element={<ToolsAndEquipment />} />
             <Route path="/all-products" element={<AllProducts />} />
+            <Route path="/sales" element={<AllSales />} />
             <Route path="/product/:id" element={<ProductDetails />} />
             <Route path="/cart" element={<Cart />} />    {/* Your Cart page */}
             <Route path="*" element={<NotFound />} />
