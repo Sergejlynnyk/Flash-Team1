@@ -17,7 +17,7 @@ const items = [
     id: 2,
     image: "/img-22.png",
     alt: "Collection for berries (plastic)",
-    text: "Collection for berries (plastic)",
+    text: "Lorem ipsum dolor sit, amet",
     discount: 26,
     newPrice: 26,
     oldPrice: 35,
@@ -82,8 +82,18 @@ export default function ProductDetails() {
   const { id } = useParams();
   const [quantity, setQuantity] = useState(1);
   const product = items.find(p => p.id === parseInt(id));
+  const [showText, setShowText] = useState(false)
 
   if (!product) return <div className="product-not-found">Product not found</div>;
+
+
+    const getSliceText = (text, length) => {
+      return text.length > length ? `${text.slice(0, length)}...` : text
+    }
+
+    const toggleRead = () => {
+      setShowText(!showText)
+    }
 
   return (
     <div className="product-details-wrapper">
@@ -93,6 +103,7 @@ export default function ProductDetails() {
         <span>Tools and equipment</span>
         <span className="active">{product.text}</span>
       </div>
+      
 
       <div className="product-details">
         <div className="image-block">
@@ -118,8 +129,8 @@ export default function ProductDetails() {
 
           <div className="description">
             <h2>Description</h2>
-            <p>Провтыкал где-то описание товара.</p>
-            <a href="#">Read more</a>
+           <p>{ showText ?  product.text : getSliceText(product.text, 50)}</p>
+            <button onClick={toggleRead}>{showText ?  "Hide Text" : "Read more" }</button>
           </div>
         </div>
       </div>
