@@ -1,4 +1,3 @@
-// src/AllProducts/AllProducts.jsx
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './AllProducts.scss';
@@ -9,15 +8,26 @@ export default function AllProducts() {
   const [filtered, setFiltered] = useState([]);
   const [sort, setSort] = useState('default');
   const [query, setQuery] = useState('');
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
+    setLoading(true);
     fetch('https://exam-server-5c4e.onrender.com/products/all')
-      .then(res => res.json())
+      .then(res => {
+        if (!res.ok) throw new Error('Failed to fetch products');
+        return res.json();
+      })
       .then(data => {
         setProducts(data);
         setFiltered(data);
+        setLoading(false);
       })
-      .catch(err => console.error('Error loading products:', err));
+      .catch(err => {
+        console.error('Error loading products:', err);
+        setError(err.message);
+        setLoading(false);
+      });
   }, []);
 
   useEffect(() => {
@@ -36,60 +46,88 @@ export default function AllProducts() {
   }, [sort, query, products]);
 
   const breadcrumbItems = [
-  { label: 'Main page', href: '/' },
-  { label: 'All products' }
-];
+    { label: 'Main page', href: '/' },
+    { label: 'All products' }
+  ];
+
+  if (loading) {
+    return <div className="loading">Loading products...</div>;
+  }
+
+  if (error) {
+    return <div className="error">Error: {error}</div>;
+  }
 
   return (
     <div className="all-products-container">
-       <Breadcrumbs items={breadcrumbItems} />
+      <Breadcrumbs items={breadcrumbItems} />
       <div className="filter-bar">
         <input
           type="text"
           placeholder="Search by title..."
           value={query}
           onChange={e => setQuery(e.target.value)}
+          className="search-input"
         />
-        <select value={sort} onChange={e => setSort(e.target.value)}>
+        <select
+          value={sort}
+          onChange={e => setSort(e.target.value)}
+          className="sort-select"
+        >
           <option value="default">Default</option>
           <option value="asc">Price: Low to high</option>
           <option value="desc">Price: High to low</option>
         </select>
       </div>
 
-      <div className="product-grid">
-        {filtered.map(product => (
-          <Link
-            to={`/product/${product.id}`}
-            key={product.id}
-            className="product-card"
-          >
-            {product.discountPercentage && (
-              <div className="discount-badge">-{product.discountPercentage}%</div>
-            )}
+      {filtered.length === 0 ? (
+        <div className="no-results">
+          No products found. Try another search term.
+        </div>
+      ) : (
+        <div className="product-grid">
+          {filtered.map(product => (
+            <Link
+              to={`/product/${product.id}`}
+              key={product.id}
+              className="product-card"
+            >
+              {product.discountPercentage && (
+                <div className="discount-badge">
+                  -{product.discountPercentage}%
+                </div>
+              )}
 
-            <button className="like-button">
-              {product.isLiked ? '💖' : '🤍'}
-            </button>
+              <button className="like-button">
+                {product.isLiked ? '💖' : '🤍'}
+              </button>
 
-            <img
-              src={`https://exam-server-5c4e.onrender.com${product.image}`}
-              alt={product.title}
-            />
-
-            <div className="product-info">
-              <h4>{product.title}</h4>
-              <div className="price">
-                <span>{product.price} €</span>
-                {product.oldPrice && (
-                  <span className="old-price">{product.oldPrice} €</span>
-                )}
+              <div className="image-container">
+                <img
+                  src={`https://exam-server-5c4e.onrender.com${product.image}`}
+                  alt={product.title}
+                  onError={(e) => {
+                    e.target.onerror = null;
+                    e.target.src = '/placeholder-image.jpg';
+                  }}
+                />
               </div>
-            </div>
-          </Link>
-        ))}
-      </div>
 
+              <div className="product-info">
+                <h4>{product.title}</h4>
+                <div className="price">
+                  <span>{product.price.toFixed(2)} €</span>
+                  {product.oldPrice && (
+                    <span className="old-price">
+                      {product.oldPrice.toFixed(2)} €
+                    </span>
+                  )}
+                </div>
+              </div>
+            </Link>
+          ))}
+        </div>
+      )}
       {/* <div className="contact-section">
         <h2>Contact</h2>
         <div className="contact-grid">
@@ -98,6 +136,7 @@ export default function AllProducts() {
           <div><strong>Address</strong><br />Linkstraße 2, 8 OG, 10785, Berlin, Deutschland</div>
           <div><strong>Working Hours</strong><br />24 hours a day</div>
         </div>
+
 
         <iframe
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2429.7242332783053!2d13.374583476326997!3d52.50676167195904!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47a851c9eb661bbd%3A0xa91e50d5aa6212a6!2sLinkstra%C3%9Fe%202%2C%2010785%20Berlin%2C%20Germany!5e0!3m2!1sen!2sde!4v1720000000000"
@@ -109,6 +148,7 @@ export default function AllProducts() {
           referrerPolicy="no-referrer-when-downgrade"
         />
       </div> */}
+
     </div>
   );
 }

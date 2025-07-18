@@ -7,20 +7,18 @@ import './Categories.scss';
 export default function Categories() {
   const breadcrumbItems = [
     { label: "Main page", href: "/" },
-    { label: "Categories" } // последний элемент без href — текущая страница
+    { label: "Categories" } 
   ];
 
+  
   return (
     <section className="categories-section">
-      {/* Хлебные крошки */}
       <Breadcrumbs items={breadcrumbItems} />
 
-      {/* Заголовок */}
       <div className="categories-title">
         <h2>Categories</h2>
       </div>
 
-      {/* Сетка категорий */}
       <div className="categories-grid">
         {categories.map(cat =>
           cat.title === 'Tools and equipment' ? (

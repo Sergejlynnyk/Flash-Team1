@@ -14,11 +14,12 @@ import ProductDetails from './pages/ProductDetails';
 import Home from './pages/Home/Home';
 import Categories from './pages/Categories/Categories';
 import NotFound from './pages/NotFound/NotFound'; 
-
+import AllSales from './pages/AllSales/AllSales';
 
 import { CartProvider } from "./components/Cart/CartContext";
 
 import Cart from "./components/Cart/Cart";
+import ProductByCategory from './pages/ProductByCategory/ProductByCategory';
 
 
 function App() {
@@ -31,8 +32,10 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/categories" element={<Categories />} />
             <Route path="/products" element={<ProductsPage />} />
+            <Route path='/categories/:id' element={<ProductByCategory />}/>
             <Route path="/tools-and-equipment" element={<ToolsAndEquipment />} />
             <Route path="/all-products" element={<AllProducts />} />
+            <Route path="/sales" element={<AllSales />} />
             <Route path="/product/:id" element={<ProductDetails />} />
             <Route path="/cart" element={<Cart />} />    {/* Your Cart page */}
             <Route path="*" element={<NotFound />} />
