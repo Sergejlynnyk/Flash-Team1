@@ -65,7 +65,7 @@ export function formatProduct(product) {
     id: product.id,
     name: product.title,
     title: product.title,
-    image: `${BASE_URL}${product.image}`,
+   mage: `https://exam-server-5c4e.onrender.com${product.image}`,
     price: Number(product.discont_price || product.price),
     oldPrice: product.discont_price ? Number(product.price) : null,
     originalPrice: Number(product.price),
@@ -79,10 +79,9 @@ export function formatCategory(category) {
   return {
     id: category.id,
     title: category.title,
-    image: `${BASE_URL}${category.image}`
+    image: category.image  // Используем как есть
   };
 }
-
 // Функция для получения случайных товаров
 export function getRandomItems(array, count) {
   if (count >= array.length) return array;
@@ -95,7 +94,15 @@ export function getRandomItems(array, count) {
 export async function getRandomDiscountedProducts(count = 4) {
   try {
     const discountedProducts = await getDiscountedProducts();
-    const formatted = discountedProducts.map(formatProduct);
+    const formatted = discountedProducts.map(product => ({
+      id: product.id,
+      title: product.title,
+      image: `https://exam-server-5c4e.onrender.com${product.image}`,
+      price: Number(product.discont_price),
+      oldPrice: Number(product.price),
+      description: product.description || '',
+      categoryId: product.categoryId
+    }));
     return getRandomItems(formatted, count);
   } catch (error) {
     console.error('Error fetching random discounted products:', error);

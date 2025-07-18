@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import "./Categories.scss";
 import Section from "../Section/Section";
 import CategoryCard from "../CategoryCard/CategoryCard";
+import { getAllCategories, formatCategory } from "../../api/products";
 
 export default function Categories() {
   const [categories, setCategories] = useState([]);
@@ -23,14 +24,21 @@ export default function Categories() {
   }
 
   useEffect(() => {
-    fetch("https://exam-server-5c4e.onrender.com/categories/all")
-      .then((res) => res.json())
-      .then((data) => {
-        setCategories(data);
-        setRandomCategories(getRandomItems(data, 5));
-      })
-      .catch((err) => console.error("Fehler beim Laden der Kategorien:", err));
-  }, []);
+  const loadCategories = async () => {
+    try {
+      const data = await getAllCategories();
+      console.log('Categories raw data:', data);
+      const formattedCategories = data.map(formatCategory);
+      console.log('Categories formatted:', formattedCategories);
+      setCategories(formattedCategories);
+      setRandomCategories(getRandomItems(formattedCategories, 5));
+    } catch (err) {
+      console.error("Error loading categories:", err);
+    }
+  };
+
+  loadCategories();
+}, []);
 
   return (
     <Section title="Categories">
