@@ -18,12 +18,12 @@ const ProductByCategory = () => {
         fetchDataById()
     },[id])
   return (
-    <div>
-        {
-            products && products.map(product => <ProductCard />)
-        }
-    </div>
-  )
+  <div>
+    {products && products.map(product => (
+      <ProductCard key={product.id} product={product} />
+    ))}
+  </div>
+)
 }
 
-export default ProductByCategory
+export default ProductByCategory;
