@@ -2,6 +2,7 @@ import React from "react";
 import "./ToolsAndEquipment.scss";
 import FilterBar from "../FilterBar/FilterBar";
 import ProductCard from "../ProductCard/ProductCard"; 
+import Breadcrumbs from "../Breadcrumbs/Breadcrumbs";
 
 // Массив товаров
 const items = [
@@ -82,6 +83,7 @@ const items = [
 export default function ToolsAndEquipment() {
   return (
     <div className="tools-and-equipment-container">
+       <Breadcrumbs items={breadcrumbItems} /> 
       <h2 className="section-title">Tools & Equipment</h2>
 
       {/* Фильтр (если есть функциональность) */}

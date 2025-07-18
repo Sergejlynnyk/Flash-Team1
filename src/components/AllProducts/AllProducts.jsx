@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './AllProducts.scss';
+import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs';
 
 export default function AllProducts() {
   const [products, setProducts] = useState([]);
@@ -31,18 +32,23 @@ export default function AllProducts() {
 
   useEffect(() => {
     let sorted = [...products];
-    
+
     if (sort === 'asc') sorted.sort((a, b) => a.price - b.price);
     if (sort === 'desc') sorted.sort((a, b) => b.price - a.price);
-    
+
     if (query) {
       sorted = sorted.filter(p =>
         p.title.toLowerCase().includes(query.toLowerCase())
       );
     }
-    
+
     setFiltered(sorted);
   }, [sort, query, products]);
+
+  const breadcrumbItems = [
+    { label: 'Main page', href: '/' },
+    { label: 'All products' }
+  ];
 
   if (loading) {
     return <div className="loading">Loading products...</div>;
@@ -54,6 +60,7 @@ export default function AllProducts() {
 
   return (
     <div className="all-products-container">
+      <Breadcrumbs items={breadcrumbItems} />
       <div className="filter-bar">
         <input
           type="text"
@@ -62,8 +69,8 @@ export default function AllProducts() {
           onChange={e => setQuery(e.target.value)}
           className="search-input"
         />
-        <select 
-          value={sort} 
+        <select
+          value={sort}
           onChange={e => setSort(e.target.value)}
           className="sort-select"
         >
@@ -121,7 +128,6 @@ export default function AllProducts() {
           ))}
         </div>
       )}
-
       {/* <div className="contact-section">
         <h2>Contact</h2>
         <div className="contact-grid">
@@ -130,6 +136,7 @@ export default function AllProducts() {
           <div><strong>Address</strong><br />Linkstraße 2, 8 OG, 10785, Berlin, Deutschland</div>
           <div><strong>Working Hours</strong><br />24 hours a day</div>
         </div>
+
 
         <iframe
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2429.7242332783053!2d13.374583476326997!3d52.50676167195904!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47a851c9eb661bbd%3A0xa91e50d5aa6212a6!2sLinkstra%C3%9Fe%202%2C%2010785%20Berlin%2C%20Germany!5e0!3m2!1sen!2sde!4v1720000000000"
@@ -141,6 +148,7 @@ export default function AllProducts() {
           referrerPolicy="no-referrer-when-downgrade"
         />
       </div> */}
+
     </div>
   );
 }
