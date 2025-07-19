@@ -3,9 +3,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import Header from './components/Header/Header';
 import Hero from './components/Hero/Hero';
-// import Categories from './components/Categories/Categories';
 import DiscountForm from './components/DiscountForm/DiscountForm';
-import SaleItems from './components/SalesItems/SaleItems';
+import SaleItems from './components/SaleItems/SaleItems';
 import Footer from './components/Footer/Footer';
 import ProductsPage from './pages/ProductsPage';
 import ToolsAndEquipment from './components/ToolsAndEquipment/ToolsAndEquipment';
@@ -37,7 +36,7 @@ function App() {
             <Route path="/all-products" element={<AllProducts />} />
             <Route path="/sales" element={<AllSales />} />
             <Route path="/product/:id" element={<ProductDetails />} />
-            <Route path="/cart" element={<Cart />} />    {/* Your Cart page */}
+            <Route path="/cart" element={<Cart />} />    
             <Route path="*" element={<NotFound />} />
           </Routes>
           <Footer />

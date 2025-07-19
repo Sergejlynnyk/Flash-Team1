@@ -1,7 +1,7 @@
 import Categories from "../../components/Categories/Categories";
 import Hero from "../../components/Hero/Hero";
 import DiscountForm from "../../components/DiscountForm/DiscountForm";
-import SaleItems from "../../components/SalesItems/SaleItems";
+import SaleItems from "../../components/SaleItems/SaleItems.jsx";
 
 function Home() {
   return (

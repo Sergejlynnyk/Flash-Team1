@@ -15,47 +15,50 @@ export default function ProductDetails() {
   const [quantity, setQuantity] = useState(1);
   const [showFullDescription, setShowFullDescription] = useState(false);
 
-  useEffect(() => {
-    const loadProduct = async () => {
-      try {
-        setLoading(true);
-        const response = await getProductById(id);
-        const productData = Array.isArray(response) ? response[0] : response;
-        console.log("Product data after array check:", productData);
-
-        // Форматируем данные продукта
-        // Форматируем данные продукта
-
-        const formattedProduct = {
-          id: productData.id,
-          title: productData.title,
-          image: productData.image
-            ? `https://exam-server-5c4e.onrender.com${productData.image}`
-            : "/placeholder-image.jpg",
-          price: productData.discont_price
-            ? Number(productData.discont_price)
-            : Number(productData.price),
-          oldPrice: productData.discont_price
-            ? Number(productData.price)
-            : null,
-          description: productData.description || "No description available.",
-          categoryId: productData.categoryId,
-        };
-
-        setProduct(formattedProduct);
-      } catch (err) {
-        console.error("Error loading product:", err);
-        setError("Failed to load product details");
-      } finally {
-        setLoading(false);
+ useEffect(() => {
+  const loadProduct = async () => {
+    try {
+      setLoading(true);
+      const response = await getProductById(id);
+      const productData = Array.isArray(response) ? response[0] : response;
+      
+      
+      if (!productData) {
+        setError("Product not found");
+        return;
       }
-    };
 
-    if (id) {
-      loadProduct();
+      const formattedProduct = {
+        id: productData.id,
+        title: productData.title,
+        image: productData.image 
+          ? `https://exam-server-5c4e.onrender.com${productData.image}`
+          : "/placeholder-image.jpg",
+        price: productData.discont_price 
+          ? Number(productData.discont_price) 
+          : Number(productData.price),
+        oldPrice: productData.discont_price 
+          ? Number(productData.price) 
+          : null,
+        description: productData.description || "No description available.",
+        categoryId: productData.categoryId,
+      };
+
+      
+      setProduct(formattedProduct);
+      setError(null);
+    } catch (err) {
+      console.error("Error loading product:", err);
+      setError("Failed to load product details");
+    } finally {
+      setLoading(false);
     }
-  }, [id]);
+  };
 
+  if (id) {
+    loadProduct();
+  }
+}, [id]);
   const handleAddToCart = () => {
     if (product) {
       addToCart({

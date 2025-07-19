@@ -186,6 +186,7 @@ import { Link } from 'react-router-dom';
 import { useCart } from "../../components/Cart/CartContext";
 import './AllSales.scss';
 import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs';
+import { getDiscountedProducts } from '../../api/products';
 
 const AllSales = () => {
   const [products, setProducts] = useState([]);
@@ -211,35 +212,31 @@ const AllSales = () => {
     return Math.round(((oldPrice - price) / oldPrice) * 100);
   };
 
-  useEffect(() => {
-    const loadProducts = async () => {
-      try {
-        const response = await fetch('https://exam-server-5c4e.onrender.com/products/all');
-        const allProducts = await response.json();
+useEffect(() => {
+  const loadProducts = async () => {
+    try {
+      const discountedProducts = await getDiscountedProducts();
+      
+      const formattedProducts = discountedProducts.map(product => ({
+        id: product.id,
+        name: product.title,
+        image: `https://exam-server-5c4e.onrender.com${product.image}`,
+        price: Number(product.discont_price),
+        oldPrice: Number(product.price),
+      }));
 
-        const formattedProducts = allProducts
-          .filter(p => p.discont_price !== null) // Только товары со скидкой
-          .map(product => ({
-            id: product.id,
-            name: product.title,
-            image: `https://exam-server-5c4e.onrender.com${product.image}`,
-            price: Number(product.discont_price || product.price),
-            oldPrice: Number(product.price),
-          }));
+      setProducts(formattedProducts);
+      setFilteredProducts(formattedProducts);
+    } catch (err) {
+      setError('Failed to load products. Please try again later.');
+      console.error('Error loading products:', err);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-        setProducts(formattedProducts);
-        setFilteredProducts(formattedProducts);
-      } catch (err) {
-        setError('Failed to load products. Please try again later.');
-        console.error('Error loading products:', err);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    loadProducts();
-  }, []);
-
+  loadProducts();
+}, []);
   useEffect(() => {
     let result = [...products];
 
