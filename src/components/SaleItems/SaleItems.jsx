@@ -2,11 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom'; 
 import './SaleItems.scss';
 import { useCart } from '../Cart/CartContext';
+import { useLiked } from '../Liked/LikedContext';  // ✅ Добавляем импорт
 import { getRandomDiscountedProducts } from '../../api/products';
 import Section from '../Section/Section';
 
 const SaleItems = () => {
   const { addToCart } = useCart();
+  const { toggleLiked, isLiked } = useLiked();  // ✅ Используем контекст лайков
   const [items, setItems] = useState([]);
   const [addedId, setAddedId] = useState(null);
 
@@ -37,6 +39,7 @@ const SaleItems = () => {
 
   const handleAddToCart = (item, e) => {
     e.stopPropagation();
+    e.preventDefault();
     addToCart({ 
       id: item.id,
       name: item.title,
@@ -46,6 +49,22 @@ const SaleItems = () => {
     });
     setAddedId(item.id);
     setTimeout(() => setAddedId(null), 900);
+  };
+
+  const handleToggleLike = (item, e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    
+    // Форматируем продукт для лайков
+    const productForLiked = {
+      id: item.id,
+      title: item.title,
+      image: item.image,
+      price: item.newPrice,
+      oldPrice: item.oldPrice !== item.newPrice ? item.oldPrice : null
+    };
+    
+    toggleLiked(productForLiked);
   };
 
   return (
@@ -62,17 +81,23 @@ const SaleItems = () => {
           <div className="icon-bar">
             <button
               className="icon-btn"
-              onClick={(e) => {
-                e.preventDefault(); // Предотвращаем переход по ссылке
-                handleAddToCart(item, e);
-              }}
+              onClick={(e) => handleAddToCart(item, e)}
             >
               {addedId === item.id
                 ? <img src="/checkmark.svg" alt="Added" className="icon" />
                 : <img src="/basket=empty.svg" alt="Cart" className="icon" />
               }
             </button>
-            <img src="/basket=heart empty.svg" alt="Like" className="icon" />
+            <button
+              className={`icon-btn like-btn ${isLiked(item.id) ? 'liked' : ''}`}
+              onClick={(e) => handleToggleLike(item, e)}
+            >
+              <img 
+                src={isLiked(item.id) ? "/basket=heart filled.svg" : "/basket=heart empty.svg"} 
+                alt="Like" 
+                className="icon" 
+              />
+            </button>
           </div>
           <img src={item.image} alt={item.title} className="item-image" />
           <div className="item-text">{item.title}</div>
