@@ -2,12 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { getProductsByCategory, getAllCategories } from '../../api/products';
 import { useCart } from '../../components/Cart/CartContext';
+import { useLiked } from '../../components/Liked/LikedContext';
 import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs';
 import './ProductByCategory.scss';
 
 const ProductByCategory = () => {
   const { id } = useParams();
   const { addToCart } = useCart();
+  const { toggleLiked, isLiked } = useLiked();
   
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
@@ -20,7 +22,7 @@ const ProductByCategory = () => {
     minPrice: '',
     maxPrice: '',
     onlyDiscounted: false,
-    sortBy: 'default' // 'default', 'priceAsc', 'priceDesc', 'name'
+    sortBy: 'default'
   });
 
   useEffect(() => {
@@ -28,14 +30,10 @@ const ProductByCategory = () => {
       try {
         setLoading(true);
         
-        // Загружаем продукты категории
         const categoryData = await getProductsByCategory(id);
-        
-        // Загружаем информацию о категории
         const categories = await getAllCategories();
         const currentCategory = categories.find(cat => cat.id === parseInt(id));
         
-        // Форматируем продукты
         const formattedProducts = categoryData.map(product => ({
           id: product.id,
           title: product.title,
@@ -63,11 +61,9 @@ const ProductByCategory = () => {
     }
   }, [id]);
 
-  // Применение фильтров и сортировки
   useEffect(() => {
     let result = [...products];
 
-    // Фильтр по цене
     if (filters.minPrice) {
       result = result.filter(p => p.price >= Number(filters.minPrice));
     }
@@ -75,12 +71,10 @@ const ProductByCategory = () => {
       result = result.filter(p => p.price <= Number(filters.maxPrice));
     }
 
-    // Фильтр по скидке
     if (filters.onlyDiscounted) {
       result = result.filter(p => p.oldPrice !== null);
     }
 
-    // Сортировка
     switch (filters.sortBy) {
       case 'priceAsc':
         result.sort((a, b) => a.price - b.price);
@@ -110,6 +104,21 @@ const ProductByCategory = () => {
     });
   };
 
+  const handleToggleLike = (product, e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    
+    const productForLiked = {
+      id: product.id,
+      title: product.title,
+      image: product.image,
+      price: product.price,
+      oldPrice: product.oldPrice
+    };
+    
+    toggleLiked(productForLiked);
+  };
+
   const calculateDiscount = (oldPrice, price) => {
     if (!oldPrice) return 0;
     return Math.round(((oldPrice - price) / oldPrice) * 100);
@@ -124,7 +133,6 @@ const ProductByCategory = () => {
     });
   };
 
-  // Хлебные крошки
   const breadcrumbItems = [
     { label: 'Main page', href: '/' },
     { label: 'Categories', href: '/categories' },
@@ -155,7 +163,6 @@ const ProductByCategory = () => {
         {category ? category.title : 'Products'}
       </h1>
 
-      {/* Фильтры */}
       <div className="filters-section">
         <div className="filter-group">
           <label>Price:</label>
@@ -202,7 +209,6 @@ const ProductByCategory = () => {
         </button>
       </div>
 
-      {/* Продукты */}
       {filteredProducts.length === 0 ? (
         <div className="no-products">
           <p>No products found matching your criteria</p>
@@ -213,41 +219,49 @@ const ProductByCategory = () => {
             const discount = calculateDiscount(product.oldPrice, product.price);
             
             return (
-              <Link 
-                to={`/product/${product.id}`} 
-                key={product.id} 
-                className="product-card"
-              >
-                {discount > 0 && (
-                  <div className="discount-badge">-{discount}%</div>
-                )}
-                
-                <img
-                  src={product.image}
-                  alt={product.title}
-                  className="product-image"
-                  onError={(e) => {
-                    e.target.onerror = null;
-                    e.target.src = '/placeholder-image.jpg';
-                  }}
-                />
-                
-                <div className="product-info">
-                  <h3 className="product-name">{product.title}</h3>
-                  <div className="product-prices">
-                    <span className="current-price">${product.price}</span>
-                    {product.oldPrice && (
-                      <span className="old-price">${product.oldPrice}</span>
-                    )}
+              <div key={product.id} className="product-card">
+                <Link to={`/product/${product.id}`} className="product-link">
+                  {discount > 0 && (
+                    <div className="discount-badge">-{discount}%</div>
+                  )}
+                  
+                  <img
+                    src={product.image}
+                    alt={product.title}
+                    className="product-image"
+                    onError={(e) => {
+                      e.target.onerror = null;
+                      e.target.src = '/placeholder-image.jpg';
+                    }}
+                  />
+                  
+                  <div className="product-info">
+                    <h3 className="product-name">{product.title}</h3>
+                    <div className="product-prices">
+                      <span className="current-price">${product.price}</span>
+                      {product.oldPrice && (
+                        <span className="old-price">${product.oldPrice}</span>
+                      )}
+                    </div>
                   </div>
+                </Link>
+
+                <div className="product-actions">
                   <button
                     className="add-to-cart-btn"
                     onClick={(e) => handleAddToCart(product, e)}
                   >
                     Add to Cart
                   </button>
+                  <button
+                    className={`like-btn ${isLiked(product.id) ? 'liked' : ''}`}
+                    onClick={(e) => handleToggleLike(product, e)}
+                    title={isLiked(product.id) ? "Remove from favorites" : "Add to favorites"}
+                  >
+                    {isLiked(product.id) ? "💖" : "🤍"}
+                  </button>
                 </div>
-              </Link>
+              </div>
             );
           })}
         </div>

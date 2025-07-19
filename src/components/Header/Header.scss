@@ -2,22 +2,28 @@
 
 .custom-header {
   display: flex;
-  width: 100vw;
-  justify-content: space-between;
+  width: 100%;
+  justify-content: center;
   align-items: center;
   background: #FFFFF1;
-
-  margin: 0;
-  box-sizing: border-box;
+  height: 128px;
   font-family: "Montserrat", serif;
   line-height: 1.5;
-  height: 128px;
+
+  // Внутренний контейнер для содержимого
+  .header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1440px;
+    padding: 0 20px;
+  }
 
   .header-left {
     display: flex;
     align-items: center;
     gap: 20px;
-    padding-left: 40px;
 
     .logo-image {
       width: 48px;
@@ -48,6 +54,8 @@
         display: flex;
         gap: 32px;
         align-items: center;
+        margin: 0;
+        padding: 0;
 
         li {
           a {
@@ -57,10 +65,18 @@
             text-decoration: none;
             font-family: 'Montserrat', sans-serif;
             font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 6px;
+            transition: all 0.2s;
+
             &:hover {
               color: #55610B;
               background: #f3f3f3;
-              border-radius: 6px;
+            }
+
+            &.active {
+              background: #87933D;
+              color: white;
             }
           }
         }
@@ -75,11 +91,12 @@
       background-color: #92A134;
       color: white;
       cursor: pointer;
-      margin-top: 12px; 
+      margin-top: 12px;
+      padding: 8px 16px;
       transition: background 0.2s;
 
       &:hover {
-        background-color: #d95e17;
+        background-color: #72851c;
       }
     }
   }
@@ -88,7 +105,6 @@
     display: flex;
     align-items: center;
     gap: 24px;
-     padding-right: 20px;
 
     .header-icon {
       width: 48px;
@@ -97,14 +113,18 @@
       padding: 8px;
       object-fit: contain;
       cursor: pointer;
-     
+      transition: transform 0.2s;
+
+      &:hover {
+        transform: scale(1.05);
+      }
     }
 
-    
     .cart-link {
       position: relative;
       display: inline-block;
     }
+
     .cart-count {
       position: absolute;
       top: 0;
@@ -120,8 +140,32 @@
       font-weight: bold;
       pointer-events: none;
     }
-   
   }
 }
 
+// Адаптивность
+@media (max-width: 768px) {
+  .custom-header {
+    height: auto;
+    padding: 10px 0;
 
+    .header-content {
+      flex-direction: column;
+      gap: 15px;
+      padding: 0 15px;
+    }
+
+    .center-box {
+      nav ul {
+        gap: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+
+        li a {
+          font-size: 16px;
+          padding: 6px 12px;
+        }
+      }
+    }
+  }
+}
