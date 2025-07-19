@@ -56,8 +56,6 @@ const SaleItems = () => {
   const handleToggleLike = (item, e) => {
     e.preventDefault();
     e.stopPropagation();
-
-    // Форматируем продукт для лайков
     const productForLiked = {
       id: item.id,
       title: item.title,
@@ -65,7 +63,6 @@ const SaleItems = () => {
       price: item.newPrice,
       oldPrice: item.oldPrice !== item.newPrice ? item.oldPrice : null,
     };
-
     toggleLiked(productForLiked);
   };
 
@@ -92,14 +89,16 @@ const SaleItems = () => {
                 )}
               </button>
               <button
-                className={`icon-btn like-btn ${
-                  isLiked(item.id) ? "liked" : ""
-                }`}
+                className={`icon-btn like-btn ${isLiked(item.id) ? "liked" : ""}`}
                 onClick={(e) => handleToggleLike(item, e)}
               >
-                <div className="heart-icon">
-                  {isLiked(item.id) ? "❤️" : "🤍"}
-                </div>
+                <img
+                  src={isLiked(item.id)
+                    ? "/basket=heart filled.svg"
+                    : "/basket=heart empty.svg"}
+                  alt="Like"
+                  className="icon"
+                />
               </button>
             </div>
             <img src={item.image} alt={item.title} className="item-image" />

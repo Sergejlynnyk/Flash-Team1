@@ -14,6 +14,7 @@
     height: 100%;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     padding: 0 40px;
     position: relative;
   }
@@ -67,6 +68,8 @@
         margin: 0;
         padding: 0;
         align-items: center;
+        flex-wrap: wrap;
+        justify-content: center;
 
         li {
           a {
@@ -120,9 +123,14 @@
       height: 48px;
       object-fit: contain;
       cursor: pointer;
+      transition: transform 0.2s;
+
+      &:hover {
+        transform: scale(1.05);
+      }
     }
 
-   .liked-count, .cart-count {
+    .liked-count, .cart-count {
       position: absolute;
       top: -6px;
       right: -6px;
@@ -141,16 +149,9 @@
       font-family: 'Montserrat', sans-serif;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
-
-    .liked-count {
-      background: #87933D; // Тот же цвет что и в дизайне
-    }
-
-    .cart-count {
-      background: #87933D;
-    }
   }
 }
+
 // Адаптивность
 @media (max-width: 1200px) {
   .custom-header {
@@ -160,7 +161,6 @@
 
     .center-box nav ul {
       gap: 24px;
-
       li a {
         font-size: 18px;
         padding: 6px 12px;

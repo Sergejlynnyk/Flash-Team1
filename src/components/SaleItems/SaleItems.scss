@@ -103,13 +103,13 @@
         transform: scale(1.1);
       }
 
-      // ✅ Стили для активного состояния лайка
+      // Стили для активного состояния лайка
       &.like-btn.liked .icon {
         background: #fee !important;
         border: 2px solid #e74c3c !important;
       }
 
-      // ✅ Стили для сердечка
+      // Стили для сердечка
       &.like-btn.liked .heart-icon {
         background: #ffe6e6 !important;
         border: 2px solid #ff6b6b !important;
@@ -133,7 +133,7 @@
       transition: all 0.2s ease;
     }
 
-    // ✅ Стили для сердечка такого же размера как корзина
+    // Стили для сердечка такого же размера как корзина
     .heart-icon {
       width: 48px;
       height: 48px;
@@ -197,5 +197,4 @@
   &:hover {
     transform: translateY(-4px);
   }
-}  
-
+}

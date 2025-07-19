@@ -101,7 +101,7 @@
         z-index: 1;
       }
 
-      // ✅ Сердечко в правом верхнем углу
+      // Сердечко в правом верхнем углу
       .like-btn {
         position: absolute;
         top: 12px;
@@ -186,7 +186,7 @@
           cursor: pointer;
           font-weight: 600;
           transition: background 0.2s;
-          
+
           &:hover {
             background: #55610B;
           }

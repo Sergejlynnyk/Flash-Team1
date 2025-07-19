@@ -1,7 +1,7 @@
 import React from 'react';
 import './Header.scss';
 import { Link, useLocation } from 'react-router-dom';
-import { useLiked } from "../Liked/LikedContext"; 
+import { useLiked } from "../Liked/LikedContext";
 import { useCart } from "../Cart/CartContext";
 import ToggleSwitch from '../Toggle/ToggleSwitch'; 
 
