@@ -14,39 +14,35 @@ import Home from "./pages/Home/Home";
 import Categories from "./pages/Categories/Categories";
 import NotFound from "./pages/NotFound/NotFound";
 import AllSales from "./pages/AllSales/AllSales";
+import LikedProducts from "./pages/LikedProducts/LikedProducts";
 import { LikedProvider } from "./components/Liked/LikedContext";
-import LikedProducts from './pages/LikedProducts/LikedProducts';
 import { CartProvider } from "./components/Cart/CartContext";
-
 import Cart from "./components/Cart/Cart";
 import ProductByCategory from "./pages/ProductByCategory/ProductByCategory";
 
 function App() {
   return (
     <CartProvider>
-       <LikedProvider>
-      <Router>
-        <Header />
-        <div className="max-w-6xl mx-auto">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/categories" element={<Categories />} />
-            <Route path="/products" element={<ProductsPage />} />
-            <Route path="/categories/:id" element={<ProductByCategory />} />
-            <Route
-              path="/tools-and-equipment"
-              element={<ToolsAndEquipment />}
-            />
-            <Route path="/all-products" element={<AllProducts />} />
-            <Route path="/sales" element={<AllSales />} />
-            <Route path="/product/:id" element={<ProductDetails />} />
-            <Route path="/cart" element={<Cart />} />
-             <Route path="/liked" element={<LikedProducts />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-          <Footer />
-        </div>
-      </Router>
+      <LikedProvider>
+        <Router>
+          <Header />
+          <div className="max-w-6xl mx-auto">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/categories" element={<Categories />} />
+              <Route path="/products" element={<ProductsPage />} />
+              <Route path="/categories/:id" element={<ProductByCategory />} />
+              <Route path="/tools-and-equipment" element={<ToolsAndEquipment />} />
+              <Route path="/all-products" element={<AllProducts />} />
+              <Route path="/sales" element={<AllSales />} />
+              <Route path="/product/:id" element={<ProductDetails />} />
+              <Route path="/cart" element={<Cart />} />
+              <Route path="/liked" element={<LikedProducts />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+            <Footer />
+          </div>
+        </Router>
       </LikedProvider>
     </CartProvider>
   );

@@ -24,7 +24,6 @@ const LikedProducts = () => {
       oldPrice: product.oldPrice,
       quantity: 1
     });
-    
     // Показываем уведомление
     alert(`${product.title || product.name} added to cart!`);
   };
@@ -44,7 +43,6 @@ const LikedProducts = () => {
       <div className="liked-products-container">
         <Breadcrumbs items={breadcrumbItems} />
         <h1 className="page-title">Liked Products</h1>
-        
         <div className="empty-liked">
           <div className="empty-icon">💖</div>
           <h2>Your wishlist is empty</h2>
@@ -60,7 +58,6 @@ const LikedProducts = () => {
   return (
     <div className="liked-products-container">
       <Breadcrumbs items={breadcrumbItems} />
-      
       <div className="liked-header">
         <h1 className="page-title">Liked Products ({likedItems.length})</h1>
         <button 
@@ -74,7 +71,7 @@ const LikedProducts = () => {
       <div className="liked-grid">
         {likedItems.map(product => {
           const discount = calculateDiscount(product.oldPrice, product.price);
-          
+
           return (
             <div key={product.id} className="liked-product-card">
               <Link 
@@ -84,7 +81,6 @@ const LikedProducts = () => {
                 {discount > 0 && (
                   <div className="discount-badge">-{discount}%</div>
                 )}
-                
                 <img
                   src={product.image}
                   alt={product.title || product.name}
@@ -94,7 +90,6 @@ const LikedProducts = () => {
                     e.target.src = '/placeholder-image.jpg';
                   }}
                 />
-                
                 <div className="product-info">
                   <h3 className="product-name">{product.title || product.name}</h3>
                   <div className="product-prices">

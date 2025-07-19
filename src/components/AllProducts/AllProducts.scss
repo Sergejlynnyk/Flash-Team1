@@ -38,6 +38,16 @@
         overflow: hidden;
         transition: box-shadow 0.2s ease;
   
+        &:hover {
+          box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        .product-link {
+          display: block;
+          text-decoration: none;
+          color: inherit;
+        }
+  
         .discount-badge {
           position: absolute;
           top: 12px;
@@ -48,6 +58,7 @@
           border-radius: 8px;
           font-size: 12px;
           font-weight: bold;
+          z-index: 1;
         }
   
         .like-button {
@@ -56,11 +67,34 @@
           right: 12px;
           background: none;
           border: none;
-          font-size: 18px;
           cursor: pointer;
+          z-index: 2;
+          transition: transform 0.2s ease;
+
+          &:hover {
+            transform: scale(1.1);
+          }
+
+          .heart-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f4f5f0;
+            font-size: 28px;
+            transition: all 0.2s ease;
+          }
+
+          &.liked .heart-icon {
+            background: #ffe6e6 !important;
+            border: 2px solid #ff6b6b;
+            transform: scale(1.05);
+          }
         }
-  
-        img {
+
+        .product-image {
           width: 100%;
           height: 180px;
           object-fit: cover;
@@ -91,10 +125,6 @@
               font-size: 13px;
             }
           }
-        }
-  
-        &:hover {
-          box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
         }
       }
     }
@@ -127,5 +157,12 @@
         margin-top: 24px;
         border-radius: 12px;
       }
+    }
+
+    .loading, .error, .no-results {
+      text-align: center;
+      padding: 3rem;
+      font-size: 1.2rem;
+      color: #666;
     }
   }

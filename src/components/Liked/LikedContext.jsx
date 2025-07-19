@@ -26,7 +26,6 @@ export const LikedProvider = ({ children }) => {
 
   const addToLiked = (product) => {
     setLikedItems(prev => {
-      // Проверяем, нет ли уже товара в избранном
       if (prev.find(item => item.id === product.id)) {
         return prev; // Товар уже в избранном
       }
