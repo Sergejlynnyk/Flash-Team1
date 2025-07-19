@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom'; 
-import './SaleItems.scss';
-import { useCart } from '../Cart/CartContext';
-import { getRandomDiscountedProducts } from '../../api/products';
-import Section from '../Section/Section';
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import "./SaleItems.scss";
+import { useCart } from "../Cart/CartContext";
+import { useLiked } from "../Liked/LikedContext";
+import { getRandomDiscountedProducts } from "../../api/products";
+import Section from "../Section/Section";
 
 const SaleItems = () => {
   const { addToCart } = useCart();
+  const { toggleLiked, isLiked } = useLiked();
   const [items, setItems] = useState([]);
   const [addedId, setAddedId] = useState(null);
 
@@ -14,12 +16,14 @@ const SaleItems = () => {
     const loadSaleItems = async () => {
       try {
         const products = await getRandomDiscountedProducts(4);
-        
-        const formattedItems = products.map(product => ({
+
+        const formattedItems = products.map((product) => ({
           id: product.id,
-          discount: product.oldPrice ? 
-            `-${Math.round(((product.oldPrice - product.price) / product.oldPrice) * 100)}%` : 
-            '-0%',
+          discount: product.oldPrice
+            ? `-${Math.round(
+                ((product.oldPrice - product.price) / product.oldPrice) * 100
+              )}%`
+            : "-0%",
           image: product.image,
           title: product.title,
           newPrice: product.price,
@@ -28,7 +32,7 @@ const SaleItems = () => {
 
         setItems(formattedItems);
       } catch (err) {
-        console.error('Error loading sale items:', err);
+        console.error("Error loading sale items:", err);
       }
     };
 
@@ -37,54 +41,78 @@ const SaleItems = () => {
 
   const handleAddToCart = (item, e) => {
     e.stopPropagation();
-    addToCart({ 
+    e.preventDefault();
+    addToCart({
       id: item.id,
       name: item.title,
       price: item.newPrice,
       image: item.image,
-      quantity: 1 
+      quantity: 1,
     });
     setAddedId(item.id);
     setTimeout(() => setAddedId(null), 900);
   };
 
+  const handleToggleLike = (item, e) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    // Форматируем продукт для лайков
+    const productForLiked = {
+      id: item.id,
+      title: item.title,
+      image: item.image,
+      price: item.newPrice,
+      oldPrice: item.oldPrice !== item.newPrice ? item.oldPrice : null,
+    };
+
+    toggleLiked(productForLiked);
+  };
+
   return (
-  <Section title="Products">
-    {items.map((item) => (
-      <Link 
-        to={`/product/${item.id}`} 
-        key={item.id} 
-        className="product-link"
-        style={{ textDecoration: 'none', color: 'inherit' }}
-      >
-        <div className="item-card">
-          <div className="discount-badge">{item.discount}</div>
-          <div className="icon-bar">
-            <button
-              className="icon-btn"
-              onClick={(e) => {
-                e.preventDefault(); // Предотвращаем переход по ссылке
-                handleAddToCart(item, e);
-              }}
-            >
-              {addedId === item.id
-                ? <img src="/checkmark.svg" alt="Added" className="icon" />
-                : <img src="/basket=empty.svg" alt="Cart" className="icon" />
-              }
-            </button>
-            <img src="/basket=heart empty.svg" alt="Like" className="icon" />
+    <Section title="Products">
+      {items.map((item) => (
+        <Link
+          to={`/product/${item.id}`}
+          key={item.id}
+          className="product-link"
+          style={{ textDecoration: "none", color: "inherit" }}
+        >
+          <div className="item-card">
+            <div className="discount-badge">{item.discount}</div>
+            <div className="icon-bar">
+              <button
+                className="icon-btn"
+                onClick={(e) => handleAddToCart(item, e)}
+              >
+                {addedId === item.id ? (
+                  <img src="/checkmark.svg" alt="Added" className="icon" />
+                ) : (
+                  <img src="/basket=empty.svg" alt="Cart" className="icon" />
+                )}
+              </button>
+              <button
+                className={`icon-btn like-btn ${
+                  isLiked(item.id) ? "liked" : ""
+                }`}
+                onClick={(e) => handleToggleLike(item, e)}
+              >
+                <div className="heart-icon">
+                  {isLiked(item.id) ? "❤️" : "🤍"}
+                </div>
+              </button>
+            </div>
+            <img src={item.image} alt={item.title} className="item-image" />
+            <div className="item-text">{item.title}</div>
+            <div className="item-prices">
+              <span className="new-price">${item.newPrice}</span>
+              <span className="old-price">${item.oldPrice}</span>
+            </div>
           </div>
-          <img src={item.image} alt={item.title} className="item-image" />
-          <div className="item-text">{item.title}</div>
-          <div className="item-prices">
-            <span className="new-price">${item.newPrice}</span>
-            <span className="old-price">${item.oldPrice}</span>
-          </div>
-        </div>
-      </Link>
-    ))}
-  </Section>
-);
+        </Link>
+      ))}
+    </Section>
+  );
 };
 
 export default SaleItems;
