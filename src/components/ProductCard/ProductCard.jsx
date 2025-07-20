@@ -12,7 +12,6 @@ const ProductCard = ({ product }) => {
     name,
     image,
     price,
-    oldPrice,
     discount,
     alt = name || "Product",
   } = product;
@@ -23,9 +22,25 @@ const ProductCard = ({ product }) => {
     setIsFavorite(favorites.includes(id));
   }, [id]);
 
+  // Проверяем, является ли товар товаром дня
+  const today = new Date().toISOString().split("T")[0];
+  const productOfTheDay = JSON.parse(localStorage.getItem("productOfTheDay"));
+
+  const isTodayDiscount =
+    productOfTheDay?.date === today && productOfTheDay?.product?.id === id;
+
+  const displayPrice = isTodayDiscount ? (price / 2).toFixed(2) : price;
+
   const handleAddToCart = (e) => {
     e.preventDefault();
-    addToCart({ ...product, quantity });
+    const finalProduct = {
+      ...product,
+      quantity,
+      price: Number(displayPrice),
+      oldPrice: isTodayDiscount ? Number(price) : undefined,
+      isDayDiscount: isTodayDiscount,
+    };
+    addToCart(finalProduct);
     alert(`${name} added to cart!`);
   };
 
@@ -60,9 +75,7 @@ const ProductCard = ({ product }) => {
         />
         <img
           src={
-            isFavorite
-              ? "/basket=heart filled.svg"
-              : "/basket=heart empty.svg"
+            isFavorite ? "/basket=heart filled.svg" : "/basket=heart empty.svg"
           }
           alt="Favorite"
           className="icon"
@@ -75,8 +88,13 @@ const ProductCard = ({ product }) => {
       <div className="item-text">{name}</div>
 
       <div className="item-prices">
-        <span className="new-price">${price}</span>
-        {oldPrice && <span className="old-price">${oldPrice}</span>}
+        <span className="new-price">${displayPrice}</span>
+        {isTodayDiscount && (
+          <>
+            <span className="old-price">${price}</span>
+            <span className="day-discount-tag">(50% Day Discount)</span>
+          </>
+        )}
       </div>
 
       <div className="quantity-controls">

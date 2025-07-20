@@ -9,24 +9,24 @@ export const LikedProvider = ({ children }) => {
 
   // Загружаем избранное из localStorage при инициализации
   useEffect(() => {
-    const savedLiked = localStorage.getItem('likedProducts');
+    const savedLiked = localStorage.getItem("likedProducts");
     if (savedLiked) {
       try {
         setLikedItems(JSON.parse(savedLiked));
       } catch (error) {
-        console.error('Error loading liked products:', error);
+        console.error("Error loading liked products:", error);
       }
     }
   }, []);
 
   // Сохраняем в localStorage при изменении
   useEffect(() => {
-    localStorage.setItem('likedProducts', JSON.stringify(likedItems));
+    localStorage.setItem("likedProducts", JSON.stringify(likedItems));
   }, [likedItems]);
 
   const addToLiked = (product) => {
-    setLikedItems(prev => {
-      if (prev.find(item => item.id === product.id)) {
+    setLikedItems((prev) => {
+      if (prev.find((item) => item.id === product.id)) {
         return prev; // Товар уже в избранном
       }
       return [...prev, product];
@@ -34,11 +34,11 @@ export const LikedProvider = ({ children }) => {
   };
 
   const removeFromLiked = (productId) => {
-    setLikedItems(prev => prev.filter(item => item.id !== productId));
+    setLikedItems((prev) => prev.filter((item) => item.id !== productId));
   };
 
   const isLiked = (productId) => {
-    return likedItems.some(item => item.id === productId);
+    return likedItems.some((item) => item.id === productId);
   };
 
   const toggleLiked = (product) => {
@@ -62,7 +62,7 @@ export const LikedProvider = ({ children }) => {
         isLiked,
         toggleLiked,
         clearLiked,
-        likedCount: likedItems.length
+        likedCount: likedItems.length,
       }}
     >
       {children}
