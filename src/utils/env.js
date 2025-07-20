@@ -1,0 +1,2 @@
+export const BASE_BACKEND_URL = 'https://exam-server-5c4e.onrender.com';
+
