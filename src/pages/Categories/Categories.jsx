@@ -1,44 +1,27 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { categories } from '../../data/CategoriesData';
-import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs';
-import './Categories.scss';
+import React, { useEffect, useState } from "react";
+import Categories from "../../components/Categories/Categories";
+import { getAllCategories, formatCategory } from "../../api/products";
 
-export default function Categories() {
-  const breadcrumbItems = [
-    { label: "Main page", href: "/" },
-    { label: "Categories" } 
-  ];
+export default function CategoriesPage() {
+  const [categories, setCategories] = useState([]);
 
-  
+  useEffect(() => {
+    const loadCategories = async () => {
+      try {
+        const data = await getAllCategories();
+        const formattedCategories = data.map(formatCategory).slice(0, 5);
+        setCategories(formattedCategories);
+      } catch (err) {
+        console.error("Error loading categories:", err);
+      }
+    };
+    loadCategories();
+  }, []);
+
   return (
-    <section className="categories-section">
-      <Breadcrumbs items={breadcrumbItems} />
-
-      <div className="categories-title">
-        <h2>Categories</h2>
-      </div>
-
-      <div className="categories-grid">
-        {categories.map(cat =>
-          cat.title === 'Tools and equipment' ? (
-            <Link
-              to="/tools-and-equipment"
-              key={cat.id}
-              className="category-card"
-              style={{ textDecoration: 'none', color: 'inherit' }}
-            >
-              <img src={cat.image} alt={cat.title} className="category-image" />
-              <div className="category-label">{cat.title}</div>
-            </Link>
-          ) : (
-            <div key={cat.id} className="category-card">
-              <img src={cat.image} alt={cat.title} className="category-image" />
-              <div className="category-label">{cat.title}</div>
-            </div>
-          )
-        )}
-      </div>
+    <section>
+      <h2>All Categories</h2>
+      <Categories categories={categories} type="categories" />
     </section>
   );
 }

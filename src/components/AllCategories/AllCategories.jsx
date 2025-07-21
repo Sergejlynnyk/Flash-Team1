@@ -1,11 +1,13 @@
+
+
+
 import React, { useEffect, useState } from "react";
-import "./Categories.scss";
+import "./Categories.scss"; // Или свой файл стилей, если хочешь отдельно
 import Section from "../Section/Section";
 import CategoryCard from "../CategoryCard/CategoryCard";
 import { getAllCategories, formatCategory } from "../../api/products";
 
-// count — сколько карточек показывать (по умолчанию 4)
-export default function Categories({ count = 4, title = "Categories" }) {
+export default function AllCategories() {
   const [categories, setCategories] = useState([]);
 
   function getRandomItems(arr, n) {
@@ -27,16 +29,16 @@ export default function Categories({ count = 4, title = "Categories" }) {
       try {
         const data = await getAllCategories();
         const formattedCategories = data.map(formatCategory);
-        setCategories(getRandomItems(formattedCategories, count));
+        setCategories(getRandomItems(formattedCategories, 5)); // ← ТУТ 5 карточек!
       } catch (err) {
         console.error("Error loading categories:", err);
       }
     };
     loadCategories();
-  }, [count]);
+  }, []);
 
   return (
-    <Section title={title}>
+    <Section title="All Categories">
       {categories.map(category => (
         <CategoryCard key={category.id} category={category} />
       ))}
