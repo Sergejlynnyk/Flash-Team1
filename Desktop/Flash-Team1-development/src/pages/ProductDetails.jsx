@@ -1,125 +1,196 @@
-
-import { useParams } from 'react-router-dom';
-import './ProductDetails.scss';
-import { useState } from 'react';
-
-const items = [
-  {
-    id: 1,
-    image: "/14.png",
-    alt: "Secateurs",
-    text: "Secateurs",
-    discount: 17,
-    newPrice: 199,
-    oldPrice: 240,
-  },
-  {
-    id: 2,
-    image: "/img-22.png",
-    alt: "Collection for berries (plastic)",
-    text: "Collection for berries (plastic)",
-    discount: 26,
-    newPrice: 26,
-    oldPrice: 35,
-  },
-  {
-    id: 3,
-    image: "/img-34.png",
-    alt: "Gloves (black)",
-    text: "Gloves (black)",
-    discount: 36,
-    newPrice: 9,
-    oldPrice: 14,
-  },
-  {
-    id: 4,
-    image: "/img-44.png",
-    alt: "Watering Can",
-    text: "Watering Can",
-    discount: 18,
-    newPrice: 34,
-    oldPrice: 41,
-  },
-  {
-    id: 5,
-    image: "/img-8.png",
-    alt: "Spade",
-    text: "Spade",
-    discount: 21,
-    newPrice: 56,
-    oldPrice: 71,
-  },
-  {
-    id: 6,
-    image: "/img-7.png",
-    alt: "Hoe",
-    text: "Hoe",
-    discount: 11,
-    newPrice: 31,
-    oldPrice: 35,
-  },
-  {
-    id: 7,
-    image: "/img-6.png",
-    alt: "Garden Fork",
-    text: "Garden Fork",
-    discount: 15,
-    newPrice: 66,
-    oldPrice: 78,
-  },
-  {
-    id: 8,
-    image: "/img-5.png",
-    alt: "Sprayer",
-    text: "Sprayer",
-    discount: 21,
-    newPrice: 85,
-    oldPrice: 107,
-  },
-];
-
+import React, { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { getProductById } from "../api/products";
+import { useCart } from "../components/Cart/CartContext";
+import Breadcrumbs from "../components/Breadcrumbs/Breadcrumbs";
+import "./ProductDetails.scss";
 export default function ProductDetails() {
   const { id } = useParams();
-  const [quantity, setQuantity] = useState(1);
-  const product = items.find(p => p.id === parseInt(id));
+  const navigate = useNavigate();
+  const { addToCart } = useCart();
 
-  if (!product) return <div className="product-not-found">Product not found</div>;
+  const [product, setProduct] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [quantity, setQuantity] = useState(1);
+  const [showFullDescription, setShowFullDescription] = useState(false);
+
+ useEffect(() => {
+  const loadProduct = async () => {
+    try {
+      setLoading(true);
+      const response = await getProductById(id);
+      const productData = Array.isArray(response) ? response[0] : response;
+      
+      
+      if (!productData) {
+        setError("Product not found");
+        return;
+      }
+
+      const formattedProduct = {
+        id: productData.id,
+        title: productData.title,
+        image: productData.image 
+          ? `https://exam-server-5c4e.onrender.com${productData.image}`
+          : "/placeholder-image.jpg",
+        price: productData.discont_price 
+          ? Number(productData.discont_price) 
+          : Number(productData.price),
+        oldPrice: productData.discont_price 
+          ? Number(productData.price) 
+          : null,
+        description: productData.description || "No description available.",
+        categoryId: productData.categoryId,
+      };
+
+      
+      setProduct(formattedProduct);
+      setError(null);
+    } catch (err) {
+      console.error("Error loading product:", err);
+      setError("Failed to load product details");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  if (id) {
+    loadProduct();
+  }
+}, [id]);
+  const handleAddToCart = () => {
+    if (product) {
+      addToCart({
+        id: product.id,
+        name: product.title,
+        image: product.image,
+        price: product.price,
+        oldPrice: product.oldPrice,
+        quantity: quantity,
+      });
+
+      // Показываем уведомление
+      alert(`${product.title} added to cart!`);
+    }
+  };
+
+  const toggleDescription = () => {
+    setShowFullDescription(!showFullDescription);
+  };
+
+  const getSlicedText = (text, maxLength = 100) => {
+    if (text.length <= maxLength) return text;
+    return text.slice(0, maxLength) + "...";
+  };
+
+  const calculateDiscount = () => {
+    if (!product.oldPrice) return 0;
+    return Math.round(
+      ((product.oldPrice - product.price) / product.oldPrice) * 100
+    );
+  };
+
+  // Хлебные крошки
+  const breadcrumbItems = [
+    { label: "Main page", href: "/" },
+    { label: "Categories", href: "/categories" },
+    { label: product ? product.title : "Product" },
+  ];
+
+  if (loading) {
+    return (
+      <div className="product-details-wrapper">
+        <div className="loading">Loading product details...</div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="product-details-wrapper">
+        <div className="error">
+          <h2>Error loading product</h2>
+          <p>{error}</p>
+          <button onClick={() => navigate("/")}>Go to Homepage</button>
+        </div>
+      </div>
+    );
+  }
+
+  if (!product) {
+    return (
+      <div className="product-details-wrapper">
+        <div className="product-not-found">
+          <h2>Product not found</h2>
+          <button onClick={() => navigate("/")}>Go to Homepage</button>
+        </div>
+      </div>
+    );
+  }
+
+  const discount = calculateDiscount();
 
   return (
     <div className="product-details-wrapper">
-      <div className="breadcrumbs">
-        <span>Main page</span>
-        <span>Categories</span>
-        <span>Tools and equipment</span>
-        <span className="active">{product.text}</span>
-      </div>
+      <Breadcrumbs items={breadcrumbItems} />
 
       <div className="product-details">
         <div className="image-block">
-          <img src={product.image} alt={product.alt} />
+          <img
+            src={product.image}
+            alt={product.title}
+            onError={(e) => {
+              e.target.onerror = null;
+              e.target.src = "/placeholder-image.jpg";
+            }}
+          />
         </div>
 
         <div className="info-block">
-          <h1 className="product-title">{product.text}</h1>
+          <h1 className="product-title">{product.title}</h1>
+
           <div className="price-row">
-            <span className="new-price">${product.newPrice}</span>
-            <span className="old-price">${product.oldPrice}</span>
-            <span className="discount">-{product.discount}%</span>
+            <span className="new-price">${product.price}</span>
+            {product.oldPrice && (
+              <>
+                <span className="old-price">${product.oldPrice}</span>
+                <span className="discount">-{discount}%</span>
+              </>
+            )}
           </div>
 
           <div className="quantity-cart">
             <div className="quantity-control">
-              <button onClick={() => setQuantity(Math.max(1, quantity - 1))}>-</button>
+              <button
+                onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                disabled={quantity <= 1}
+              >
+                -
+              </button>
               <span>{quantity}</span>
               <button onClick={() => setQuantity(quantity + 1)}>+</button>
             </div>
-            <button className="add-to-cart">Add to cart</button>
+            <button className="add-to-cart" onClick={handleAddToCart}>
+              Add to cart
+            </button>
           </div>
 
           <div className="description">
             <h2>Description</h2>
-            <p>Провтыкал где-то описание товара.</p>
-            <a href="#">Read more</a>
+            <p>
+              {showFullDescription
+                ? product.description
+                : getSlicedText(product.description)}
+            </p>
+            {product.description.length > 100 && (
+              <button
+                onClick={toggleDescription}
+                className="toggle-description"
+              >
+                {showFullDescription ? "Hide Text" : "Read more"}
+              </button>
+            )}
           </div>
         </div>
       </div>

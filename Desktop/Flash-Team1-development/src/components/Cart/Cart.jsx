@@ -1,6 +1,8 @@
 import React from "react";
 import CartItem from "./CartItem";
 import CartForm from "./CartForm";
+import "./Cart.scss";
+
 import { useCart } from "./CartContext";
 
 const Cart = () => {

@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import './Categories.scss';
+import React, { useEffect, useState } from "react";
+import "./Categories.scss";
+import Section from "../Section/Section";
+import CategoryCard from "../CategoryCard/CategoryCard";
+import { getAllCategories, formatCategory } from "../../api/products";
 
-export default function Categories() {
-  const [Categories, setCategories] = useState([]);
-  const [randomCategories, setRandomCategories] = useState([]);
+// count — сколько карточек показывать (по умолчанию 4)
+export default function Categories({ count = 4, title = "Categories" }) {
+  const [categories, setCategories] = useState([]);
 
   function getRandomItems(arr, n) {
     if (n >= arr.length) return arr;
@@ -21,44 +23,23 @@ export default function Categories() {
   }
 
   useEffect(() => {
-    fetch('https://exam-server-5c4e.onrender.com/categories/all')
-      .then(res => res.json())
-      .then(data => {
-        setCategories(data);
-        setRandomCategories(getRandomItems(data, 4));
-      })
-      .catch(err => console.error('Fehler beim Laden der Kategorien:', err));
-  }, []);
+    const loadCategories = async () => {
+      try {
+        const data = await getAllCategories();
+        const formattedCategories = data.map(formatCategory);
+        setCategories(getRandomItems(formattedCategories, count));
+      } catch (err) {
+        console.error("Error loading categories:", err);
+      }
+    };
+    loadCategories();
+  }, [count]);
 
   return (
-    <div className="categories-container">
-      <section className="categories-section">
-        {/* Breadcrumbs entfernt */}
-
-        <div className="categories-title">
-          <h2>Categories</h2>
-        </div>
-        
-        {/* FilterBar entfernt */}
-
-        <div className="categories-grid">
-          {randomCategories.map(category => (
-            <Link
-              to="/tools-and-equipment"
-              key={category.id}
-              className="category-card"
-              style={{ textDecoration: 'none', color: 'inherit' }}
-            >
-              <img
-                src={`https://exam-server-5c4e.onrender.com${category.image}`}
-                alt={category.title}
-                className="category-image"
-              />
-              <div className="category-label">{category.title}</div>
-            </Link>
-          ))}
-        </div>
-      </section>
-    </div>
+    <Section title={title}>
+      {categories.map(category => (
+        <CategoryCard key={category.id} category={category} />
+      ))}
+    </Section>
   );
 }

@@ -1,18 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
 
-.filter-bar {
-  font-family: 'Montserrat', sans-serif;
-  .filter-bar {
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 600;
-  font-size: 20px;
-  line-height: 130%;
-  letter-spacing: 0;
- 
-}
-
- 
-}
 
 .filter-bar {
   display: flex;
@@ -20,7 +7,6 @@
   background: #FFFFF1;
   padding: 24px 32px;
   gap: 24px;
-  font-family: 'Montserrat', sans-serif;
 
   .filter-label {
     font-size: 20px;

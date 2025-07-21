@@ -6,10 +6,8 @@ import { faFacebook, faInstagram } from '@fortawesome/free-brands-svg-icons';
 const Footer = () => {
   return (
     <footer className="footer">
-      <div className="footer__header">Contact</div>
+      <h2 className="footer__header">Contact</h2>
       <div className="footer__content">
-        <div className="footer__left">
-          <div className="footer__row footer__row--150">
             <div className="footer__textblock">
               <div className="footer__label">Phone</div>
               <div className="footer__phone">+49 999 999 99 99</div>
@@ -35,9 +33,7 @@ const Footer = () => {
                 </a>
               </div>
             </div>
-          </div>
 
-          <div className="footer__row footer__row--194">
             <div className="footer__address">
               <div className="footer__label">Address</div>
               <div className="footer__info">
@@ -49,8 +45,6 @@ const Footer = () => {
               <div className="footer__label">Working Hours</div>
               <div className="footer__info">24 hours a day</div>
             </div>
-          </div>
-        </div>
       </div>
 
       <div className="footer__map">

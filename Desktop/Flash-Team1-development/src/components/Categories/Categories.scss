@@ -1,62 +1,24 @@
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-  font-family: "Montserrat", serif;
-  line-height: 1.5;
-}
-.categories-container {
-  max-width: 1500px;
-  margin: 0 auto;
-  padding: 0 24px;
-  display: flex;
-}
+.category-card {
+  text-decoration: none;
 
-.categories-section {
-  width: 100%;
-  background: #FFFFF1;
-  font-family: 'Montserrat', sans-serif;
-  max-width: 1360px;
-  padding-bottom: 80px;
-
-  .categories-title {
-    height: 70px;
-    margin: 40px 0;
-    display: flex;
-  
-
-    h2 {
-      font-size: clamp(2rem, 6vw, 48px);
-      font-weight: bold;
-      color: #424436;
-      margin: 0;
-      text-align: center;
-    }
-  }
-
-  .categories-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 32px;
+  &__image {
     width: 100%;
     padding-bottom: 40px;
-
-    .category-card {
-      background:  #c6c6c6;
-
-      border-radius: 24px;
-      // box-shadow: 0 2px 12px #2221;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      transition: box-shadow 0.2s;
       cursor: pointer;
+      background: #FFFFF1; 
+
+      &:hover {
+        box-shadow: 0 4px 18px #2222;
+        transform: translateY(-4px);
+      }
 
       .category-image {
         width: 100%;
         height: 220px;
         border-radius: 24px 24px 0 0;
         object-fit: cover;
+        object-position: center;
+        max-width: 100%;
       }
 
       .category-label {
@@ -66,29 +28,8 @@
         text-align: center;
         font-size: 20px;
         font-weight: 500;
-        line-height: 130%;
+        line-height: 26px;
+        transition: color 0.2s ease;
       }
     }
   }
-}
-
-@media (max-width: 900px) {
-  .categories-title h2 {
-    font-size: clamp(1.5rem, 6vw, 2rem);
-  }
-  .categories-grid {
-    gap: 18px;
-  }
-}
-
-@media (max-width: 600px) {
-  .categories-title h2 {
-    font-size: 1.2rem;
-  }
-  .categories-grid {
-    gap: 10px;
-    padding-bottom: 18px;
-  }
-}
-
-
