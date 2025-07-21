@@ -21,7 +21,7 @@ export default function DiscountForm() {
       setError('Please enter your email');
       return;
     }
-    
+
     setError('');
     alert('Discount request sent!');
     setName('');
@@ -34,8 +34,8 @@ export default function DiscountForm() {
       <h2 className="discount-title">5% off on the first order</h2>
       <div className="discount-content">
         <div className="discount-image">
-
-          <img src="/images/image11.png" alt="Gardening tools" />
+          {/* Путь должен быть /image11.png если файл лежит в public */}
+          <img src="/image11.png" alt="Gardening tools" />
         </div>
         <form className="discount-form" onSubmit={handleSubmit}>
           <h3 className="discount-form-title">Discount Form</h3>
