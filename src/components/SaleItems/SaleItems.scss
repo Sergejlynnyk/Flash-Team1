@@ -103,47 +103,12 @@
         transform: scale(1.1);
       }
 
-      // Стили для активного состояния лайка
-      &.like-btn.liked .icon {
-        background: #fee !important;
-        border: 2px solid #e74c3c !important;
+      .icon {
+        width: 48px;
+        height: 48px;
+        object-fit: contain;
+        transition: all 0.2s ease;
       }
-
-      // Стили для сердечка
-      &.like-btn.liked .heart-icon {
-        background: #ffe6e6 !important;
-        border: 2px solid #ff6b6b !important;
-        transform: scale(1.05);
-      }
-
-      &:hover .heart-icon {
-        transform: scale(1.1);
-      }
-    }
-
-    .icon {
-      width: 48px;
-      height: 48px;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: #f4f5f0;
-      object-fit: contain;
-      transition: all 0.2s ease;
-    }
-
-    // Стили для сердечка такого же размера как корзина
-    .heart-icon {
-      width: 48px;
-      height: 48px;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: #f4f5f0;
-      font-size: 28px;
-      transition: all 0.2s ease;
     }
   }
 
