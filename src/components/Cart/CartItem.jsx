@@ -25,8 +25,14 @@ const CartItem = ({ item, onQuantityChange, onRemove }) => {
         </div>
       </div>
       <div className="cart-item__price">
-        <span className="current">€{item.price}</span>
-        {item.oldPrice && <span className="old">€{item.oldPrice}</span>}
+        <span className="current">
+          €{(item.price * item.quantity).toFixed(2)}
+        </span>
+        {item.oldPrice && (
+          <span className="old">
+            €{(item.oldPrice * item.quantity).toFixed(2)}
+          </span>
+        )}
       </div>
       <button className="cart-item__remove" onClick={() => onRemove(item.id)}>
         ×
