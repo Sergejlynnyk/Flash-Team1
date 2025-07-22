@@ -2,7 +2,7 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
 
   .page-title {
     font-size: 28px;
@@ -42,6 +42,13 @@
           border-color: #a2b041;
         }
       }
+
+      select {
+        padding: 8px 12px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 14px;
+      }
     }
   }
 
@@ -57,12 +64,16 @@
       transition: transform 0.3s, box-shadow 0.3s;
       position: relative;
       background: white;
-      text-decoration: none;
-      color: inherit;
 
       &:hover {
         transform: translateY(-5px);
-        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .product-link {
+        display: block;
+        text-decoration: none;
+        color: inherit;
       }
 
       .discount-badge {
@@ -77,6 +88,38 @@
         font-size: 14px;
         z-index: 1;
       }
+
+      
+      .icon-bar {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        z-index: 2;
+
+        .icon-btn {
+          background: none;
+          border: none;
+          cursor: pointer;
+          transition: transform 0.2s;
+
+          &:hover {
+            transform: scale(1.1);
+          }
+
+          .icon {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+            background: transparent;
+            border-radius: 0;
+         
+          }
+        }
+      }
+     
 
       .product-image {
         width: 100%;
@@ -99,7 +142,6 @@
           display: flex;
           gap: 10px;
           align-items: center;
-          margin-bottom: 15px;
 
           .current-price {
             font-size: 18px;
@@ -111,23 +153,6 @@
             font-size: 14px;
             color: #999;
             text-decoration: line-through;
-          }
-        }
-
-        .add-to-cart {
-          width: 100%;
-          padding: 10px;
-          background: #a2b041;
-          color: white;
-          border: none;
-          border-radius: 4px;
-          font-size: 14px;
-          font-weight: 500;
-          cursor: pointer;
-          transition: background 0.2s;
-
-          &:hover {
-            background: #768c24;
           }
         }
       }

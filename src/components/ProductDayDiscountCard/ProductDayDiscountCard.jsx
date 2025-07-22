@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./ProductDayDiscountCard.scss";
 import { BASE_BACKEND_URL } from "../../utils/env";
-import { Heart } from "lucide-react";
+
 import { useCart } from "../Cart/CartContext";
 import { useLiked } from "../Liked/LikedContext";
 
@@ -74,7 +74,11 @@ const ProductDayDiscountCard = ({ products }) => {
           className={`heartBtn ${isLiked(product.id) ? "liked" : ""}`}
           onClick={handleToggleLiked}
         >
-          <Heart />
+          <img
+            src={isLiked(product.id) ? "/liked.png" : "/notliked.png"}
+            alt="Like"
+            className="heart-icon"
+          />
         </button>
       </div>
 

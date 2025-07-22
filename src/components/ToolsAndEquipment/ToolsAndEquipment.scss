@@ -88,18 +88,11 @@
             transform: scale(1.1);
           }
 
-          &.liked .icon {
-            background: #fee;
-          }
-
           .icon {
             width: 48px;
             height: 48px;
-            border-radius: 12px;
-            background: #f4f5f0;
-            padding: 8px;
             object-fit: contain;
-            transition: background 0.2s;
+            transition: all 0.2s ease;
           }
         }
       }

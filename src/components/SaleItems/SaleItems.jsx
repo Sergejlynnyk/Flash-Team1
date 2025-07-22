@@ -82,20 +82,16 @@ const SaleItems = () => {
                 className="icon-btn"
                 onClick={(e) => handleAddToCart(item, e)}
               >
-                {addedId === item.id ? (
-                  <img src="/checkmark.svg" alt="Added" className="icon" />
-                ) : (
-                  <img src="/basket=empty.svg" alt="Cart" className="icon" />
-                )}
+                <img src="/basket.png" alt="Cart" className="icon" />
               </button>
               <button
-                className={`icon-btn like-btn ${isLiked(item.id) ? "liked" : ""}`}
+                className={`icon-btn like-btn ${
+                  isLiked(item.id) ? "liked" : ""
+                }`}
                 onClick={(e) => handleToggleLike(item, e)}
               >
                 <img
-                  src={isLiked(item.id)
-                    ? "/basket=heart filled.svg"
-                    : "/basket=heart empty.svg"}
+                  src={isLiked(item.id) ? "/liked.png" : "/notliked.png"}
                   alt="Like"
                   className="icon"
                 />

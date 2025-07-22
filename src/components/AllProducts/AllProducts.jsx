@@ -13,7 +13,7 @@ export default function AllProducts() {
   const [query, setQuery] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  
+
   const { toggleLiked, isLiked } = useLiked();
   const { addToCart } = useCart();
 
@@ -61,16 +61,29 @@ export default function AllProducts() {
   const handleToggleLike = (product, e) => {
     e.preventDefault();
     e.stopPropagation();
-    
+
     const productForLiked = {
       id: product.id,
       title: product.title,
       image: product.image,
       price: product.price,
-      oldPrice: product.oldPrice
+      oldPrice: product.oldPrice,
     };
-    
+
     toggleLiked(productForLiked);
+  };
+  const handleAddToCart = (product, e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    
+    addToCart({
+      id: product.id,
+      name: product.title,
+      image: product.image,
+      price: product.price,
+      oldPrice: product.oldPrice,
+      quantity: 1
+    });
   };
 
   const breadcrumbItems = [
@@ -124,10 +137,7 @@ export default function AllProducts() {
         <div className="product-grid">
           {filtered.map((product) => (
             <div key={product.id} className="product-card">
-              <Link
-                to={`/product/${product.id}`}
-                className="product-link"
-              >
+              <Link to={`/product/${product.id}`} className="product-link">
                 {product.oldPrice && (
                   <div className="discount-badge">
                     -
@@ -166,14 +176,27 @@ export default function AllProducts() {
                 </div>
               </Link>
 
-              <button 
-                className={`like-button ${isLiked(product.id) ? 'liked' : ''}`}
+              <button
+                className={`like-button ${isLiked(product.id) ? "liked" : ""}`}
                 onClick={(e) => handleToggleLike(product, e)}
-                title={isLiked(product.id) ? "Remove from favorites" : "Add to favorites"}
+                title={
+                  isLiked(product.id)
+                    ? "Remove from favorites"
+                    : "Add to favorites"
+                }
               >
-                <div className="heart-icon">
-                  {isLiked(product.id) ? '❤️' : '🤍'}
-                </div>
+                <img
+                  src={isLiked(product.id) ? "/liked.png" : "/notliked.png"}
+                  alt="Like"
+                  className="heart-icon"
+                />
+              </button>
+              <button
+                className="cart-button"
+                onClick={(e) => handleAddToCart(product, e)}
+                title="Add to cart"
+              >
+                <img src="/basket.png" alt="Cart" className="cart-icon" />
               </button>
             </div>
           ))}
