@@ -57,25 +57,21 @@
     border: none;
     cursor: pointer;
     z-index: 2;
+    transition: transform 0.2s ease;
 
-    svg {
-      width: 40px;
-      height: 40px;
-      transition: all 0.3s ease;
-      stroke-width: 1.2;
-      stroke: #333;
-      fill: transparent;
+    &:hover {
+      transform: scale(1.1);
     }
 
-    &:hover svg {
-      stroke: #ff6b6b;
-    }
-
-    &.liked svg {
-      fill: #ff6b6b;
-      stroke: #ff6b6b;
+    .heart-icon {
+      width: 48px;
+      height: 48px;
+      object-fit: contain;
+      background: transparent;
     }
   }
+
+  
 
   .productTitle {
     font-size: 20px;

@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import "./ToolsAndEquipment.scss";
 import FilterBar from "../FilterBar/FilterBar";
-import ProductCard from "../ProductCard/ProductCard"; 
+import ProductCard from "../ProductCard/ProductCard";
 import Breadcrumbs from "../Breadcrumbs/Breadcrumbs";
 import { getProductsByCategory } from "../../api/products";
-import { useLiked } from "../Liked/LikedContext";  
-import { useCart } from "../Cart/CartContext";      
+import { useLiked } from "../Liked/LikedContext";
+import { useCart } from "../Cart/CartContext";
 import { Link } from "react-router-dom";
 
 export default function ToolsAndEquipment() {
@@ -19,9 +19,9 @@ export default function ToolsAndEquipment() {
   const TOOLS_CATEGORY_ID = 4;
 
   const breadcrumbItems = [
-    { label: 'Main page', href: '/' },
-    { label: 'Categories', href: '/categories' },
-    { label: 'Tools & Equipment' }
+    { label: "Main page", href: "/" },
+    { label: "Categories", href: "/categories" },
+    { label: "Tools & Equipment" },
   ];
 
   useEffect(() => {
@@ -29,23 +29,27 @@ export default function ToolsAndEquipment() {
       try {
         setLoading(true);
         const data = await getProductsByCategory(TOOLS_CATEGORY_ID);
-        
-        const formattedProducts = data.map(product => ({
+
+        const formattedProducts = data.map((product) => ({
           id: product.id,
           name: product.title,
           title: product.title,
           image: `https://exam-server-5c4e.onrender.com${product.image}`,
           price: Number(product.discont_price || product.price),
           oldPrice: product.discont_price ? Number(product.price) : null,
-          discount: product.discont_price ? 
-            Math.round(((Number(product.price) - Number(product.discont_price)) / Number(product.price)) * 100) : 
-            null
+          discount: product.discont_price
+            ? Math.round(
+                ((Number(product.price) - Number(product.discont_price)) /
+                  Number(product.price)) *
+                  100
+              )
+            : null,
         }));
 
         setProducts(formattedProducts);
       } catch (err) {
-        console.error('Error loading tools products:', err);
-        setError('Failed to load products');
+        console.error("Error loading tools products:", err);
+        setError("Failed to load products");
       } finally {
         setLoading(false);
       }
@@ -57,29 +61,29 @@ export default function ToolsAndEquipment() {
   const handleAddToCart = (product, e) => {
     e.preventDefault();
     e.stopPropagation();
-    
+
     addToCart({
       id: product.id,
       name: product.title,
       image: product.image,
       price: product.price,
       oldPrice: product.oldPrice,
-      quantity: 1
+      quantity: 1,
     });
-    
+
     alert(`${product.title} added to cart!`);
   };
 
   const handleToggleLike = (product, e) => {
     e.preventDefault();
     e.stopPropagation();
-    
+
     toggleLiked({
       id: product.id,
       title: product.title,
       image: product.image,
       price: product.price,
-      oldPrice: product.oldPrice
+      oldPrice: product.oldPrice,
     });
   };
 
@@ -103,7 +107,7 @@ export default function ToolsAndEquipment() {
 
   return (
     <div className="tools-and-equipment-container">
-      <Breadcrumbs items={breadcrumbItems} /> 
+      <Breadcrumbs items={breadcrumbItems} />
       <h2 className="section-title">Tools & Equipment</h2>
 
       <FilterBar />
@@ -123,33 +127,39 @@ export default function ToolsAndEquipment() {
                     onClick={(e) => handleAddToCart(product, e)}
                     title="Add to cart"
                   >
-                    <img src="/basket=empty.svg" alt="Cart" className="icon" />
+                    <img src="/basket.png" alt="Cart" className="icon" />
                   </button>
                   <button
-                    className={`icon-btn like-btn ${isLiked(product.id) ? 'liked' : ''}`}
+                    className={`icon-btn like-btn ${
+                      isLiked(product.id) ? "liked" : ""
+                    }`}
                     onClick={(e) => handleToggleLike(product, e)}
-                    title={isLiked(product.id) ? "Remove from favorites" : "Add to favorites"}
+                    title={
+                      isLiked(product.id)
+                        ? "Remove from favorites"
+                        : "Add to favorites"
+                    }
                   >
-                    <img 
-                      src={isLiked(product.id) ? "/basket=heart filled.svg" : "/basket=heart empty.svg"} 
-                      alt="Like" 
-                      className="icon" 
+                    <img
+                      src={isLiked(product.id) ? "/liked.png" : "/notliked.png"}
+                      alt="Like"
+                      className="icon"
                     />
                   </button>
                 </div>
 
-                <img 
-                  src={product.image} 
-                  alt={product.title} 
+                <img
+                  src={product.image}
+                  alt={product.title}
                   className="item-image"
                   onError={(e) => {
                     e.target.onerror = null;
-                    e.target.src = '/placeholder-image.jpg';
+                    e.target.src = "/placeholder-image.jpg";
                   }}
                 />
-                
+
                 <div className="item-text">{product.title}</div>
-                
+
                 <div className="item-prices">
                   <span className="new-price">${product.price}</span>
                   {product.oldPrice && (
