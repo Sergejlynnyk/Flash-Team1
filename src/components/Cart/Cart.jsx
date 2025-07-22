@@ -12,7 +12,8 @@ const Cart = () => {
   const itemCount = cart.reduce((sum, item) => sum + item.quantity, 0);
 
   const handleSubmit = (formData) => {
-    alert(`Thank you for your order, ${formData.name}! We will contact you at: ${formData.phone}`);
+    alert(`Congratulations!, Your order has been successfully placed on the website.
+A manager will contact you shortly to confirm your order.`);
     clearCart();
   };
 
