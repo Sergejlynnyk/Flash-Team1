@@ -67,7 +67,7 @@ const SaleItems = () => {
   };
 
   return (
-    <Section title="Products">
+    <Section title="Sale">
       {items.map((item) => (
         <Link
           to={`/product/${item.id}`}
