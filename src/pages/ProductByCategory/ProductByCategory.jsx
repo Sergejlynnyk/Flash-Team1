@@ -120,17 +120,17 @@ const ProductByCategory = () => {
 
     toggleLiked(productForLiked);
   };
-   const handleAddToCartIcon = (product, e) => {
+  const handleAddToCartIcon = (product, e) => {
     e.preventDefault();
     e.stopPropagation();
-    
+
     addToCart({
       id: product.id,
       name: product.title,
       image: product.image,
       price: product.price,
       oldPrice: product.oldPrice,
-      quantity: 1
+      quantity: 1,
     });
   };
 
@@ -151,7 +151,7 @@ const ProductByCategory = () => {
   const breadcrumbItems = [
     { label: "Main page", href: "/" },
     { label: "Categories", href: "/categories" },
-    { label: category ? category.title : "Category" },
+    { label: "Tools and equipment" },
   ];
 
   if (loading) {
@@ -174,9 +174,7 @@ const ProductByCategory = () => {
     <div className="category-page">
       <Breadcrumbs items={breadcrumbItems} />
 
-      <h1 className="category-title">
-        {category ? category.title : "Products"}
-      </h1>
+      <h1 className="category-title">Tools and equipment</h1>
 
       <div className="filters-section">
         <div className="filter-group">
@@ -266,42 +264,30 @@ const ProductByCategory = () => {
                     </div>
                   </div>
                 </Link>
+                <button
+                  className={`like-btn ${isLiked(product.id) ? "liked" : ""}`}
+                  onClick={(e) => handleToggleLike(product, e)}
+                  title={
+                    isLiked(product.id)
+                      ? "Remove from favorites"
+                      : "Add to favorites"
+                  }
+                >
+                  <img
+                    src={isLiked(product.id) ? "/liked.png" : "/notliked.png"}
+                    alt="Like"
+                    className="heart-icon"
+                  />
+                </button>
 
-                <div className="product-actions">
-                  <button
-                    className="add-to-cart-btn"
-                    onClick={(e) => handleAddToCart(product, e)}
-                  >
-                    <img
-                      src="/basket.png"
-                      alt="Add to cart"
-                      className="cart-icon"
-                    />
-                    Add to Cart
-                  </button>
-                  <button
-                    className={`like-btn ${isLiked(product.id) ? "liked" : ""}`}
-                    onClick={(e) => handleToggleLike(product, e)}
-                    title={
-                      isLiked(product.id)
-                        ? "Remove from favorites"
-                        : "Add to favorites"
-                    }
-                  >
-                    <img
-                      src={isLiked(product.id) ? "/liked.png" : "/notliked.png"}
-                      alt="Like"
-                      className="heart-icon"
-                    />
-                  </button>
-                   <button
+                {/* Корзина под сердечком */}
+                <button
                   className="cart-btn"
                   onClick={(e) => handleAddToCartIcon(product, e)}
                   title="Add to cart"
                 >
                   <img src="/basket.png" alt="Cart" className="cart-icon" />
                 </button>
-                </div>
               </div>
             );
           })}
