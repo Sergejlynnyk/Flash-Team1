@@ -1,25 +1,22 @@
+@use '../../styles/theme'; // подключаем переменные
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
 
 .footer {
   width: 100%;
   max-width: 1440px;
   margin: 0 auto;
-  background: #FFFFF1;
+  background: var(--bg-main);
   display: flex;
   flex-direction: column;
   font-family: Montserrat, sans-serif;
   gap: 40px;
-  padding-right: 40px;
-  padding-bottom: 80px;
-  padding-left: 40px;
+  padding: 0 40px 80px;
 
   &__header {
-    width: 100%;
-  font-size: clamp(2rem, 6vw, 64px);
-  font-weight: 700;
-  color: #424436;
-  padding: 0 0 40px 40px ; 
-  letter-spacing: 0;
+    font-size: clamp(2rem, 6vw, 64px);
+    font-weight: 700;
+    color: var(--text-main);
+    padding: 0 0 40px 40px;
   }
 
   &__content {
@@ -27,19 +24,15 @@
     gap: 32px;
     grid-template-columns: 1.5fr 1fr;
 
-    @media (max-width: 968px){
+    @media (max-width: 968px) {
       grid-template-columns: 1fr;
     }
-    
   }
-
 
   &__label {
     font-size: 16px;
     font-weight: 500;
-    color: #8B8B8B;
-
-    
+    color: var(--text-muted);
     margin-bottom: 8px;
   }
 
@@ -47,7 +40,7 @@
   &__socials,
   &__address,
   &__hours {
-    background: #F2F6D3;
+    background: var(--bg-secondary);
     padding: 32px;
     border-radius: 12px;
     font-weight: 500;
@@ -56,8 +49,8 @@
   }
 
   &__phone {
-    background: #F2F6D3;
-    color: #424436;
+    background: var(--phone-bg);
+    color: var(--phone-color);
     font-weight: 600;
     font-size: 40px;
     justify-content: flex-start;
@@ -76,9 +69,10 @@
       gap: 16px;
       font-size: 32px;
     }
+
     .footer__icon {
-      background-color: #424436;
-      color: #fff;
+      background-color: var(--icon-bg);
+      color: var(--icon-color);
       padding: 10px;
       border-radius: 12px;
     }
@@ -95,31 +89,24 @@
   }
 
   &__info {
-    font-size: 20px;
-    font-weight: 600;
-    color: #333;
     font-size: 40px;
+    font-weight: 600;
+    color: var(--text-main);
   }
 
-    &__map {
-      grid-column: 1 / -1;
-      margin-top: 32px;
-      border-radius: 12px;
-      overflow: hidden;
+  &__map {
+    grid-column: 1 / -1;
+    margin-top: 32px;
+    border-radius: 12px;
+    overflow: hidden;
 
     iframe {
       width: 100%;
       max-width: 1360px;
       height: 400px;
       margin: 0 auto;
-      
       border-radius: 12px;
       display: block;
     }
   }
-    
-  }
-  
-
-
-
+}

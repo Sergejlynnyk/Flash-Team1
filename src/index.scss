@@ -7,11 +7,23 @@
 }
 
 body{
-   background: #FFFFF1; 
+  background: linear-gradient(135deg, #1e1e1e, #121212); // базовый градиент
+   background-color: var(--bg-color);
+   color: var(--text-color);
+   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .container {
   max-width: 1440px;
   margin: 0 auto;
   padding: 0 20px;
+}
+
+.main-container {
+  background: var(--bg-color);
+  backdrop-filter: blur(10px); // 👈 размытие "через фон"
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 20px;
+  transition: background 0.3s ease;
 }

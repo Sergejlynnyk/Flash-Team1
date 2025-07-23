@@ -1,0 +1,59 @@
+:root {
+    --bg-color: #ffffff;
+    --text-color: #1a1a1a;
+    --card-bg-color: #ffffff;
+    --filter-bg-color: #f8f9fa;
+    --border-color: #ddd;
+
+    --bg-main: #FFFFF1;
+    --bg-secondary: #F2F6D3;
+    --text-main: #424436;
+    --text-muted: #8B8B8B;
+    --phone-bg: #F2F6D3;
+    --phone-color: #424436;
+    --icon-bg: #424436;
+    --icon-color: #fff;
+
+    --header-bg: #FFFFF1;
+    --border-light: #DDDDDD;
+    --text-dark-accent: #55610B;
+    --active-bg: #87933D;
+    --active-text: white;
+    --promo-bg: #92A134;
+    --promo-bg-hover: #72851c;
+    --nav-hover-bg: #f3f3f3;
+    --badge-bg: #87933D;
+    --badge-border: #FFFFF1;
+  
+  }
+  
+  .dark-theme {
+    --bg-color: rgba(255, 255, 255, 0.25);  
+    --text-color: #f0f0f0;
+    --card-bg-color: rgba(255, 255, 255, 0.25); 
+    --filter-bg-color: rgba(255, 255, 255, 0.25); 
+    --border-color: rgba(255, 255, 255, 0.2);
+
+    --bg-main: rgba(0, 0, 0, 0.25);
+    --bg-secondary: rgba(255, 255, 255, 0.06);
+    --text-main: #f1f1f1;
+    --text-muted: #aaa;
+    --phone-bg: rgba(255, 255, 255, 0.2);
+    --phone-color: #fff;
+    --icon-bg: #f1f1f1;
+    --icon-color: #000;
+
+    --header-bg: rgba(0, 0, 0, 0.2);
+    --border-light: rgba(255, 255, 255, 0.2);
+    --text-dark-accent: #d1ff70;
+    --active-bg: #a0c33d;
+    --active-text: #000;
+    --promo-bg: #6b8c2b;
+    --promo-bg-hover: #526c1c;
+    --nav-hover-bg: rgba(255, 255, 255, 0.05);
+    --badge-bg: #d5e57d;
+    --badge-border: rgba(0, 0, 0, 0.2);
+  
+  
+  }
+  

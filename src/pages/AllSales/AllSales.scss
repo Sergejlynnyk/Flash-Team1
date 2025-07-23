@@ -30,6 +30,7 @@
         font-size: 14px;
       }
 
+      
       input {
         padding: 8px 12px;
         border: 1px solid #ddd;
@@ -58,16 +59,18 @@
     gap: 25px;
 
     .product-card {
-      border: 1px solid #eee;
+      background: var(--card-bg-color);
+      border: 1px solid var(--border-color);
       border-radius: 8px;
       overflow: hidden;
-      transition: transform 0.3s, box-shadow 0.3s;
+      transition: transform 0.3s, box-shadow 0.3s, background 0.3s ease;
       position: relative;
-      background: white;
-
+      backdrop-filter: blur(10px); // 👈 стеклянный эффект
+      -webkit-backdrop-filter: blur(10px);
+    
       &:hover {
         transform: translateY(-5px);
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
       }
 
       .product-link {

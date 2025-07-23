@@ -9,7 +9,7 @@ export default function CategoriesPage() {
     const loadCategories = async () => {
       try {
         const data = await getAllCategories();
-        const formattedCategories = data.map(formatCategory).slice(0, 5);
+        const formattedCategories = data.map(formatCategory).slice(0, 4);
         setCategories(formattedCategories);
       } catch (err) {
         console.error("Error loading categories:", err);
