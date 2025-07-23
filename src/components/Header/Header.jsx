@@ -15,7 +15,14 @@ const Header = () => {
   const itemCount = cart.reduce((sum, item) => sum + item.quantity, 0);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+  // ДОБАВЛЕНО: Состояние для бургер-меню
+  const [isBurgerOpen, setIsBurgerOpen] = useState(false);
   const { data: products, loading, error } = useFetchProducts();
+
+  // ДОБАВЛЕНО: Функция для закрытия меню при клике на ссылку
+  const handleMenuClick = () => {
+    setIsBurgerOpen(false);
+  };
 
   return (
     <>
@@ -26,6 +33,17 @@ const Header = () => {
             <ToggleSwitch />
           </div>
 
+          {/* ДОБАВЛЕНО: Кнопка бургер-меню */}
+          <button 
+            className={`burger-button ${isBurgerOpen ? 'open' : ''}`}
+            onClick={() => setIsBurgerOpen(!isBurgerOpen)}
+            aria-label="Toggle menu"
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+
           <div className="center-box">
             <button
               className="promo-button"
@@ -33,25 +51,43 @@ const Header = () => {
             >
               1 day discount!
             </button>
-            <nav>
+            
+            {/* ИЗМЕНЕНО: Добавлен класс для бургер-меню */}
+            <nav className={`main-nav ${isBurgerOpen ? 'nav-open' : ''}`}>
               <ul>
                 <li>
-                  <Link to="/" className={location.pathname === "/" ? "active" : ""}>
+                  <Link 
+                    to="/" 
+                    className={location.pathname === "/" ? "active" : ""}
+                    onClick={handleMenuClick}
+                  >
                     Main Page
                   </Link>
                 </li>
                 <li>
-                  <Link to="/categories" className={location.pathname === "/categories" ? "active" : ""}>
+                  <Link 
+                    to="/categories" 
+                    className={location.pathname === "/categories" ? "active" : ""}
+                    onClick={handleMenuClick}
+                  >
                     Categories
                   </Link>
                 </li>
                 <li>
-                  <Link to="/all-products" className={location.pathname === "/all-products" ? "active" : ""}>
+                  <Link 
+                    to="/all-products" 
+                    className={location.pathname === "/all-products" ? "active" : ""}
+                    onClick={handleMenuClick}
+                  >
                     All products
                   </Link>
                 </li>
                 <li>
-                  <Link to="/sales" className={location.pathname === "/sales" ? "active" : ""}>
+                  <Link 
+                    to="/sales" 
+                    className={location.pathname === "/sales" ? "active" : ""}
+                    onClick={handleMenuClick}
+                  >
                     All sales
                   </Link>
                 </li>
@@ -71,9 +107,11 @@ const Header = () => {
             </Link>
           </div>
         </div>
+
+       
       </header>
 
-      {/* 🔽 Вот здесь — модальное окно */}
+      {/* Модальное окно */}
       {isModalOpen && (
         <Modal onClose={() => setIsModalOpen(false)}>
           {loading && <p>Loading product...</p>}
