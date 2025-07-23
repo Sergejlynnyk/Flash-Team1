@@ -79,12 +79,6 @@ const SaleItems = () => {
             <div className="discount-badge">{item.discount}</div>
             <div className="icon-bar">
               <button
-                className="icon-btn"
-                onClick={(e) => handleAddToCart(item, e)}
-              >
-                <img src="/basket.png" alt="Cart" className="icon" />
-              </button>
-              <button
                 className={`icon-btn like-btn ${
                   isLiked(item.id) ? "liked" : ""
                 }`}
@@ -95,6 +89,12 @@ const SaleItems = () => {
                   alt="Like"
                   className="icon"
                 />
+              </button>
+              <button
+                className="icon-btn"
+                onClick={(e) => handleAddToCart(item, e)}
+              >
+                <img src="/basket.png" alt="Cart" className="icon" />
               </button>
             </div>
             <img src={item.image} alt={item.title} className="item-image" />
