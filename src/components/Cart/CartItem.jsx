@@ -10,33 +10,37 @@ const CartItem = ({ item, onQuantityChange, onRemove }) => {
     <div className="cart-item">
       <img src={imageUrl} alt={item.name} className="cart-item__img" />
       <div className="cart-item__info">
-        <div className="cart-item__name">{item.name}</div>
-        <div className="cart-item__qty-controls">
-          <button
-            onClick={() => onQuantityChange(item.id, item.quantity - 1)}
-            disabled={item.quantity <= 1}
-          >
-            −
-          </button>
-          <span>{item.quantity}</span>
-          <button onClick={() => onQuantityChange(item.id, item.quantity + 1)}>
-            +
+        <div className="cart-item__header">
+          <div className="cart-item__name">{item.name}</div>
+          <button className="cart-item__remove" onClick={() => onRemove(item.id)}>
+            ×
           </button>
         </div>
+        <div className="cart-item__price-row">
+          <div className="cart-item__qty-controls">
+            <button
+              onClick={() => onQuantityChange(item.id, item.quantity - 1)}
+              disabled={item.quantity <= 1}
+            >
+              −
+            </button>
+            <span>{item.quantity}</span>
+            <button onClick={() => onQuantityChange(item.id, item.quantity + 1)}>
+              +
+            </button>
+          </div>
+          <div className="cart-item__price">
+            <span className="current">
+              ${(item.price * item.quantity).toFixed(2)}
+            </span>
+            {item.oldPrice && (
+              <span className="old">
+                ${(item.oldPrice * item.quantity).toFixed(2)}
+              </span>
+            )}
+          </div>
+        </div>
       </div>
-      <div className="cart-item__price">
-        <span className="current">
-          ${ (item.price * item.quantity).toFixed(2) }
-        </span>
-        {item.oldPrice && (
-          <span className="old">
-            ${ (item.oldPrice * item.quantity).toFixed(2) }
-          </span>
-        )}
-      </div>
-      <button className="cart-item__remove" onClick={() => onRemove(item.id)}>
-        ×
-      </button>
     </div>
   );
 };
