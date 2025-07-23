@@ -92,9 +92,10 @@
       color: #cf3434;
     }
   }
-}
+} 
 
 .cart-page {
+  position: relative;
   display: flex;
   gap: 24px;
   background: #fdfde8;
@@ -164,3 +165,4 @@
   margin-top: -5px;
   display: block;
 }
+
