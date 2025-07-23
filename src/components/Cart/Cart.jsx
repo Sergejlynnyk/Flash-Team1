@@ -1,54 +1,61 @@
-import React, { useState } from "react";
+import React from "react";
+import { Link } from "react-router-dom";
 import CartItem from "./CartItem";
 import CartForm from "./CartForm";
-import CartPopup from "./CartPopup/CartPopup";
 import "./Cart.scss";
 import { useCart } from "./CartContext";
 
 const Cart = () => {
   const { cart, removeFromCart, changeQuantity, clearCart } = useCart();
-  const [showPopup, setShowPopup] = useState(false);
 
   const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
   const itemCount = cart.reduce((sum, item) => sum + item.quantity, 0);
 
   const handleSubmit = (formData) => {
-    setShowPopup(true);
-    // clearCart();
+    alert(`Congratulations! Your order has been successfully placed on the website.
+A manager will contact you shortly to confirm your order.`);
+    clearCart();
   };
 
   return (
-    <div className="cart-page">
-      {showPopup && (
-  <CartPopup
-    onClose={() => {
-      setShowPopup(false);
-      clearCart(); // ← теперь корзина очистится после закрытия попапа
-    }}
-  />
-)}
-      <div className="cart-list">
-        <h2>Shopping cart</h2>
-        {cart.length === 0 ? (
-          <p>Your cart is empty</p>
-        ) : (
-          cart.map((item) => (
-            <CartItem
-              key={item.id}
-              item={item}
-              onQuantityChange={(id, qty) => changeQuantity(id, qty)}
-              onRemove={removeFromCart}
-            />
-          ))
-        )}
-      </div>
-      <div className="cart-summary">
-        <h3>Order details</h3>
-        <div>{itemCount} items</div>
-        <div>
-          <b>Total: ${total.toLocaleString("en-US")}</b>
+    <div className="cart-container">
+      <div className="cart-header">
+        <h1 className="cart-title">Shopping cart</h1>
+        <div className="header-line">
+          <div className="line"></div>
+          <Link to="/" className="back-to-store-btn">Back to the store</Link>
         </div>
-        <CartForm onSubmit={handleSubmit} />
+      </div>
+
+      <div className="cart-content">
+        <div className="cart-list">
+          {cart.length === 0 ? (
+            <p className="empty-cart">Your cart is empty</p>
+          ) : (
+            cart.map(item => (
+              <CartItem
+                key={item.id}
+                item={item}
+                onQuantityChange={(id, qty) => changeQuantity(id, qty)}
+                onRemove={removeFromCart}
+              />
+            ))
+          )}
+        </div>
+
+        <div className="order-form">
+          <div className="order-details">
+            <h3 className="order-title">Order details</h3>
+            <div className="order-info">
+              <div className="items-count">{itemCount} items</div>
+              <div className="total-price">
+                <span>Total</span>
+                <span className="price">${total.toFixed(2)}</span>
+              </div>
+            </div>
+          </div>
+          <CartForm onSubmit={handleSubmit} />
+        </div>
       </div>
     </div>
   );
