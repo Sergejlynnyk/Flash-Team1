@@ -33,6 +33,53 @@
     }
   }
 
+  // ДОБАВЛЕНО: Стили для кнопки бургер-меню
+  .burger-button {
+    display: none;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 30px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 1001;
+
+    span {
+      width: 30px;
+      height: 3px;
+      background: #424436;
+      border-radius: 2px;
+      transition: all 0.3s ease;
+      transform-origin: center;
+    }
+
+    &.open {
+      span:nth-child(1) {
+        transform: rotate(45deg) translate(6px, 6px);
+      }
+      span:nth-child(2) {
+        opacity: 0;
+      }
+      span:nth-child(3) {
+        transform: rotate(-45deg) translate(6px, -6px);
+      }
+    }
+  }
+
+  // ДОБАВЛЕНО: Overlay для бургер-меню
+  .burger-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    display: none;
+  }
+
   .center-box {
     position: absolute;
     left: 50%;
@@ -61,7 +108,8 @@
       }
     }
 
-    nav {
+    // ИЗМЕНЕНО: Добавлен класс main-nav
+    .main-nav {
       ul {
         list-style: none;
         display: flex;
@@ -154,14 +202,14 @@
   }
 }
 
-// Адаптивность
+// ИЗМЕНЕНО: Адаптивность с бургер-меню
 @media (max-width: 1200px) {
   .custom-header {
     .header-content {
       padding: 0 20px;
     }
 
-    .center-box nav ul {
+    .center-box .main-nav ul {
       gap: 24px;
       li a {
         font-size: 18px;
@@ -174,50 +222,132 @@
 @media (max-width: 900px) {
   .custom-header {
     height: auto;
-    min-height: 128px;
+    min-height: 88px;
 
     .header-content {
-      flex-direction: column;
-      gap: 20px;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
       padding: 20px;
+      gap: 20px;
     }
+
+    
+    .burger-button {
+      display: flex;
+    }
+
+    
+   
 
     .center-box {
       position: static;
       transform: none;
       order: 2;
+
+      .promo-button {
+        display: none; 
+      }
+
+    
+      .main-nav {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 280px;
+        height: 100vh;
+        background: #FFFFF1;
+        box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+        transition: left 0.3s ease;
+        z-index: 1000;
+        padding-top: 80px;
+
+        &.nav-open {
+          left: 0;
+        }
+
+        ul {
+          flex-direction: column;
+          gap: 0;
+          height: 100%;
+          padding: 20px;
+          align-items: stretch;
+
+          li {
+            width: 100%;
+            border-bottom: 1px solid #eee;
+
+            a {
+              width: 100%;
+              padding: 16px 20px;
+              font-size: 18px;
+              border-radius: 0;
+              text-align: left;
+
+              &:hover {
+                background: #f3f3f3;
+              }
+
+              &.active {
+                background: #87933D;
+                color: white;
+              }
+            }
+          }
+        }
+      }
     }
 
     .header-left {
       order: 1;
+      gap: 16px;
     }
 
     .header-right {
       order: 3;
       margin-left: 0;
+      gap: 16px;
+
+      .header-icon {
+        width: 40px;
+        height: 40px;
+      }
     }
   }
 }
 
 @media (max-width: 600px) {
   .custom-header {
-    .center-box nav ul {
-      flex-wrap: wrap;
-      gap: 16px;
-      justify-content: center;
+    .header-content {
+      padding: 15px;
+    }
 
-      li a {
-        font-size: 16px;
-        padding: 6px 10px;
+    .header-left {
+      .logo-image {
+        width: 50px;
+        height: 50px;
+      }
+    }
+
+    .center-box .main-nav {
+      width: 250px;
+
+      ul {
+        padding: 15px;
+
+        li a {
+          padding: 14px 16px;
+          font-size: 16px;
+        }
       }
     }
 
     .header-right {
-      gap: 16px;
+      gap: 12px;
 
       .header-icon {
-        width: 40px;
-        height: 40px;
+        width: 36px;
+        height: 36px;
       }
     }
   }

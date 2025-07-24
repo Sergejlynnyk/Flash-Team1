@@ -4,8 +4,8 @@ import Section from "../Section/Section";
 import CategoryCard from "../CategoryCard/CategoryCard";
 import { getAllCategories, formatCategory } from "../../api/products";
 
-// count — сколько карточек показывать (по умолчанию 4)
-export default function Categories({ count = 4, title = "Categories" }) {
+// **ОБНОВЛЯЕМ ПРОПСЫ - categories теперь приходят извне**
+export default function Categories({ count = 4, title = "Categories", categories: externalCategories }) {
   const [categories, setCategories] = useState([]);
 
   function getRandomItems(arr, n) {
@@ -23,6 +23,12 @@ export default function Categories({ count = 4, title = "Categories" }) {
   }
 
   useEffect(() => {
+    // **ЕСЛИ КАТЕГОРИИ ПЕРЕДАНЫ ИЗВНЕ, ИСПОЛЬЗУЕМ ИХ**
+    if (externalCategories && externalCategories.length > 0) {
+      setCategories(externalCategories);
+      return;
+    }
+    // **ИНАЧЕ ЗАГРУЖАЕМ И ОГРАНИЧИВАЕМ КОЛИЧЕСТВОМ**
     const loadCategories = async () => {
       try {
         const data = await getAllCategories();
@@ -33,7 +39,8 @@ export default function Categories({ count = 4, title = "Categories" }) {
       }
     };
     loadCategories();
-  }, [count]);
+    // **КОНЕЦ ИЗМЕНЕНИЙ**
+  }, [count, externalCategories]);
 
   return (
     <Section title={title}>

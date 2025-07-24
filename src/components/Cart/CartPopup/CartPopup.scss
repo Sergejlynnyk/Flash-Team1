@@ -1,0 +1,62 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap");
+
+.cart-popup {
+  display: flex;
+  position: absolute;
+  top: 260px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #92a234;
+  border-radius: 12px;
+  padding: 32px;
+  gap: 16px;
+  width: 548px;
+  height: 236px;
+  z-index: 1000;
+  animation: fadeInSlideDown 0.5s ease-out;
+
+  .popup-content {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    width: 424px;
+
+    h2 {
+      font-family: "Montserrat", sans-serif;
+      font-weight: 600;
+      font-size: 40px;
+      line-height: 110%;
+      color: #ffffff;
+    }
+
+    p {
+      font-family: "Montserrat", sans-serif;
+      font-weight: 600;
+      font-size: 20px;
+      line-height: 110%;
+      color: #ffffff;
+    }
+  }
+
+  .popup-close {
+    width: 44px;
+    height: 44px;
+    background: none;
+    border: none;
+    color: #fffff1;
+    font-size: 32px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+}
+
+@keyframes fadeInSlideDown {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}

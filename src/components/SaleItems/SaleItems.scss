@@ -1,165 +1,158 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
 
-.saleitems-outer-container {
-  max-width: 1500px;
-  margin: 0 auto;
-  width: 100%;
-  padding: 0 24px;
-}
-
-.saleitems-section {
-  width: 100%;
-  background: #FFFFF1;
-  padding: 10px 0 0 0;
-}
-
-.saleitems-title {
-  text-align: center;
-  padding: 0 0 40px 40px;
-  letter-spacing: 0;
-}
-
-.items-container {
-  display: grid;
-  gap: 32px;
-  max-width: 1360px;
-  margin: 0 auto;
-  width: 100%;
-  background: #d8d8d0;
-  position: relative;
-  padding-top: 52px;
-  padding-bottom: 52px;
-  justify-items: center;
-
-  @media (max-width: 1100px) {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  @media (max-width: 600px) {
-    grid-template-columns: 1fr;
-    gap: 16px;
-    padding-left: 8px;
-    padding-right: 8px;
-  }
+.product-link {
+  text-decoration: none;
+  color: inherit;
 }
 
 .item-card {
-  border-radius: 24px;
-  border: 1px solid #040404;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 20px;
+  line-height: 130%;
+  letter-spacing: 0;
+  background: #fff;
+  border: 2px solid #eaeae2;
+  border-radius: 18px;
+  overflow: hidden;
+  max-width: 340px;
+  width: 100%;
+  position: relative;
+  box-shadow: 0 2px 8px rgba(160, 142, 255, 0.09);
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
-  padding: 0;
-  gap: 32px;
-  overflow: hidden;
-  background-color: white;
-  position: relative;
-  width: 100%;
-  transition: transform 0.3s ease;
+  align-items: stretch; // чтобы дети занимали всю ширину
+
+  transition: box-shadow 0.2s, transform 0.18s;
 
   &:hover {
-    transform: translateY(-4px);
+    box-shadow: 0 8px 32px rgba(160, 142, 255, 0.18);
+    transform: translateY(-2px) scale(1.01);
+
+    .item-text {
+      color: #A08EFF;
+    }
   }
 
-  img {
-    width: 100%;
-  }
+.discount-badge {
+  position: absolute;
+  top: 16px;
+  left: 17px;
+  width: 67px;
+  height: 34px;
+  background: #FF7900;
+  color: #fff;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+  z-index: 3;
+  letter-spacing: 0;
+  line-height: 1;
+  padding: 0;
+  
+}
 
-  .discount-badge {
+
+  .icon-bar {
     position: absolute;
-    top: 4px;
-    left: 8px;
-    background: #F26D22;
-    color: white;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 600;
-    font-size: 20px;
-    line-height: 130%;
-    letter-spacing: 3%;
-    padding: 4px 8px;
-    border-radius: 6px;
+    top: 15px;
+    right: 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    z-index: 3;
+  }
+
+  .icon-btn {
+    background: none;
+    border: none;
+    outline: none;
+    border-radius: 0;
+    width: 48px;
+    height: 48px;
+    box-shadow: none;
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 2;
-  }
+    cursor: pointer;
+    padding: 0;
+    transition: transform 0.2s ease;
 
-  .icon-bar {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    position: absolute;
-    top: 16px;
-    right: 16px;
-    z-index: 3;
-
-    .icon-btn {
+    &:hover {
+      transform: scale(1.1);
       background: none;
-      border: none;
-      padding: 0;
-      margin: 0;
-      cursor: pointer;
-      transition: transform 0.2s ease;
-
-      &:hover {
-        transform: scale(1.1);
-      }
-
-      .icon {
-        width: 48px;
-        height: 48px;
-        object-fit: contain;
-        transition: all 0.2s ease;
-      }
-    }
-  }
-
-  .item-text {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 20px;
-    font-weight: 500;
-    line-height: 130%;
-    text-align: center;
-    letter-spacing: 0%;
-    height: 24px;
-    color: #424436;
-  }
-
-  .item-prices {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin-top: 1rem;
-    gap: 1rem;
-    align-items: flex-end;
-
-    .new-price {
-      font-size: 40px;
-      font-weight: 600;
-      line-height: 110%;
-      letter-spacing: 0%;
     }
 
-    .old-price {
-      font-size: 20px;
-      font-weight: 500;
-      line-height: 130%;
-      letter-spacing: 0%;
-      color: #999;
-      text-decoration: line-through;
+    &.like-btn.liked {
+      background: none;
+    }
+
+    .icon {
+      width: 48px;
+      height: 48px;
+      display: block;
+      object-fit: contain;
+      background: transparent;
     }
   }
 
   .item-image {
     width: 100%;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 8px;
+    height: 260px; // или другое значение для пропорции, если нужно (можно через aspect-ratio)
+    object-fit: cover; // чтобы картинка не оставляла белых краёв
+    display: block;
+    border-radius: 0;
+    margin: 0;
+    background: #fff;
+    box-shadow: 0 2px 10px rgba(180,150,255,0.04);
   }
-}
 
-.product-link {
-  transition: transform 0.2s;
+  .item-text {
+    width: 80%;
+    margin: 8px 0 0 32px;
+    font-size: 20px;
+    font-weight: 500;
+    color: #393939;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    letter-spacing: 0;
+    min-height: 36px;
+    border-top: 1px solid #f2ebff;
+    padding-top: 8px;
+    line-height: 1.3;
+  }
 
-  &:hover {
-    transform: translateY(-4px);
+  .item-prices {
+    display: flex;
+    justify-content: flex-start;
+    align-items: baseline;
+    gap: 15px;
+    padding: 16px 0 18px 32px;
+    font-size: 2.4rem;
+    font-weight: 700;
+    width: 100%;
+
+    .new-price {
+      color: #222;
+      font-size: 2.1rem;
+      font-weight: 700;
+    }
+    .old-price {
+      color: #1b1a1a;
+      font-size: 1.5rem;
+      font-weight: 600;
+      text-decoration: line-through;
+      opacity: 0.56;
+      margin-left: 2px;
+    }
   }
 }

@@ -1,166 +1,633 @@
-.cart-item {
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+
+.cart-container {
+  // ИЗМЕНЕНО: Основные размеры и отступы как в макете
   display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 40px;
+  
+  width: 100%;
+  max-width: 1360px;
+  margin: 0 auto;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.cart-header {
+  // ДОБАВЛЕНО: Заголовок с линией
+  display: flex;
+  flex-direction: row;
   align-items: center;
-  background: #fff;
+  padding: 0px;
+  gap: 32px;
+  
+  width: 100%;
+  height: 70px;
+  
+  .cart-title {
+    width: 477px;
+    height: 70px;
+    
+    font-family: 'Montserrat', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 64px;
+    line-height: 110%;
+    color: #424436;
+    
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    margin: 0;
+  }
+  
+  .header-line {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 10px 0px 0px;
+    
+    width: 851px;
+    height: 46px;
+    
+    flex: none;
+    order: 1;
+    flex-grow: 1;
+    
+    .line {
+      width: 681px;
+      height: 0px;
+      border: 1px solid #DDDDDD;
+      
+      flex: none;
+      order: 0;
+      flex-grow: 1;
+    }
+    
+    .all-categories-btn {
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      padding: 8px 16px;
+      gap: 10px;
+      
+      width: 170px;
+      height: 36px;
+      
+      background: transparent;
+      border: 1px solid #DDDDDD;
+      border-radius: 6px;
+      cursor: pointer;
+      
+      font-family: 'Montserrat', sans-serif;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 126%;
+      text-align: center;
+      color: #8B8B8B;
+      
+      flex: none;
+      order: 1;
+      flex-grow: 0;
+      
+      &:hover {
+        background: #f9f9f9;
+      }
+    }
+  }
+}
+
+.cart-content {
+  // ИЗМЕНЕНО: Горизонтальное расположение
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 32px;
+  
+  width: 100%;
+  height: 582px;
+}
+
+.cart-list {
+  // ИЗМЕНЕНО: Список товаров слева
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 16px;
+  
+  width: 780px;
+  height: 572px;
+  
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  
+  .empty-cart {
+    font-size: 24px;
+    color: #8B8B8B;
+    text-align: center;
+    padding: 40px;
+  }
+}
+
+.cart-item {
+  // ИЗМЕНЕНО: Стили товара по макету
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 32px;
+  
+  width: 780px;
+  height: 180px;
+  
+  background: #FFFFFF;
+  border: 1px solid #DDDDDD;
   border-radius: 12px;
-  padding: 16px 16px 16px 0;
-  box-shadow: 0 2px 8px #0001;
-  gap: 18px;
-  min-width: 350px;
-  margin-bottom: 18px;
+  
+  flex: none;
+  flex-grow: 0;
+  margin-bottom: 0;
 
   &__img {
-    width: 80px;
-    height: 80px;
+    box-sizing: border-box;
+    width: 200px;
+    height: 180px;
     object-fit: contain;
-    border-radius: 8px;
-    background: #f3f3f3;
-    margin-right: 8px;
+    border: 1px solid #DDDDDD;
+    border-radius: 12px 0px 0px 12px;
+    background: #f5f5ef;
+    
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 1;
   }
 
   &__info {
-    flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 32px 32px 32px 0px;
+    gap: 79px;
+    
+    width: 548px;
+    height: 180px;
+    
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+  }
+
+  &__header {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 16px;
+    
+    width: 516px;
+    height: 26px;
+    
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
   }
 
   &__name {
-    font-size: 17px;
+    width: 476px;
+    height: 26px;
+    
+    font-family: 'Montserrat', sans-serif;
+    font-style: normal;
     font-weight: 500;
-    color: #444;
+    font-size: 20px;
+    line-height: 130%;
+    color: #424436;
+    
+    flex: none;
+    order: 0;
+    flex-grow: 1;
+    margin: 0;
+  }
+
+  &__price-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px;
+    gap: 32px;
+    
+    width: 516px;
+    height: 58px;
+    
+    flex: none;
+    order: 1;
+    align-self: stretch;
+    flex-grow: 0;
   }
 
   &__qty-controls {
     display: flex;
-    align-items: center;
-    gap: 8px;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 32px;
+    
+    width: 200px;
+    height: 58px;
+    
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+
     button {
-      width: 32px;
-      height: 32px;
-      border: 1px solid #e3e3e3;
-      border-radius: 7px;
-      background: #f8f8f8;
-      font-size: 22px;
-      font-weight: 600;
-      color: #555;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 0px;
+      
+      width: 58px;
+      height: 58px;
+      
+      border: 1px solid #DDDDDD;
+      border-radius: 6px;
+      background: transparent;
       cursor: pointer;
-      transition: background 0.12s;
+      font-size: 20px;
+      font-weight: 600;
+      color: #8B8B8B;
+      
       &:hover:not(:disabled) {
-        background: #e6eec0;
+        background: #f9f9f9;
       }
+      
       &:disabled {
         opacity: 0.6;
         cursor: not-allowed;
       }
     }
+
     span {
-      font-size: 18px;
-      min-width: 28px;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 0px;
+      
+      width: 96px;
+      height: 58px;
+      
+      border-width: 1px 0px;
+      border-style: solid;
+      border-color: #DDDDDD;
+      
+      font-family: 'Montserrat', sans-serif;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 20px;
+      line-height: 130%;
+      color: #424436;
       text-align: center;
-      display: inline-block;
     }
   }
 
   &__price {
-    min-width: 90px;
-    text-align: right;
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    padding: 0px;
+    gap: 16px;
+    
+    width: 284px;
+    height: 44px;
+    
+    flex: none;
+    order: 1;
+    flex-grow: 1;
+
     .current {
-      font-size: 24px;
-      font-weight: bold;
-      color: #363626;
-      margin-right: 7px;
+      font-family: 'Montserrat', sans-serif;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 40px;
+      line-height: 110%;
+      color: #424436;
+      
+      flex: none;
+      order: 0;
+      flex-grow: 0;
     }
+
     .old {
-      color: #aaa;
-      font-size: 16px;
-      text-decoration: line-through;
-      margin-left: 4px;
-      vertical-align: middle;
+      font-family: 'Montserrat', sans-serif;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 20px;
+      line-height: 130%;
+      text-decoration-line: line-through;
+      color: #8B8B8B;
+      
+      flex: none;
+      order: 1;
+      flex-grow: 0;
     }
   }
 
   &__remove {
+    width: 24px;
+    height: 24px;
     background: none;
     border: none;
-    color: #888;
-    font-size: 28px;
-    margin-left: 10px;
     cursor: pointer;
-    transition: color 0.15s;
+    font-size: 20px;
+    color: #424436;
+    
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+    
     &:hover {
       color: #cf3434;
     }
   }
 }
 
-.cart-page {
-  display: flex;
-  gap: 24px;
-  background: #fdfde8;
-  padding: 24px;
-  border-radius: 16px;
-  align-items: flex-start;
-  justify-content: flex-start;
-}
-
-.cart-list {
-  flex: 2;
+.order-form {
+  // ДОБАВЛЕНО: Форма заказа справа
   display: flex;
   flex-direction: column;
-  gap: 8px;
-}
-
-.cart-summary {
-  flex: 1;
-  min-width: 330px;
-  background: #f7fad5;
-  border-radius: 16px;
-  padding: 24px 20px;
-  box-shadow: 0 2px 6px #0001;
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
+  align-items: flex-end;
+  padding: 32px;
+  gap: 32px;
+  
+  width: 548px;
+  height: 582px;
+  
+  background: #F2F6D3;
+  border-radius: 12px;
+  
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+  
+  .order-details {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 24px;
+    
+    width: 484px;
+    height: 190px;
+    
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
+    
+    .order-title {
+      width: 484px;
+      height: 44px;
+      
+      font-family: 'Montserrat', sans-serif;
+      font-style: normal;
+      font-weight: 700;
+      font-size: 40px;
+      line-height: 110%;
+      color: #424436;
+      
+      flex: none;
+      order: 0;
+      align-self: stretch;
+      flex-grow: 0;
+      margin: 0;
+    }
+    
+    .order-info {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 0px;
+      
+      width: 484px;
+      height: 122px;
+      
+      flex: none;
+      order: 1;
+      align-self: stretch;
+      flex-grow: 0;
+      
+      .items-count {
+        font-family: 'Montserrat', sans-serif;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 40px;
+        line-height: 130%;
+        color: #8B8B8B;
+        
+        flex: none;
+        order: 0;
+        flex-grow: 0;
+      }
+      
+      .total-price {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: baseline;
+        padding: 0px;
+        gap: 32px;
+        
+        width: 484px;
+        height: 70px;
+        
+        flex: none;
+        order: 1;
+        align-self: stretch;
+        flex-grow: 0;
+        
+        span:first-child {
+          font-family: 'Montserrat', sans-serif;
+          font-style: normal;
+          font-weight: 500;
+          font-size: 40px;
+          line-height: 130%;
+          color: #8B8B8B;
+          
+          flex: none;
+          order: 0;
+          flex-grow: 0;
+        }
+        
+        .price {
+          font-family: 'Montserrat', sans-serif;
+          font-style: normal;
+          font-weight: 700;
+          font-size: 64px;
+          line-height: 110%;
+          color: #424436;
+          
+          flex: none;
+          order: 1;
+          flex-grow: 0;
+        }
+      }
+    }
+  }
 }
 
 .cart-form {
+  // ИЗМЕНЕНО: Стили формы по макету
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  margin-top: 20px;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 32px;
+  
+  width: 484px;
+  height: 296px;
+  
+  flex: none;
+  order: 1;
+  align-self: stretch;
+  flex-grow: 0;
+  background: transparent;
+  margin-top: 0;
+
+  .inputs-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 16px;
+    
+    width: 484px;
+    height: 206px;
+    
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
+  }
+
   input {
-    padding: 12px;
-    border-radius: 7px;
-    border: 1px solid #e3e3e3;
-    font-size: 17px;
-    background: #fff;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 16px 32px;
+    gap: 10px;
+    
+    width: 484px;
+    height: 58px;
+    
+    background: #FFFFFF;
+    border: 1px solid #DDDDDD;
+    border-radius: 6px;
+    
+    font-family: 'Montserrat', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 130%;
+    color: #424436;
+    
+    flex: none;
+    align-self: stretch;
+    flex-grow: 0;
     outline: none;
-    transition: border-color 0.12s;
+    margin-bottom: 0;
+    
+    &::placeholder {
+      color: #8B8B8B;
+    }
+    
     &:focus {
-      border-color: #a2b041;
+      border-color: #92A234;
+    }
+    
+    &:invalid {
+      border-color: #e95b32;
     }
   }
-  button[type="submit"] {
-    margin-top: 10px;
-    padding: 12px;
-    background: #a2b041;
-    color: #fff;
-    border: none;
-    border-radius: 7px;
-    font-size: 18px;
+
+  .form-error {
+    color: #e95b32;
+    font-size: 16px;
+    margin-top: -8px;
+    margin-bottom: 8px;
     font-weight: 500;
+  }
+
+  button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 16px 32px;
+    gap: 10px;
+    
+    width: 484px;
+    height: 58px;
+    
+    background: #92A234;
+    border-radius: 6px;
+    border: none;
+    
+    font-family: 'Montserrat', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 130%;
+    text-align: center;
+    color: #FFFFFF;
+    
+    flex: none;
+    order: 1;
+    align-self: stretch;
+    flex-grow: 0;
     cursor: pointer;
-    transition: background 0.15s;
+    margin-top: 0;
+    
     &:hover {
-      background: #768c24;
+      background: #7a8829;
     }
   }
 }
 
-.form-error {
-  color: #d03d3d;
-  font-size: 15px;
-  margin-bottom: -5px;
-  margin-top: -5px;
-  display: block;
+// Адаптивность
+@media (max-width: 1400px) {
+  .cart-container {
+    max-width: 100%;
+    padding: 0 20px;
+  }
+  
+  .cart-content {
+    flex-direction: column;
+    height: auto;
+    
+    .cart-list {
+      width: 100%;
+      height: auto;
+    }
+    
+    .order-form {
+      width: 100%;
+      height: auto;
+    }
+  }
 }

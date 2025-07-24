@@ -1,130 +1,250 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&display=swap");
 
 .discount-section {
-  padding: 48px;
-  background: linear-gradient(80.46deg, #87933D -0.68%, #55610B 66.66%);
-  border-radius: 20px;
-  margin: 48px auto;
+  background: linear-gradient(80.46deg, #87933d -0.68%, #55610b 66.66%);
+  width: 100%;
+  max-width: 1360px;
+  height: 486px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 32px 32px 0px;
   gap: 24px;
-  width: 100%;
-  max-width: 1360px;
+  margin: 0 auto;
+  border-radius: 12px;
 
   .discount-title {
-    margin: 40px 0 16px 0;
-    font-size: clamp(2rem, 5vw, 64px);
+    width: 100%;
+    max-width: 1296px;
+    height: 70px;
+    font-family: "Montserrat", sans-serif;
+    font-style: normal;
     font-weight: 700;
-    color: #fff;
-
+    font-size: 64px;
     line-height: 110%;
-    letter-spacing: 0;
     text-align: center;
-  }
-
-  .discount-form-title {
-    font-size: 1.3rem;
-    font-weight: 600;
-    color: #fff;
-    margin-bottom: 10px;
-    text-align: center;
+    color: #ffffff;
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
+    margin: 0;
   }
 
   .discount-content {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px;
     gap: 32px;
     width: 100%;
-    max-width: 1200px;
-    align-items: center;
-    margin: 0 auto;
-    padding: 32px;
-    box-sizing: border-box;
+    max-width: 1296px;
+    height: 360px;
+    flex: none;
+    order: 1;
+    flex-grow: 0;
 
-    .discount-image img {
-      width: 100%;
-      max-width: 748px;
-      border-radius: 14px;
-      object-fit: cover;
-      display: block;
-           
+    .discount-image {
+      width: 748px;
+      height: 360px;
+      flex: none;
+      order: 0;
+      flex-grow: 0;
 
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 0;
+        display: block;
+      }
     }
 
     .discount-form {
       display: flex;
       flex-direction: column;
-      gap: 16px;
-      background: #55610B;
-      padding: 32px 24px;
-      border-radius: 12px;
-      box-shadow: 0 2px 8px rgba(160,179,77,0.12);
+      align-items: flex-start;
+      padding: 0px;
+      gap: 32px;
+
+      width: 516px;
+      height: 296px;
+
+      flex: none;
+      order: 1;
+      flex-grow: 0;
+      background: transparent;
+      box-shadow: none;
+      border-radius: 0;
+
+      .discount-form-title {
+        display: none;
+      }
+
+      .inputs-container {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 0px;
+        gap: 16px;
+
+        width: 516px;
+        height: 206px;
+
+        flex: none;
+        order: 0;
+        align-self: stretch;
+        flex-grow: 0;
+      }
 
       .discount-input {
-        font-size: 20px;
-        padding: 12px;
-        background: #55610B;
-        font-weight: 500;
-        color: #fff;
-        border: 1px solid #c8cfb0;
-        border-radius: 8px;
-        outline: none;
-        width: 100%;
-        min-width: 320px;
-        max-width: 640px;
         box-sizing: border-box;
-        transition: border 0.2s;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 16px 32px;
+        gap: 10px;
+
+        width: 516px;
+        height: 58px;
+        border: 1px solid #fffff1;
+        border-radius: 6px;
+        background: transparent;
+        font-family: "Montserrat", sans-serif;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 20px;
+        line-height: 130%;
+        color: #ffffff;
+
+        flex: none;
+        align-self: stretch;
+        flex-grow: 0;
+        outline: none;
+        transition: border-color 0.2s;
 
         &::placeholder {
-          color: #c8cfb0;
+          color: #ffffff;
+          opacity: 0.8;
         }
+
         &:focus {
-          border: 1.5px solid #A0B34D;
+          border-color: #ffffff;
+          background: rgba(255, 255, 255, 0.1);
         }
       }
 
       .discount-button {
-        font-size: 20px;
-        font-weight: 600;
-        background: #fff;
-        color: #282828;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 16px 32px;
+        gap: 10px;
+
+        width: 516px;
+        height: 58px;
+
+        background: #fffff1;
+        border-radius: 6px;
         border: none;
-        border-radius: 8px;
-        padding: 12px 0;
+
+        font-family: "Montserrat", sans-serif;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 20px;
         line-height: 130%;
         text-align: center;
-        vertical-align: middle;
-        width: 100%;
-        min-width: 320px;
-        max-width: 640px;
-        box-sizing: border-box;
+        color: #424436;
+
+        flex: none;
+        order: 1;
+        flex-grow: 0;
         cursor: pointer;
-        margin-top: 8px;
+        transition: background-color 0.2s;
+
+        &:hover {
+          background: #f0f0e8;
+        }
+      }
+
+      .error-message {
+        color: #ffb3b3;
+        font-size: 16px;
+        margin-top: -8px;
+        margin-bottom: 8px;
+        font-weight: 500;
       }
     }
   }
 }
 
+@media (max-width: 1400px) {
+  .discount-section {
+    max-width: 100%;
+    margin: 0 20px;
+
+    .discount-title {
+      font-size: clamp(2rem, 5vw, 64px);
+    }
+
+    .discount-content {
+      .discount-image {
+        width: 60%;
+      }
+
+      .discount-form {
+        width: 40%;
+
+        .inputs-container {
+          width: 100%;
+        }
+
+        .discount-input,
+        .discount-button {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
 
 @media (max-width: 900px) {
   .discount-section {
-    padding: 28px 2vw;
-    border-radius: 10px;
+    height: auto;
+    padding: 28px 20px 20px;
 
     .discount-title {
-      font-size: clamp(1.4rem, 5vw, 2.5rem);
+      height: auto;
+      margin-bottom: 20px;
     }
-    .discount-content {
-      grid-template-columns: 1fr;
-      gap: 24px;
-      padding: 18px;
 
-      .discount-image img {
-        max-width: 100%;
-        margin: 0 auto;
+    .discount-content {
+      flex-direction: column;
+      height: auto;
+      gap: 24px;
+
+      .discount-image {
+        width: 100%;
+        height: 250px;
+        order: 1;
+      }
+
+      .discount-form {
+        width: 100%;
         height: auto;
-        padding-left: 32px;
+        order: 0;
+
+        .inputs-container {
+          width: 100%;
+          height: auto;
+        }
+
+        .discount-input,
+        .discount-button {
+          width: 100%;
+          min-width: auto;
+        }
       }
     }
   }
@@ -132,17 +252,33 @@
 
 @media (max-width: 600px) {
   .discount-section {
-    padding: 14px 2vw;
+    padding: 20px 15px 15px;
 
     .discount-title {
-      font-size: 1.3rem;
+      font-size: 1.8rem;
     }
+
     .discount-content {
-      gap: 14px;
-      padding: 8px;
-    }
-    .discount-form {
-      padding: 14px 8px;
+      gap: 20px;
+
+      .discount-image {
+        height: 200px;
+      }
+
+      .discount-form {
+        gap: 20px;
+
+        .inputs-container {
+          gap: 12px;
+        }
+
+        .discount-input,
+        .discount-button {
+          height: 50px;
+          font-size: 18px;
+          padding: 12px 20px;
+        }
+      }
     }
   }
 }
