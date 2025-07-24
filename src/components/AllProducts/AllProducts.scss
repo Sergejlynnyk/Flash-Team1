@@ -14,9 +14,9 @@
         margin-right: 12px;
         padding: 8px;
         font-size: 16px;
-        background: var(--card-bg-color);
+        // background: var(--card-bg-color);
         color: var(--text-main);
-        border: 1px solid var(--border-color);
+        border: 1px solid #ddd;
         border-radius: 6px;
       }
   
@@ -24,8 +24,8 @@
         padding: 8px;
         font-size: 16px;
         width: 180px;
-        background: var(--card-bg-color);
-        color: var(--text-main);
+        // background: var(--card-bg-color);
+        // color: var(--text-main);
         border: 1px solid var(--border-color);
         border-radius: 6px;
       }

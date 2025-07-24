@@ -1,4 +1,4 @@
-@use '../../styles/theme'; // подключаем переменные
+@use '../../styles/theme';
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
 
 .footer {
@@ -46,6 +46,7 @@
     font-weight: 500;
     font-size: 20px;
     gap: 16px;
+    color: var(--text-main);
   }
 
   &__phone {
@@ -75,6 +76,9 @@
       color: var(--icon-color);
       padding: 10px;
       border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
   }
 
@@ -107,6 +111,7 @@
       margin: 0 auto;
       border-radius: 12px;
       display: block;
+      border: 1px solid var(--border-color);
     }
   }
 }

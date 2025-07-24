@@ -125,6 +125,7 @@
       object-fit: contain;
       cursor: pointer;
       transition: transform 0.2s;
+      filter: invert(1); // Инвертируем иконки для темной темы
 
       &:hover {
         transform: scale(1.05);
