@@ -1,10 +1,22 @@
-import React, { useState } from "react";
-import "./Toggle.scss"; // Falls du SCSS/CSS für den Switch hast
+import React, { useEffect, useState } from "react";
+import "./Toggle.scss";
 
 export default function ToggleSwitch() {
-  const [active, setActive] = useState(false);
+  const [active, setActive] = useState(() => {
+    return localStorage.getItem("theme") === "dark";
+  });
 
-  const handleToggle = () => setActive(!active);
+  useEffect(() => {
+    if (active) {
+      document.body.classList.add("dark-theme");
+      localStorage.setItem("theme", "dark");
+    } else {
+      document.body.classList.remove("dark-theme");
+      localStorage.setItem("theme", "light");
+    }
+  }, [active]);
+
+  const handleToggle = () => setActive((prev) => !prev);
 
   return (
     <div
@@ -15,7 +27,9 @@ export default function ToggleSwitch() {
       aria-pressed={active}
       style={{ outline: "none" }}
     >
-      <div className="toggle-knob">{active && <span className="moon-icon">🌙</span>}</div>
+      <div className="toggle-knob">
+        {active ? <span className="moon-icon">🌙</span> : <span className="sun-icon">☀️</span>}
+      </div>
     </div>
   );
 }

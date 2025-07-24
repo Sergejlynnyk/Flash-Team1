@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import "./styles/_theme.scss";
 
 import Header from "./components/Header/Header";
 import Hero from "./components/Hero/Hero";
@@ -26,7 +27,7 @@ function App() {
       <LikedProvider>
         <Router>
           <Header />
-          <div className="max-w-6xl mx-auto">
+          <div className="main-container max-w-6xl mx-auto">
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/categories" element={<Categories />} />

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { getAllProducts, formatProduct } from "../../api/products";
+import { getAllProducts,  } from "../../api/products";
 import { useLiked } from "../Liked/LikedContext";
 import { useCart } from "../Cart/CartContext";
 import "./AllProducts.scss";

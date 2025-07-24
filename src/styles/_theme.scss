@@ -1,0 +1,55 @@
+:root {
+  --bg-color: #ffffff;
+  --text-color: #1a1a1a;
+  --card-bg-color: #ffffff;
+  --filter-bg-color: #f8f9fa;
+  --border-color: #ddd;
+
+  --bg-main: #FFFFF1;
+  --bg-secondary: #F2F6D3;
+  --text-main: #424436;
+  --text-muted: #8B8B8B;
+  --phone-bg: #F2F6D3;
+  --phone-color: #424436;
+  --icon-bg: #424436;
+  --icon-color: #fff;
+
+  --header-bg: #FFFFF1;
+  --border-light: #DDDDDD;
+  --text-dark-accent: #55610B;
+  --active-bg: #87933D;
+  --active-text: white;
+  --promo-bg: #92A134;
+  --promo-bg-hover: #72851c;
+  --nav-hover-bg: #f3f3f3;
+  --badge-bg: #87933D;
+  --badge-border: #FFFFF1;
+}
+
+.dark-theme {
+  --bg-color: #424436;
+  --text-color: #f0f0f0;
+  --card-bg-color: #383A2C;
+  --filter-bg-color: #383A2C;
+  --border-color: #8B8B8B;
+
+  --bg-main: #424436;
+  --bg-secondary: #383A2C;
+  --text-main: #FFFFFF;
+  --text-muted: #8B8B8B;
+  --phone-bg: #383A2C;
+  --phone-color: #FFFFFF;
+  --icon-bg: #424436;
+  --icon-color: #FFFFFF;
+
+  --header-bg: #424436;
+  --border-light: #8B8B8B;
+  --text-dark-accent: #92A234;
+  --active-bg: #92A234;
+  --active-text: white;
+  --promo-bg: #92A234;
+  --promo-bg-hover: #72851c;
+  --nav-hover-bg: rgba(255, 255, 255, 0.05);
+  --badge-bg: #F26D22;
+  --badge-border: #383A2C;
+}

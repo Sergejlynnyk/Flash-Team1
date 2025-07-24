@@ -14,11 +14,11 @@
 }
 
 .category-image-container {
-  width: 320px;         // ширина как на скрине
-  height: 320px;        // высота как на скрине
+  width: 320px;
+  height: 320px;
   border-radius: 24px;
   overflow: hidden;
-  background: #fff;
+  background: var(--card-bg-color);
   box-shadow: 0 2px 16px rgba(0,0,0,0.08);
   transition: box-shadow 0.16s, transform 0.18s;
   display: flex;
@@ -45,9 +45,7 @@
   font-weight: 500;
   font-size: 20px;
   line-height: 130%;
-  letter-spacing: 0;
   text-align: center;
-  color: #6A6A5D;
+  color: var(--text-main);
   margin-top: 26px;
-  font-style: normal;
 }

@@ -1,18 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
 
-
 .filter-bar {
   display: flex;
   align-items: center;
-  background: #FFFFF1;
+  background: var(--card-bg-color);
   padding: 24px 32px;
   gap: 24px;
 
   .filter-label {
     font-size: 20px;
     font-weight: 500;
-    color: #424436;
-    margin-right: 8px;
+    color: var(--text-main);
     display: flex;
     align-items: center;
     gap: 8px;
@@ -21,19 +19,17 @@
   .filter-input {
     width: 80px;
     height: 36px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--border-color);
     border-radius: 8px;
-    background: #fff;
+    background: var(--card-bg-color);
     font-size: 18px;
-    color: #424436;
+    color: var(--text-main);
     padding: 0 10px;
-    margin-right: 12px;
   }
 
   .filter-checkbox {
     width: 24px;
     height: 24px;
-    margin-left: 8px;
     accent-color: #f26d22;
     border-radius: 6px;
   }
@@ -41,11 +37,11 @@
   .filter-select {
     width: 160px;
     height: 36px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--border-color);
     border-radius: 8px;
-    background: #fff;
+    background: var(--card-bg-color);
     font-size: 18px;
-    color: #424436;
+    color: var(--text-main);
     padding: 0 8px;
   }
 }
