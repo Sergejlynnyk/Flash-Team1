@@ -1,31 +1,27 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import CartItem from "./CartItem";
 import CartForm from "./CartForm";
-import CartPopup from "./CartPopup/CartPopup"; 
 import "./Cart.scss";
 import { useCart } from "./CartContext";
 
 const Cart = () => {
   const { cart, removeFromCart, changeQuantity, clearCart } = useCart();
-  const [showPopup, setShowPopup] = useState(false);
 
   const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
   const itemCount = cart.reduce((sum, item) => sum + item.quantity, 0);
 
-  const handleSubmit = () => {
-    setShowPopup(true); 
+  const handleSubmit = (formData) => {
+    alert(`Congratulations! Your order has been successfully placed on the website.
+A manager will contact you shortly to confirm your order.`);
+    clearCart();
   };
 
-  const handleClosePopup = () => {
-    setShowPopup(false);
-    clearCart(); 
-  };
+ 
+  const shouldScroll = cart.length > 3;
 
   return (
     <div className="cart-container">
-      {showPopup && <CartPopup onClose={handleClosePopup} />}
-
       <div className="cart-header">
         <h1 className="cart-title">Shopping cart</h1>
         <div className="header-line">
@@ -35,7 +31,8 @@ const Cart = () => {
       </div>
 
       <div className="cart-content">
-        <div className="cart-list">
+      
+        <div className={`cart-list ${shouldScroll ? 'scrollable' : ''}`}>
           {cart.length === 0 ? (
             <p className="empty-cart">Your cart is empty</p>
           ) : (
