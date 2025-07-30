@@ -1,9 +1,19 @@
 .product-of-day-card {
   position: relative;
-  background: #ffffff;
+  background: #92a234;
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  padding-top: 16px;
+
+  .discount-title {
+    font-size: 35px;
+    font-weight: 600;
+    line-height: 100%;
+    color: #ffffff;
+    text-align: center;
+    margin: 0 0 12px 0;
+  }
 
   .cardImageWrapper {
     width: 100%;
@@ -12,7 +22,7 @@
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    background-color: #f9f9f9;
+    background-color: #92a234;
   }
 
   .productImage {
@@ -20,15 +30,6 @@
     max-height: 100%;
     object-fit: contain;
     display: block;
-  }
-
-  .cardDetails {
-    padding: 20px;
-    border-top: 1px solid #dddddd;
-    background: #ffffff;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
   }
 
   .discountChip {
@@ -44,9 +45,10 @@
     font-weight: 600;
     line-height: 1.3;
     letter-spacing: 0.03em;
-    top: 16px;
+    top: 115px;
     left: 16px;
     white-space: nowrap;
+    z-index: 2;
   }
 
   .heartBtn {
@@ -71,7 +73,14 @@
     }
   }
 
-  
+  .cardDetails {
+    padding: 20px;
+    border-top: 1px solid #dddddd;
+    background: #92a234;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
 
   .productTitle {
     font-size: 20px;
@@ -101,7 +110,7 @@
     .originalPrice {
       font-size: 20px;
       text-decoration: line-through;
-      color: #8b8b8b;
+      color: #424436;
     }
   }
 
@@ -137,9 +146,8 @@
   .productDate {
     margin-top: 12px;
     font-size: 16px;
-    color: #666666;
+    color: #424436;
     text-align: center;
-  }
+  } 
+  
 }
-
-

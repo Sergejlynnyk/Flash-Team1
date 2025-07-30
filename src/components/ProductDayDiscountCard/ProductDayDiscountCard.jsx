@@ -50,22 +50,25 @@ const ProductDayDiscountCard = ({ products }) => {
       isDayDiscount: true,
     };
     addToCart(discountedProduct);
-    console.log("Товар добавлен в корзину (контекст):", discountedProduct);
   };
 
   const handleToggleLiked = () => {
-  const likedProduct = {
-    ...product,
-    image: imageUrl, // абсолютный путь
-    isDayDiscount: true,
-    price: Number(discountPrice),
-    oldPrice: Number(price),
+    const likedProduct = {
+      ...product,
+      image: imageUrl,
+      isDayDiscount: true,
+      price: Number(discountPrice),
+      oldPrice: Number(price),
+    };
+    toggleLiked(likedProduct);
   };
-  toggleLiked(likedProduct);
-};
 
   return (
     <div className="product-of-day-card">
+      <h2 className="discount-title">
+        50% discount on <p>product of the day!</p>
+      </h2>
+
       <div className="cardImageWrapper">
         <img src={imageUrl} className="productImage" alt={title} />
         <div className="discountChip">−50%</div>
@@ -92,7 +95,7 @@ const ProductDayDiscountCard = ({ products }) => {
         </div>
         <div className="buttonWrapper">
           <button onClick={handleAddToCart} className="addToCart" type="button">
-            Add to Cart
+            Add to cart
           </button>
         </div>
         {date && (
