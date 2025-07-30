@@ -5,6 +5,7 @@
   margin: 0 auto;
   padding: 20px;
   font-family: 'Montserrat', sans-serif;
+  background: var(--bg-main);
 
   .section-title {
     font-size: 2.5rem;
@@ -23,7 +24,7 @@
 
   .error {
     color: #dc3545;
-    background: #f8d7da;
+    background: var(--nav-hover-bg);
     border-radius: 8px;
   }
 }
@@ -33,109 +34,11 @@
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 32px;
   margin-top: 2rem;
+}
 
-  .product-item {
-    .product-link {
-      text-decoration: none;
-      color: inherit;
-      display: block;
-    }
-
-    .product-card {
-      background: var(--card-bg-color);
-      border-radius: 24px;
-      border: 1px solid var(--border-color);
-      overflow: hidden;
-      position: relative;
-      transition: transform 0.3s, box-shadow 0.3s;
-
-      &:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 4px 16px rgba(0,0,0,0.15);
-      }
-
-      .discount-badge {
-        position: absolute;
-        top: 8px;
-        left: 8px;
-        background: #F26D22;
-        color: white;
-        font-weight: 600;
-        font-size: 16px;
-        padding: 4px 8px;
-        border-radius: 6px;
-        z-index: 2;
-      }
-
-      .icon-bar {
-        position: absolute;
-        top: 16px;
-        right: 16px;
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        z-index: 3;
-
-        .icon-btn {
-          background: none;
-          border: none;
-          padding: 0;
-          cursor: pointer;
-          transition: transform 0.2s;
-
-          &:hover {
-            transform: scale(1.1);
-          }
-
-          .icon {
-            width: 48px;
-            height: 48px;
-            object-fit: contain;
-            transition: all 0.2s ease;
-          }
-        }
-      }
-
-      .item-image {
-        width: 100%;
-        height: 200px;
-        object-fit: cover;
-        display: block;
-      }
-
-      .item-text {
-        font-size: 18px;
-        font-weight: 500;
-        text-align: center;
-        color: var(--text-main);
-        padding: 16px;
-        min-height: 60px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-
-      .item-prices {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 12px;
-        padding: 0 16px 16px;
-        color: var(--text-main);
-
-        .new-price {
-          font-size: 24px;
-          font-weight: 600;
-        }
-
-        .old-price {
-          font-size: 18px;
-          font-weight: 500;
-          color: var(--text-muted);
-          text-decoration: line-through;
-        }
-      }
-    }
+.dark-theme {
+  .tools-and-equipment-container {
+    background: var(--bg-main);
   }
 }
 

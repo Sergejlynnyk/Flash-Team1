@@ -4,7 +4,9 @@ import './Hero.scss';
 const Hero = () => {
   return (
     <div className="hero-section">
+      {/* <img src="/public/img-4.png" alt="Hero" className="hero-image" /> */}
       <img src="/img-4.png" alt="Hero" className="hero-image" /> 
+      {/* Выше поменяла путь, потому что не подгружалась картинка Hero */}
 
       <div className="hero-content">
         <h1 className="hero-text">Amazing Discounts on Garden Products!</h1>
