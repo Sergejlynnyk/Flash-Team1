@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
 
-/* Основные стили (светлая тема) */
 .liked-products-container {
   max-width: 1200px;
   margin: 0 auto;
@@ -199,7 +198,6 @@
   }
 }
 
-/* Темная тема - переопределения */
 .dark-theme {
   .liked-products-container {
     .page-title {
@@ -274,7 +272,6 @@
   }
 }
 
-/* Адаптивность (работает для обеих тем) */
 @media (max-width: 768px) {
   .liked-products-container {
     padding: 1rem;
