@@ -1,9 +1,8 @@
 import React from "react";
 import "./ToolsAndEquipment.scss";
-import FilterBar from "../FilterBar/FilterBar";
 import ProductCard from "../ProductCard/ProductCard"; 
 
-// Массив товаров
+
 const items = [
   {
     id: 1,
@@ -84,8 +83,7 @@ export default function ToolsAndEquipment() {
     <div className="tools-and-equipment-container">
       <h2 className="section-title">Tools & Equipment</h2>
 
-      {/* Фильтр (если есть функциональность) */}
-      <FilterBar />
+      
 
       <div className="items-container">
         {items.map((item) => (

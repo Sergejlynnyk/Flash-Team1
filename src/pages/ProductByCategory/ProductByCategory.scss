@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
 
-/* Основные стили (светлая тема) */
 .category-page {
   max-width: 1200px;
   margin: 0 auto;
@@ -22,7 +21,6 @@
     flex-wrap: wrap;
     gap: 1rem;
     align-items: center;
-    // background: #f8f9fa;
     padding: 1rem;
     border-radius: 8px;
     margin-bottom: 2rem;
@@ -222,7 +220,6 @@
   }
 }
 
-/* Темная тема - переопределения */
 .dark-theme {
   .category-page {
     background-color: var(--bg-main);
@@ -291,7 +288,6 @@
   }
 }
 
-/* Адаптивность (работает для обеих тем) */
 @media (max-width: 768px) {
   .category-page {
     padding: 1rem;
