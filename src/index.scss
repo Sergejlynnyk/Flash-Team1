@@ -20,7 +20,7 @@ body{
 }
 
 .main-container {
-  background: var(--bg-color);
+  background: var(--bg-main);
   backdrop-filter: blur(10px); // 👈 размытие "через фон"
   padding: 20px;
   transition: background 0.3s ease;
