@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+
+/* Основные стили (светлая тема) */
 .liked-products-container {
   max-width: 1200px;
   margin: 0 auto;
@@ -141,7 +144,6 @@
           .current-price {
             font-size: 1.3rem;
             font-weight: bold;
-            color: #424436;
           }
 
           .old-price {
@@ -197,7 +199,82 @@
   }
 }
 
-// Адаптивность
+/* Темная тема - переопределения */
+.dark-theme {
+  .liked-products-container {
+    .page-title {
+      color: var(--text-main);
+    }
+
+    .empty-liked {
+      background: var(--card-bg-color);
+      
+      h2 {
+        color: var(--text-main);
+      }
+      
+      p {
+        color: var(--text-muted);
+      }
+      
+      .continue-shopping {
+        background: var(--promo-bg);
+        
+        &:hover {
+          background: var(--promo-bg-hover);
+        }
+      }
+    }
+
+    .liked-product-card {
+      background: var(--card-bg-color);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+
+      &:hover {
+        box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+      }
+
+      .product-image {
+        background: var(--bg-secondary);
+      }
+
+      .product-info {
+        .product-name {
+          color: var(--text-main);
+        }
+
+        .current-price {
+          color: var(--text-main);
+        }
+
+        .old-price {
+          color: var(--text-muted);
+        }
+      }
+
+      .product-actions {
+        .add-to-cart-btn {
+          background: var(--promo-bg);
+          
+          &:hover {
+            background: var(--promo-bg-hover);
+          }
+        }
+
+        .remove-btn {
+          background: var(--bg-secondary);
+          border-color: var(--border-color);
+          
+          &:hover {
+            background: var(--nav-hover-bg);
+          }
+        }
+      }
+    }
+  }
+}
+
+/* Адаптивность (работает для обеих тем) */
 @media (max-width: 768px) {
   .liked-products-container {
     padding: 1rem;

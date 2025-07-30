@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+
+/* Основные стили (светлая тема) */
 .category-page {
   max-width: 1200px;
   margin: 0 auto;
@@ -5,7 +8,6 @@
   font-family: 'Montserrat', sans-serif;
   background-color: var(--bg-main);
   color: var(--text-color);
-
 
   .category-title {
     font-size: 2.5rem;
@@ -124,9 +126,10 @@
           object-fit: contain;
         }
       }
-       .cart-btn {
+
+      .cart-btn {
         position: absolute;
-        top: 68px; 
+        top: 68px;
         right: 12px;
         background: none;
         border: none;
@@ -171,7 +174,6 @@
           .current-price {
             font-size: 1.3rem;
             font-weight: bold;
-            color: #424436;
           }
 
           .old-price {
@@ -220,7 +222,76 @@
   }
 }
 
-// Адаптивность
+/* Темная тема - переопределения */
+.dark-theme {
+  .category-page {
+    background-color: var(--bg-main);
+
+    .category-title {
+      color: var(--text-main);
+    }
+
+    .filters-section {
+      background: var(--filter-bg-color);
+      border-color: var(--border-color);
+
+      .filter-group {
+        label {
+          color: var(--text-main);
+        }
+
+        input[type="number"],
+        select {
+          background: var(--card-bg-color);
+          border-color: var(--border-color);
+          color: var(--text-main);
+        }
+      }
+
+      .reset-filters {
+        background: var(--text-muted);
+
+        &:hover {
+          background: var(--bg-secondary);
+        }
+      }
+    }
+
+    .products-grid {
+      .product-card {
+        background: var(--card-bg-color);
+        box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+
+        &:hover {
+          box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+        }
+
+        .product-name,
+        .current-price {
+          color: var(--text-main);
+        }
+
+        .old-price {
+          color: var(--text-muted);
+        }
+
+        .add-to-cart-btn {
+          background: var(--promo-bg);
+
+          &:hover {
+            background: var(--promo-bg-hover);
+          }
+        }
+      }
+    }
+
+    .loading, .no-products {
+      color: var(--text-muted);
+    }
+  }
+}
+
+/* Адаптивность (работает для обеих тем) */
 @media (max-width: 768px) {
   .category-page {
     padding: 1rem;

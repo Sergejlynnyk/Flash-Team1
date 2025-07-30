@@ -6,6 +6,10 @@
   padding: 80px 20px;
   text-align: center;
   background-color: #FFFFF1;
+  
+  .dark-theme & {
+    background-color: #424436;
+  }
 }
 
 .notfound-404 {
@@ -19,6 +23,10 @@
 .notfound-cactus {
   width: 100px;
   height: auto;
+  
+  .dark-theme & {
+    filter: none;
+  }
 }
 
 .notfound-title {
@@ -26,12 +34,20 @@
   font-weight: 700;
   margin-bottom: 16px;
   color: #424436;
+  
+  .dark-theme & {
+    color: #f0f0f0;
+  }
 }
 
 .notfound-text {
   font-size: 18px;
-  color: #8B8B8B; 
+  color: #8B8B8B;
   margin-bottom: 8px;
+  
+  .dark-theme & {
+    color: #aaaaaa;
+  }
 }
 
 .notfound-button {
@@ -46,5 +62,13 @@
 
   &:hover {
     background-color: #72851c;
+  }
+  
+  .dark-theme & {
+    background-color: #4a5a1f;
+    
+    &:hover {
+      background-color: #3a4a0f;
+    }
   }
 }
