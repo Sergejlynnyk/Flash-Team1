@@ -2,7 +2,7 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
-  background-color: var(--bg-color);
+  // background-color: var(--bg-color);
   color: var(--text-color);
 
   .page-title {
@@ -18,11 +18,11 @@
     flex-wrap: wrap;
     gap: 1rem;
     align-items: center;
-    background: var(--filter-bg-color);
+    // background: var(--filter-bg-color);
     padding: 1rem;
     border-radius: 8px;
     margin-bottom: 2rem;
-    border: 1px solid var(--border-color);
+    // border: 1px solid var(--border-color);
 
     .filter-group {
       display: flex;
