@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getProductsByCategory } from "../../api/products";
 import ProductCard from "../../components/ProductCard/ProductCard";
+import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
 import './ProductByCategory.scss';
 
 const ProductByCategory = () => {
@@ -9,12 +10,14 @@ const ProductByCategory = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [categoryName, setCategoryName] = useState("");
 
   useEffect(() => {
     const loadProducts = async () => {
       try {
         setLoading(true);
         const data = await getProductsByCategory(id);
+        setCategoryName(data[0]?.category || "Category");
         const formattedProducts = data.map((product) => ({
           id: product.id,
           title: product.title,
@@ -35,12 +38,18 @@ const ProductByCategory = () => {
     if (id) loadProducts();
   }, [id]);
 
+  const breadcrumbItems = [
+    { label: "Main Page", href: "/" },
+    { label: categoryName, href: null }
+  ];
+
   if (loading) return <div className="loading">Loading products...</div>;
   if (error) return <div className="error">{error}</div>;
 
   return (
     <div className="category-page">
-      <h1 className="category-title">Category Products</h1>
+      <Breadcrumbs items={breadcrumbItems} />
+      <h1 className="category-title">{categoryName}</h1>
       
       <div className="products-grid">
         {products.map((product) => (

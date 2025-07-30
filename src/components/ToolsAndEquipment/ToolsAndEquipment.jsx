@@ -1,8 +1,7 @@
-// src/components/ToolsAndEquipment/ToolsAndEquipment.jsx
 import React from "react";
 import "./ToolsAndEquipment.scss";
-import FilterBar from "../FilterBar/FilterBar";
 import ProductCard from "../ProductCard/ProductCard";
+import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
 
 const items = [
   {
@@ -64,10 +63,15 @@ const items = [
 ];
 
 export default function ToolsAndEquipment() {
+  const breadcrumbItems = [
+    { label: "Home", href: "/" },
+    { label: "Tools & Equipment", href: null }
+  ];
+
   return (
     <div className="tools-and-equipment-container">
+      <Breadcrumbs items={breadcrumbItems} />
       <h2 className="section-title">Tools & Equipment</h2>
-      <FilterBar />
       <div className="items-container">
         {items.map((item) => (
           <ProductCard key={item.id} product={item} />
