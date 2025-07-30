@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getDiscountedProducts } from '../../api/products';
 import ProductCard from "../../components/ProductCard/ProductCard";
+import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
 import './AllSales.scss';
 
 const AllSales = () => {
@@ -31,11 +32,17 @@ const AllSales = () => {
     loadProducts();
   }, []);
 
+  const breadcrumbItems = [
+    { label: "Main Page", href: "/" },
+    { label: "Sales", href: null }
+  ];
+
   if (loading) return <div className="loading">Loading products...</div>;
   if (error) return <div className="error">{error}</div>;
 
   return (
     <div className="all-sales-container">
+      <Breadcrumbs items={breadcrumbItems} />
       <h1 className="page-title">Discounted Items</h1>
 
       <div className="products-grid">

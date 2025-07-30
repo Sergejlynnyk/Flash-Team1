@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { getAllProducts } from "../../api/products";
 import ProductCard from "../ProductCard/ProductCard";
+import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
 import './AllProducts.scss';
 
 export default function AllProducts() {
@@ -33,11 +34,17 @@ export default function AllProducts() {
     loadProducts();
   }, []);
 
+  const breadcrumbItems = [
+    { label: "Main Page", href: "/" },
+    { label: "All Products", href: null }
+  ];
+
   if (loading) return <div className="loading">Loading products...</div>;
   if (error) return <div className="error">Error: {error}</div>;
 
   return (
     <div className="all-products-container">
+      <Breadcrumbs items={breadcrumbItems} />
       <h1 className="page-title">All Products</h1>
       
       <div className="products-grid">
