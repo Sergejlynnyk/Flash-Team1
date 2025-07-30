@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap");
 
+/* Основные стили (светлая тема по умолчанию) */
 .cart-container {
   display: flex;
   flex-direction: column;
@@ -24,7 +25,6 @@
     .cart-title {
       width: 477px;
       height: 70px;
-      font-family: "Montserrat", sans-serif;
       font-style: normal;
       font-weight: 700;
       font-size: 64px;
@@ -70,7 +70,6 @@
         border: 1px solid #dddddd;
         border-radius: 6px;
         cursor: pointer;
-        font-family: "Montserrat", sans-serif;
         font-style: normal;
         font-weight: 500;
         font-size: 16px;
@@ -112,7 +111,7 @@
 
       &.scrollable {
         height: 588px;
-       overflow: hidden auto;
+        overflow-y: auto;
         
         &::-webkit-scrollbar {
           width: 8px;
@@ -202,7 +201,6 @@
       &__name {
         width: 476px;
         height: 26px;
-        font-family: "Montserrat", sans-serif;
         font-style: normal;
         font-weight: 500;
         font-size: 20px;
@@ -284,7 +282,6 @@
           border-width: 1px 0px;
           border-style: solid;
           border-color: #dddddd;
-          font-family: "Montserrat", sans-serif;
           font-style: normal;
           font-weight: 600;
           font-size: 20px;
@@ -308,7 +305,6 @@
         flex-grow: 1;
 
         .current {
-          font-family: "Montserrat", sans-serif;
           font-style: normal;
           font-weight: 600;
           font-size: 40px;
@@ -320,7 +316,6 @@
         }
 
         .old {
-          font-family: "Montserrat", sans-serif;
           font-style: normal;
           font-weight: 500;
           font-size: 20px;
@@ -382,7 +377,6 @@
         .order-title {
           width: 484px;
           height: 44px;
-          font-family: "Montserrat", sans-serif;
           font-style: normal;
           font-weight: 700;
           font-size: 40px;
@@ -408,7 +402,6 @@
           flex-grow: 0;
 
           .items-count {
-            font-family: "Montserrat", sans-serif;
             font-style: normal;
             font-weight: 500;
             font-size: 40px;
@@ -434,7 +427,6 @@
             flex-grow: 0;
 
             span:first-child {
-              font-family: "Montserrat", sans-serif;
               font-style: normal;
               font-weight: 500;
               font-size: 40px;
@@ -446,7 +438,6 @@
             }
 
             .price {
-              font-family: "Montserrat", sans-serif;
               font-style: normal;
               font-weight: 700;
               font-size: 64px;
@@ -502,7 +493,6 @@
         background: #ffffff;
         border: 1px solid #dddddd;
         border-radius: 6px;
-        font-family: "Montserrat", sans-serif;
         font-style: normal;
         font-weight: 500;
         font-size: 20px;
@@ -547,7 +537,6 @@
         background: #92a234;
         border-radius: 6px;
         border: none;
-        font-family: "Montserrat", sans-serif;
         font-style: normal;
         font-weight: 600;
         font-size: 20px;
@@ -591,6 +580,7 @@
   }
 }
 
+/* Темная тема - переопределения */
 .dark-theme {
   .cart-container {
     background-color: var(--bg-main);
@@ -732,11 +722,8 @@
           &:hover {
             background: var(--promo-bg-hover);
           }
-          
         }
       }
     }
   }
-  
-  
 }

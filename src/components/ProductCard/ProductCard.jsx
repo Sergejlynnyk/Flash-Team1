@@ -1,107 +1,101 @@
-import React, { useState, useEffect } from "react";
-import { useCart } from "../Cart/CartContext";
-import { useLiked } from "../Liked/LikedContext";       
-import "./ProductCard.scss";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { useCart } from '../Cart/CartContext';
+import { useLiked } from '../Liked/LikedContext';
+import './ProductCard.scss';
 
 const ProductCard = ({ product }) => {
   const { addToCart } = useCart();
-  const { toggleLiked, isLiked } = useLiked();          
-  const [quantity, setQuantity] = useState(1);
+  const { toggleLiked, isLiked } = useLiked();
 
-  const {
-    id,
-    name,
-    image,
-    price,
-    discount,
-    alt = name || "Product",
+  const { 
+    id, 
+    title, 
+    image, 
+    price, 
+    oldPrice,
   } = product;
 
-  const today = new Date().toISOString().split("T")[0];
-  const productOfTheDay = JSON.parse(localStorage.getItem("productOfTheDay"));
-
-  const isTodayDiscount =
-    productOfTheDay?.date === today && productOfTheDay?.product?.id === id;
-
-  const displayPrice = isTodayDiscount ? (price / 2).toFixed(2) : price;
+  const discount = oldPrice 
+    ? Math.round(((oldPrice - price) / oldPrice) * 100) 
+    : 0;
 
   const handleAddToCart = (e) => {
     e.preventDefault();
-    const finalProduct = {
-      ...product,
-      quantity,
-      price: Number(displayPrice),
-      oldPrice: isTodayDiscount ? Number(price) : undefined,
-      isDayDiscount: isTodayDiscount,
-    };
-    addToCart(finalProduct);
-    alert(`${name} added to cart!`);
+    e.stopPropagation();
+    addToCart({
+      id,
+      name: title,
+      image,
+      price,
+      oldPrice,
+      quantity: 1
+    });
   };
 
-  const handleToggleLiked = (e) => {                    
+  const handleToggleLike = (e) => {
     e.preventDefault();
-    const productForLiked = {
-      id: product.id,
-      title: product.name,
-      image: product.image,
-      price: Number(displayPrice),
-      oldPrice: isTodayDiscount ? Number(price) : product.oldPrice,
-    };
-    toggleLiked(productForLiked);
+    e.stopPropagation();
+    toggleLiked({
+      id,
+      title,
+      image,
+      price,
+      oldPrice
+    });
   };
-
-  const increase = () => setQuantity((q) => q + 1);
-  const decrease = () => setQuantity((q) => (q > 1 ? q - 1 : 1));
 
   return (
     <div className="product-card">
-      {discount && <div className="discount-badge">-{discount}%</div>}
-
-      <div className="icon-bar">
-        <img
-          src="/basket=empty.svg"
-          alt="Cart"
-          className="icon"
-          onClick={handleAddToCart}
-        />
-        <img
-          src={isLiked(id) ? "/liked.png" : "/notliked.png"} 
-          alt="Favorite"
-          className="icon"
-          onClick={handleToggleLiked}                        
-        />
-      </div>
-
-      <img src={image} alt={alt} className="item-image" />
-
-      <div className="item-text">{name}</div>
-
-      <div className="item-prices">
-        <span className="new-price">${displayPrice}</span>
-        {isTodayDiscount && (
-          <>
-            <span className="old-price">${price}</span>
-            <span className="day-discount-tag">(50% Day Discount)</span>
-          </>
+      <div className="product-image-container">
+        <Link to={`/product/${id}`}>
+          <img 
+            src={image} 
+            alt={title} 
+            className="product-image"
+            onError={(e) => {
+              e.target.onerror = null;
+              e.target.src = '/placeholder-image.jpg';
+            }}
+          />
+        </Link>
+        {discount > 0 && (
+          <div className="discount-badge">-{discount}%</div>
         )}
       </div>
-
-      <div className="quantity-controls">
-        <button onClick={decrease}>-</button>
-        <input
-          type="number"
-          value={quantity}
-          min={1}
-          onChange={(e) =>
-            setQuantity(Math.max(1, parseInt(e.target.value) || 1))
-          }
-        />
-        <button onClick={increase}>+</button>
+      
+      <div className="product-info">
+        <Link to={`/product/${id}`} className="product-title">{title}</Link>
+        
+        <div className="product-prices">
+          <span className="current-price">${price.toFixed(2)}</span>
+          {oldPrice && (
+            <span className="old-price">${oldPrice.toFixed(2)}</span>
+          )}
+        </div>
       </div>
-
-      <button className="add-to-cart-button" onClick={handleAddToCart}>
-        Add to cart
-      </button>
+      
+      <div className="product-actions">
+        <button
+          className={`like-btn ${isLiked(id) ? 'liked' : ''}`}
+          onClick={handleToggleLike}
+          title={isLiked(id) ? "Remove from favorites" : "Add to favorites"}
+        >
+          <img
+            src={isLiked(id) ? "/liked.png" : "/notliked.png"}
+            alt="Like"
+            className="heart-icon"
+          />
+        </button>
+        
+        <button
+          className="cart-btn"
+          onClick={handleAddToCart}
+          title="Add to cart"
+        >
+          <img src="/basket.png" alt="Cart" className="cart-icon" />
+        </button>
+      </div>
     </div>
   );
 };

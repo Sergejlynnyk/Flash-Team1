@@ -24,6 +24,7 @@ const LikedProducts = () => {
       oldPrice: product.oldPrice,
       quantity: 1
     });
+    // Показываем уведомление
     alert(`${product.title || product.name} added to cart!`);
   };
 

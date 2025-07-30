@@ -7,6 +7,7 @@ export const useLiked = () => useContext(LikedContext);
 export const LikedProvider = ({ children }) => {
   const [likedItems, setLikedItems] = useState([]);
 
+  // Загружаем избранное из localStorage при инициализации
   useEffect(() => {
     const savedLiked = localStorage.getItem("likedProducts");
     if (savedLiked) {
@@ -18,6 +19,7 @@ export const LikedProvider = ({ children }) => {
     }
   }, []);
 
+  // Сохраняем в localStorage при изменении
   useEffect(() => {
     localStorage.setItem("likedProducts", JSON.stringify(likedItems));
   }, [likedItems]);
@@ -25,7 +27,7 @@ export const LikedProvider = ({ children }) => {
   const addToLiked = (product) => {
     setLikedItems((prev) => {
       if (prev.find((item) => item.id === product.id)) {
-        return prev; 
+        return prev; // Товар уже в избранном
       }
       return [...prev, product];
     });
