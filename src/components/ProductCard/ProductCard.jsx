@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useCart } from "../Cart/CartContext";
+import { useLiked } from "../Liked/LikedContext";       
 import "./ProductCard.scss";
 
 const ProductCard = ({ product }) => {
   const { addToCart } = useCart();
+  const { toggleLiked, isLiked } = useLiked();          
   const [quantity, setQuantity] = useState(1);
-  const [isFavorite, setIsFavorite] = useState(false);
 
   const {
     id,
@@ -16,13 +17,6 @@ const ProductCard = ({ product }) => {
     alt = name || "Product",
   } = product;
 
-  // Проверяем избранное при загрузке
-  useEffect(() => {
-    const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
-    setIsFavorite(favorites.includes(id));
-  }, [id]);
-
-  // Проверяем, является ли товар товаром дня
   const today = new Date().toISOString().split("T")[0];
   const productOfTheDay = JSON.parse(localStorage.getItem("productOfTheDay"));
 
@@ -44,19 +38,16 @@ const ProductCard = ({ product }) => {
     alert(`${name} added to cart!`);
   };
 
-  const toggleFavorite = (e) => {
+  const handleToggleLiked = (e) => {                    
     e.preventDefault();
-    const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
-
-    if (favorites.includes(id)) {
-      const updated = favorites.filter((favId) => favId !== id);
-      localStorage.setItem("favorites", JSON.stringify(updated));
-      setIsFavorite(false);
-    } else {
-      favorites.push(id);
-      localStorage.setItem("favorites", JSON.stringify(favorites));
-      setIsFavorite(true);
-    }
+    const productForLiked = {
+      id: product.id,
+      title: product.name,
+      image: product.image,
+      price: Number(displayPrice),
+      oldPrice: isTodayDiscount ? Number(price) : product.oldPrice,
+    };
+    toggleLiked(productForLiked);
   };
 
   const increase = () => setQuantity((q) => q + 1);
@@ -74,12 +65,10 @@ const ProductCard = ({ product }) => {
           onClick={handleAddToCart}
         />
         <img
-          src={
-            isFavorite ? "/basket=heart filled.svg" : "/basket=heart empty.svg"
-          }
+          src={isLiked(id) ? "/liked.png" : "/notliked.png"} 
           alt="Favorite"
           className="icon"
-          onClick={toggleFavorite}
+          onClick={handleToggleLiked}                        
         />
       </div>
 

@@ -1,6 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap");
 
-/* Основные стили (светлая тема по умолчанию) */
 .cart-container {
   display: flex;
   flex-direction: column;
@@ -113,7 +112,7 @@
 
       &.scrollable {
         height: 588px;
-        overflow-y: auto;
+       overflow: hidden auto;
         
         &::-webkit-scrollbar {
           width: 8px;
@@ -592,7 +591,6 @@
   }
 }
 
-/* Темная тема - переопределения */
 .dark-theme {
   .cart-container {
     background-color: var(--bg-main);
@@ -734,8 +732,11 @@
           &:hover {
             background: var(--promo-bg-hover);
           }
+          
         }
       }
     }
   }
+  
+  
 }

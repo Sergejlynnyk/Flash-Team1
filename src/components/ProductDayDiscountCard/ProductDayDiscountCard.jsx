@@ -56,7 +56,7 @@ const ProductDayDiscountCard = ({ products }) => {
   const handleToggleLiked = () => {
   const likedProduct = {
     ...product,
-    image: imageUrl, // абсолютный путь
+    image: imageUrl, 
     isDayDiscount: true,
     price: Number(discountPrice),
     oldPrice: Number(price),

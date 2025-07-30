@@ -173,7 +173,7 @@
       object-fit: contain;
       cursor: pointer;
       transition: transform 0.2s;
-      filter: invert(1);
+
 
       &:hover {
         transform: scale(1.05);
@@ -201,8 +201,6 @@
     }
   }
 }
-
-// ----------- MEDIA QUERIES -------------
 
 @media (max-width: 1200px) {
   .custom-header {

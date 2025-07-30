@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useCart } from "../../components/Cart/CartContext";
-import { useLiked } from "../../components/Liked/LikedContext"; // Добавлен импорт
+import { useLiked } from "../../components/Liked/LikedContext"; 
 import './AllSales.scss';
 import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs';
 import { getDiscountedProducts } from '../../api/products';
@@ -14,13 +14,12 @@ const AllSales = () => {
   const [filters, setFilters] = useState({
     minPrice: '',
     maxPrice: '',
-    sortBy: '', // 'priceAsc', 'priceDesc', 'discount'
+    sortBy: '', 
   });
 
   const { addToCart } = useCart();
-  const { toggleLiked, isLiked } = useLiked(); // Добавлен хук
+  const { toggleLiked, isLiked } = useLiked(); 
 
-  // 👉 Хлебные крошки
   const breadcrumbItems = [
     { label: 'Main page', href: '/' },
     { label: 'All sales' }
@@ -68,7 +67,6 @@ const AllSales = () => {
       result = result.filter(p => p.price <= Number(filters.maxPrice));
     }
 
-    // 🔄 Сортировка
     switch (filters.sortBy) {
       case 'priceAsc':
         result.sort((a, b) => a.price - b.price);
@@ -102,7 +100,6 @@ const AllSales = () => {
     });
   };
 
-  // Новая функция для лайков
   const handleToggleLike = (product, e) => {
     e.preventDefault();
     e.stopPropagation();
@@ -123,7 +120,6 @@ const AllSales = () => {
 
   return (
     <div className="all-sales-container">
-      {/* Хлебные крошки */}
       <Breadcrumbs items={breadcrumbItems} />
 
       <h1 className="page-title">Discounted Items</h1>
@@ -185,7 +181,6 @@ const AllSales = () => {
                   </div>
                 </Link>
 
-                {/* НОВЫЙ БЛОК: Иконки сердечко + корзина */}
                 <div className="icon-bar">
                   <button
                     className={`icon-btn like-btn ${isLiked(product.id) ? 'liked' : ''}`}
@@ -206,7 +201,6 @@ const AllSales = () => {
                     <img src="/basket.png" alt="Cart" className="icon" />
                   </button>
                 </div>
-                {/* КОНЕЦ НОВОГО БЛОКА */}
               </div>
             );
           })}
