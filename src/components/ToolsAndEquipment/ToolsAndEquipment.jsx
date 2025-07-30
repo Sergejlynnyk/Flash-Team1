@@ -84,7 +84,6 @@ export default function ToolsAndEquipment() {
     <div className="tools-and-equipment-container">
       <h2 className="section-title">Tools & Equipment</h2>
 
-      {/* Фильтр (если есть функциональность) */}
       <FilterBar />
 
       <div className="items-container">

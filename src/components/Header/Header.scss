@@ -32,7 +32,7 @@
     }
   }
 
-  // ДОБАВЛЕНО: Стили для кнопки бургер-меню
+ 
   .burger-button {
     display: none;
     flex-direction: column;
@@ -67,7 +67,7 @@
     }
   }
 
-  // ДОБАВЛЕНО: Overlay для бургер-меню
+ 
   .burger-overlay {
     position: fixed;
     top: 0;
@@ -107,7 +107,6 @@
       }
     }
 
-    // ИЗМЕНЕНО: Добавлен класс main-nav
     .main-nav {
       ul {
         list-style: none;
@@ -172,7 +171,7 @@
       object-fit: contain;
       cursor: pointer;
       transition: transform 0.2s;
-      filter: invert(1); // Инвертируем иконки для темной темы
+      filter: invert(1); 
 
       &:hover {
         transform: scale(1.05);
@@ -201,7 +200,6 @@
   }
 }
 
-// ИЗМЕНЕНО: Адаптивность с бургер-меню
 @media (max-width: 1200px) {
   .custom-header {
     .header-content {

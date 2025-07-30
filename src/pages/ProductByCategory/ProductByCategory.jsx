@@ -17,7 +17,6 @@ const ProductByCategory = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Фильтры и сортировка
   const [filters, setFilters] = useState({
     minPrice: "",
     maxPrice: "",
@@ -280,7 +279,6 @@ const ProductByCategory = () => {
                   />
                 </button>
 
-                {/* Корзина под сердечком */}
                 <button
                   className="cart-btn"
                   onClick={(e) => handleAddToCartIcon(product, e)}

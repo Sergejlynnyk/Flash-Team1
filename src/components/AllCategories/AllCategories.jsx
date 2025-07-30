@@ -2,7 +2,7 @@
 
 
 import React, { useEffect, useState } from "react";
-import "./Categories.scss"; // Или свой файл стилей, если хочешь отдельно
+import "./Categories.scss"; 
 import Section from "../Section/Section";
 import CategoryCard from "../CategoryCard/CategoryCard";
 import { getAllCategories, formatCategory } from "../../api/products";
@@ -29,7 +29,7 @@ export default function AllCategories() {
       try {
         const data = await getAllCategories();
         const formattedCategories = data.map(formatCategory);
-        setCategories(getRandomItems(formattedCategories, 5)); // ← ТУТ 5 карточек!
+        setCategories(getRandomItems(formattedCategories, 5)); 
       } catch (err) {
         console.error("Error loading categories:", err);
       }

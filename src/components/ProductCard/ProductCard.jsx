@@ -16,13 +16,11 @@ const ProductCard = ({ product }) => {
     alt = name || "Product",
   } = product;
 
-  // Проверяем избранное при загрузке
   useEffect(() => {
     const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
     setIsFavorite(favorites.includes(id));
   }, [id]);
 
-  // Проверяем, является ли товар товаром дня
   const today = new Date().toISOString().split("T")[0];
   const productOfTheDay = JSON.parse(localStorage.getItem("productOfTheDay"));
 

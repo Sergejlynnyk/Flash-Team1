@@ -1,7 +1,5 @@
-// API endpoints для работы с продуктами
 const BASE_URL = 'https://exam-server-5c4e.onrender.com';
 
-// Получить все продукты
 export async function getAllProducts() {
   try {
     const res = await fetch(`${BASE_URL}/products/all`);
@@ -13,19 +11,17 @@ export async function getAllProducts() {
   }
 }
 
-// Получить продукт по ID
 export async function getProductById(id) {
   try {
     const res = await fetch(`${BASE_URL}/products/${id}`);
     if (!res.ok) throw new Error('Failed to fetch product');
     const data = await res.json();
-    // API возвращает массив, берем первый элемент
     return Array.isArray(data) ? data[0] : data;
   } catch (error) {
     console.error('Error fetching product:', error);
     throw error;
   }
-}  // Получить все категории
+}  
 export async function getAllCategories() {
   try {
     const res = await fetch(`${BASE_URL}/categories/all`);
@@ -37,20 +33,18 @@ export async function getAllCategories() {
   }
 }
 
-// Получить продукты по категории
 export async function getProductsByCategory(categoryId) {
   try {
     const res = await fetch(`${BASE_URL}/categories/${categoryId}`);
     if (!res.ok) throw new Error('Failed to fetch category products');
     const data = await res.json();
-    return data.data || data; // API возвращает data в объекте
+    return data.data || data; 
   } catch (error) {
     console.error('Error fetching category products:', error);
     throw error;
   }
 }
 
-// Получить товары со скидкой
 export async function getDiscountedProducts() {
   try {
     const allProducts = await getAllProducts();
@@ -79,10 +73,9 @@ export function formatCategory(category) {
   return {
     id: category.id,
     title: category.title,
-    image: category.image  // Используем как есть
+    image: category.image  
   };
 }
-// Функция для получения случайных товаров
 export function getRandomItems(array, count) {
   if (count >= array.length) return array;
   
@@ -90,7 +83,6 @@ export function getRandomItems(array, count) {
   return shuffled.slice(0, count);
 }
 
-// Получить случайные товары со скидкой для главной страницы
 export async function getRandomDiscountedProducts(count = 4) {
   try {
     const discountedProducts = await getDiscountedProducts();
