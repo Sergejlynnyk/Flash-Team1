@@ -14,7 +14,7 @@ const CartForm = ({ onSubmit }) => {
     setErrors(errs);
     return Object.keys(errs).length === 0;
   };
-
+// 
   const handleSubmit = e => {
     e.preventDefault();
     if (validate()) {

@@ -1,8 +1,8 @@
-const BASE_URL = 'https://exam-server-5c4e.onrender.com';
+import { BASE_BACKEND_URL } from '../utils/env.js';       
 
 export async function getAllProducts() {
   try {
-    const res = await fetch(`${BASE_URL}/products/all`);
+    const res = await fetch(`${BASE_BACKEND_URL}/products/all`); 
     if (!res.ok) throw new Error('Failed to fetch products');
     return await res.json();
   } catch (error) {
@@ -13,7 +13,7 @@ export async function getAllProducts() {
 
 export async function getProductById(id) {
   try {
-    const res = await fetch(`${BASE_URL}/products/${id}`);
+    const res = await fetch(`${BASE_BACKEND_URL}/products/${id}`);
     if (!res.ok) throw new Error('Failed to fetch product');
     const data = await res.json();
     return Array.isArray(data) ? data[0] : data;
@@ -21,10 +21,11 @@ export async function getProductById(id) {
     console.error('Error fetching product:', error);
     throw error;
   }
-}  
+}
+
 export async function getAllCategories() {
   try {
-    const res = await fetch(`${BASE_URL}/categories/all`);
+    const res = await fetch(`${BASE_BACKEND_URL}/categories/all`);
     if (!res.ok) throw new Error('Failed to fetch categories');
     return await res.json();
   } catch (error) {
@@ -35,10 +36,10 @@ export async function getAllCategories() {
 
 export async function getProductsByCategory(categoryId) {
   try {
-    const res = await fetch(`${BASE_URL}/categories/${categoryId}`);
+    const res = await fetch(`${BASE_BACKEND_URL}/categories/${categoryId}`);
     if (!res.ok) throw new Error('Failed to fetch category products');
     const data = await res.json();
-    return data.data || data; 
+    return data.data || data;
   } catch (error) {
     console.error('Error fetching category products:', error);
     throw error;
@@ -54,12 +55,13 @@ export async function getDiscountedProducts() {
     throw error;
   }
 }
+
 export function formatProduct(product) {
   return {
     id: product.id,
     name: product.title,
     title: product.title,
-   mage: `https://exam-server-5c4e.onrender.com${product.image}`,
+    image: `${BASE_BACKEND_URL}${product.image}`,  
     price: Number(product.discont_price || product.price),
     oldPrice: product.discont_price ? Number(product.price) : null,
     originalPrice: Number(product.price),
@@ -73,9 +75,10 @@ export function formatCategory(category) {
   return {
     id: category.id,
     title: category.title,
-    image: category.image  
+    image: category.image
   };
 }
+
 export function getRandomItems(array, count) {
   if (count >= array.length) return array;
   
@@ -89,7 +92,7 @@ export async function getRandomDiscountedProducts(count = 4) {
     const formatted = discountedProducts.map(product => ({
       id: product.id,
       title: product.title,
-      image: `https://exam-server-5c4e.onrender.com${product.image}`,
+      image: `${BASE_BACKEND_URL}${product.image}`,
       price: Number(product.discont_price),
       oldPrice: Number(product.price),
       description: product.description || '',
