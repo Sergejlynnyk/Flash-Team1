@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getProductsByCategory } from "../../api/products";
+import { getProductsByCategory, getAllCategories } from "../../api/products";
 import ProductCard from "../../components/ProductCard/ProductCard";
 import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
-import './ProductByCategory.scss';
+import "./ProductByCategory.scss";
 
 const ProductByCategory = () => {
   const { id } = useParams();
@@ -13,34 +13,41 @@ const ProductByCategory = () => {
   const [categoryName, setCategoryName] = useState("");
 
   useEffect(() => {
-    const loadProducts = async () => {
+    const loadData = async () => {
       try {
         setLoading(true);
-        const data = await getProductsByCategory(id);
-        setCategoryName(data[0]?.category || "Category");
-        const formattedProducts = data.map((product) => ({
+        
+        const productsData = await getProductsByCategory(id);
+        
+        const categoriesData = await getAllCategories();
+        const currentCategory = categoriesData.find(cat => cat.id === parseInt(id));
+        setCategoryName(currentCategory?.title || "Category");
+        
+        const formattedProducts = productsData.map((product) => ({
           id: product.id,
           title: product.title,
           image: `https://exam-server-5c4e.onrender.com${product.image}`,
           price: Number(product.discont_price || product.price),
           oldPrice: product.discont_price ? Number(product.price) : null,
-          description: product.description
+          description: product.description,
         }));
+        
         setProducts(formattedProducts);
       } catch (err) {
-        console.error("Error loading products:", err);
-        setError("Failed to load products");
+        console.error("Error loading data:", err);
+        setError("Failed to load category data");
       } finally {
         setLoading(false);
       }
     };
 
-    if (id) loadProducts();
+    if (id) loadData();
   }, [id]);
 
   const breadcrumbItems = [
-    { label: "Main Page", href: "/" },
-    { label: categoryName, href: null }
+    { label: "Main page", href: "/" },
+    { label: "Categories", href: "/categories" },
+    { label: categoryName || "Category" },
   ];
 
   if (loading) return <div className="loading">Loading products...</div>;
@@ -49,8 +56,7 @@ const ProductByCategory = () => {
   return (
     <div className="category-page">
       <Breadcrumbs items={breadcrumbItems} />
-      <h1 className="category-title">ToolsAndEquipment</h1>
-      
+      <h1 className="category-title">{categoryName || "Loading..."}</h1>
       <div className="products-grid">
         {products.map((product) => (
           <ProductCard key={product.id} product={product} />
