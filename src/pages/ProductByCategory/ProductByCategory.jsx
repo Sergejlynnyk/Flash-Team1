@@ -49,7 +49,7 @@ const ProductByCategory = () => {
   return (
     <div className="category-page">
       <Breadcrumbs items={breadcrumbItems} />
-      <h1 className="category-title">{categoryName}</h1>
+      <h1 className="category-title">ToolsAndEquipment</h1>
       
       <div className="products-grid">
         {products.map((product) => (
