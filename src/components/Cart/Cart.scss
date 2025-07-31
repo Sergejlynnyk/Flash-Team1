@@ -1,6 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap");
 
-/* Основные стили (светлая тема по умолчанию) */
 .cart-container {
   display: flex;
   flex-direction: column;
@@ -108,24 +107,26 @@
       flex: none;
       order: 0;
       flex-grow: 0;
+      overflow-x: hidden;
 
       &.scrollable {
         height: 588px;
         overflow-y: auto;
-        
+        overflow-x: hidden;
+
         &::-webkit-scrollbar {
           width: 8px;
         }
-        
+
         &::-webkit-scrollbar-track {
           background: #f1f1f1;
           border-radius: 4px;
         }
-        
+
         &::-webkit-scrollbar-thumb {
           background: #c1c1c1;
           border-radius: 4px;
-          
+
           &:hover {
             background: #a8a8a8;
           }
@@ -147,7 +148,8 @@
       align-items: flex-start;
       padding: 0px;
       gap: 32px;
-      width: 780px;
+      width: 100%;
+      max-width: 780px;
       height: 180px;
       background: #ffffff;
       border: 1px solid #dddddd;
@@ -580,7 +582,6 @@
   }
 }
 
-/* Темная тема - переопределения */
 .dark-theme {
   .cart-container {
     background-color: var(--bg-main);

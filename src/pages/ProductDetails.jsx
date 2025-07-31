@@ -70,7 +70,6 @@ export default function ProductDetails() {
         quantity: quantity,
       });
 
-      // Показываем уведомление
       alert(`${product.title} added to cart!`);
     }
   };
@@ -91,7 +90,6 @@ export default function ProductDetails() {
     );
   };
 
-  // Хлебные крошки
   const breadcrumbItems = [
     { label: "Main page", href: "/" },
     { label: "Categories", href: "/categories" },

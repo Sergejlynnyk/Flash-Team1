@@ -13,24 +13,24 @@
     display: inline-block;
     padding: 6px 14px;
     border-radius: 8px;
-    border: 1px solid var(--border-color); // Используем переменную для границы
-    background-color: var(--bg-main); // Фон из переменных темы
-    color: var(--text-main); // Цвет текста из переменных
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-main);
+    color: var(--text-main);
     text-decoration: none;
-    transition: all 0.2s ease; // Плавный переход для всех свойств
+    transition: all 0.2s ease;
 
     &:hover {
-      background-color: var(--nav-hover-bg); // Цвет ховера из переменных
-      color: var(--text-dark-accent); // Акцентный цвет при наведении
-      border-color: var(--active-bg); // Граница как у активных элементов
+      background-color: var(--nav-hover-bg);
+      color: var(--text-dark-accent);
+      border-color: var(--active-bg);
     }
   }
 
   .active {
-    font-weight: 600; // Полужирный для активного элемента
-    background-color: var(--active-bg); // Фон активного элемента
+    font-weight: 600; //
+    background-color: var(--active-bg);
     cursor: default;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); // Легкая тень для глубины
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
 
   &:not(:last-child)::after {
@@ -44,13 +44,13 @@
   .breadcrumbs {
     gap: 8px;
     font-size: 12px;
-    
+
     .breadcrumb-item {
       a,
       .active {
         padding: 4px 10px;
       }
-      
+
       &:not(:last-child)::after {
         margin-left: 8px;
       }

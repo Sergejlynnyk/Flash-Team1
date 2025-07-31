@@ -11,7 +11,7 @@ const ProductByCategory = () => {
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [categoryName, setCategoryName] = useState("");
+  const [categoryName, setCategoryName] = useState("Category"); 
   const [priceRange, setPriceRange] = useState({ min: '', max: '' });
   const [sortOption, setSortOption] = useState('default');
   const [showDiscountedOnly, setShowDiscountedOnly] = useState(false);
@@ -21,7 +21,18 @@ const ProductByCategory = () => {
       try {
         setLoading(true);
         const data = await getProductsByCategory(id);
-        setCategoryName(data[0]?.category || "Category");
+        
+        let categoryTitle = "Category";
+        
+        if (data && data.length > 0) {
+          categoryTitle = data[0].categoryTitle || 
+                         data[0].category?.title || 
+                         data[0].category || 
+                         "Category";
+        }
+        
+        setCategoryName(categoryTitle);
+        
         const formattedProducts = data.map((product) => ({
           id: product.id,
           title: product.title,
@@ -34,6 +45,7 @@ const ProductByCategory = () => {
             : 0,
           isDiscounted: !!product.discont_price
         }));
+        
         setProducts(formattedProducts);
         setFilteredProducts(formattedProducts);
       } catch (err) {
@@ -50,7 +62,6 @@ const ProductByCategory = () => {
   useEffect(() => {
     let result = [...products];
     
-    // Filter by price range
     if (priceRange.min !== '') {
       result = result.filter(product => product.price >= Number(priceRange.min));
     }
@@ -58,12 +69,10 @@ const ProductByCategory = () => {
       result = result.filter(product => product.price <= Number(priceRange.max));
     }
 
-    // Filter by discount
     if (showDiscountedOnly) {
       result = result.filter(product => product.isDiscounted);
     }
 
-    // Sort products
     switch (sortOption) {
       case 'price-low-high':
         result.sort((a, b) => a.price - b.price);
@@ -81,7 +90,6 @@ const ProductByCategory = () => {
         result.sort((a, b) => b.title.localeCompare(a.title));
         break;
       default:
-        // Default sorting (no change)
         break;
     }
 
@@ -105,8 +113,9 @@ const ProductByCategory = () => {
   };
 
   const breadcrumbItems = [
-    { label: "Main Page", href: "/" },
-    { label: categoryName, href: null }
+    { label: "Main page", href: "/" },
+    { label: "Categories", href: "/categories" },
+    { label: categoryName }, 
   ];
 
   if (loading) return <div className="loading">Loading products...</div>;

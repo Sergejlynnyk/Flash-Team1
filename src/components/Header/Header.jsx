@@ -15,11 +15,9 @@ const Header = () => {
   const itemCount = cart.reduce((sum, item) => sum + item.quantity, 0);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-  // ДОБАВЛЕНО: Состояние для бургер-меню
   const [isBurgerOpen, setIsBurgerOpen] = useState(false);
   const { data: products, loading, error } = useFetchProducts();
 
-  // ДОБАВЛЕНО: Функция для закрытия меню при клике на ссылку
   const handleMenuClick = () => {
     setIsBurgerOpen(false);
   };
@@ -33,7 +31,6 @@ const Header = () => {
             <ToggleSwitch />
           </div>
 
-          {/* ДОБАВЛЕНО: Кнопка бургер-меню */}
           <button 
             className={`burger-button ${isBurgerOpen ? 'open' : ''}`}
             onClick={() => setIsBurgerOpen(!isBurgerOpen)}
@@ -52,7 +49,6 @@ const Header = () => {
               1 day discount!
             </button>
             
-            {/* ИЗМЕНЕНО: Добавлен класс для бургер-меню */}
             <nav className={`main-nav ${isBurgerOpen ? 'nav-open' : ''}`}>
               <ul>
                 <li>
@@ -111,7 +107,6 @@ const Header = () => {
        
       </header>
 
-      {/* Модальное окно */}
       {isModalOpen && (
         <Modal onClose={() => setIsModalOpen(false)}>
           {loading && <p>Loading product...</p>}

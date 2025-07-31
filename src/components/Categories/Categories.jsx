@@ -33,7 +33,7 @@ export default function Categories({ count = 4, title = "Categories", categories
       try {
         const data = await getAllCategories();
         const formattedCategories = data.map(formatCategory);
-        setCategories(getRandomItems(formattedCategories, count));
+        setCategories(getRandomItems(formattedCategories, ));
       } catch (err) {
         console.error("Error loading categories:", err);
       }
