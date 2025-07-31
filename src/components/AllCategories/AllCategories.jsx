@@ -29,7 +29,9 @@ export default function AllCategories() {
       try {
         const data = await getAllCategories();
         const formattedCategories = data.map(formatCategory);
-        setCategories(getRandomItems(formattedCategories, 5)); // ← ТУТ 5 карточек!
+        //setCategories(getRandomItems(formattedCategories, 5)); // ← ТУТ 5 карточек!
+
+        setCategories(formattedCategories)
       } catch (err) {
         console.error("Error loading categories:", err);
       }

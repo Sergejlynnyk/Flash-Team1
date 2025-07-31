@@ -24,6 +24,7 @@ const ProductDayDiscountCard = ({ products }) => {
       } else {
         const seed = new Date(today).getTime();
         const randomIndex = getSeededRandomIndex(seed, products.length);
+        console.log(randomIndex)
         const selectedProduct = products[randomIndex];
         localStorage.setItem(
           "productOfTheDay",
