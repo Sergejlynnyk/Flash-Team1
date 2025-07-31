@@ -5,8 +5,8 @@
   justify-content: center;
   padding: 80px 20px;
   text-align: center;
-  background-color: #FFFFF1;
-  
+  background-color: #fffff1;
+
   .dark-theme & {
     background-color: #424436;
   }
@@ -19,11 +19,10 @@
   margin-bottom: 24px;
 }
 
-.notfound-digit,
-.notfound-cactus {
-  width: 100px;
-  height: auto;
-  
+.notfound-digit {
+  max-width: 690px;
+  max-height: 270px;
+
   .dark-theme & {
     filter: none;
   }
@@ -34,7 +33,7 @@
   font-weight: 700;
   margin-bottom: 16px;
   color: #424436;
-  
+
   .dark-theme & {
     color: #f0f0f0;
   }
@@ -42,9 +41,9 @@
 
 .notfound-text {
   font-size: 18px;
-  color: #8B8B8B;
+  color: #8b8b8b;
   margin-bottom: 8px;
-  
+
   .dark-theme & {
     color: #aaaaaa;
   }
@@ -54,7 +53,7 @@
   display: inline-block;
   margin-top: 24px;
   padding: 12px 24px;
-  background-color: #92A134;
+  background-color: #92a134;
   color: #fff;
   border-radius: 8px;
   text-decoration: none;
@@ -63,10 +62,10 @@
   &:hover {
     background-color: #72851c;
   }
-  
+
   .dark-theme & {
     background-color: #4a5a1f;
-    
+
     &:hover {
       background-color: #3a4a0f;
     }
