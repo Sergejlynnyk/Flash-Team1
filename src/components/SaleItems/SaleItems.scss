@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
 
-/* Основные стили (светлая тема) */
 .product-link {
   text-decoration: none;
   color: inherit;
@@ -196,21 +195,18 @@
     .icon-btn {
       &.like-btn.liked {
         .icon {
-          filter: none; // Убираем инвертирование для лайкнутого сердца
+          filter: none; 
         }
       }
 
       .icon {
-        // Для обычных иконок сохраняем инвертирование
         filter: brightness(0) invert(1);
         
-        // Специально для сердечка в состоянии лайка
         &[src*="heart"] {
           &.liked {
             filter: none;
-            // Указываем конкретный цвет для лайкнутого сердца
             path {
-              fill: #FF0000; // Красный цвет для лайкнутого сердца
+              fill: #FF0000; 
             }
           }
         }

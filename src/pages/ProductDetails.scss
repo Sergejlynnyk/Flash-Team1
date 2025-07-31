@@ -16,7 +16,6 @@
   margin-bottom: 16px;
 
   span {
-    // background: var(--card-bg-color);
     padding: 4px 10px;
     border-radius: 4px;
   }
@@ -24,7 +23,6 @@
   .active {
     background: var(--bg-main);
     font-weight: bold;
-    // ghb
   }
 }
 
@@ -166,7 +164,6 @@
   }
 }
 
-// Loading / Error / Not Found
 .loading,
 .error,
 .product-not-found {
@@ -207,12 +204,10 @@
   }
 }
 
-// Скрыть footer
 .product-details-wrapper .footer {
   display: none;
 }
 
-// Адаптив
 @media (max-width: 768px) {
   .product-details-wrapper {
     padding: 16px;

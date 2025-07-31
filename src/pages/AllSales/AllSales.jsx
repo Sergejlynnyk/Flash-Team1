@@ -40,7 +40,6 @@ const AllSales = () => {
   useEffect(() => {
     let result = [...products];
     
-    // Filter by price range
     if (priceRange.min !== '') {
       result = result.filter(product => product.price >= Number(priceRange.min));
     }
@@ -48,7 +47,6 @@ const AllSales = () => {
       result = result.filter(product => product.price <= Number(priceRange.max));
     }
 
-    // Sort products
     switch (sortOption) {
       case 'price-low-high':
         result.sort((a, b) => a.price - b.price);
@@ -60,7 +58,6 @@ const AllSales = () => {
         result.sort((a, b) => b.discountPercentage - a.discountPercentage);
         break;
       default:
-        // Default sorting (no change)
         break;
     }
 

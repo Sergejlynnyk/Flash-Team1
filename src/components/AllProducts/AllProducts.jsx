@@ -2,15 +2,15 @@ import React, { useEffect, useState } from "react";
 import { getAllProducts } from "../../api/products";
 import ProductCard from "../ProductCard/ProductCard";
 import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
-import './AllProducts.scss';
+import "./AllProducts.scss";
 
 export default function AllProducts() {
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [priceRange, setPriceRange] = useState({ min: '', max: '' });
-  const [sortOption, setSortOption] = useState('default');
+  const [priceRange, setPriceRange] = useState({ min: "", max: "" });
+  const [sortOption, setSortOption] = useState("default");
   const [showDiscountedOnly, setShowDiscountedOnly] = useState(false);
 
   useEffect(() => {
@@ -25,10 +25,10 @@ export default function AllProducts() {
           price: Number(product.discont_price || product.price),
           oldPrice: product.discont_price ? Number(product.price) : null,
           description: product.description,
-          discountPercentage: product.discont_price 
+          discountPercentage: product.discont_price
             ? Math.round((1 - product.discont_price / product.price) * 100)
             : 0,
-          isDiscounted: !!product.discont_price
+          isDiscounted: !!product.discont_price,
         }));
         setProducts(formattedProducts);
         setFilteredProducts(formattedProducts);
@@ -45,39 +45,39 @@ export default function AllProducts() {
 
   useEffect(() => {
     let result = [...products];
-    
-    // Filter by price range
-    if (priceRange.min !== '') {
-      result = result.filter(product => product.price >= Number(priceRange.min));
+
+    if (priceRange.min !== "") {
+      result = result.filter(
+        (product) => product.price >= Number(priceRange.min)
+      );
     }
-    if (priceRange.max !== '') {
-      result = result.filter(product => product.price <= Number(priceRange.max));
+    if (priceRange.max !== "") {
+      result = result.filter(
+        (product) => product.price <= Number(priceRange.max)
+      );
     }
 
-    // Filter by discount
     if (showDiscountedOnly) {
-      result = result.filter(product => product.isDiscounted);
+      result = result.filter((product) => product.isDiscounted);
     }
 
-    // Sort products
     switch (sortOption) {
-      case 'price-low-high':
+      case "price-low-high":
         result.sort((a, b) => a.price - b.price);
         break;
-      case 'price-high-low':
+      case "price-high-low":
         result.sort((a, b) => b.price - a.price);
         break;
-      case 'discount-high':
+      case "discount-high":
         result.sort((a, b) => b.discountPercentage - a.discountPercentage);
         break;
-      case 'name-asc':
+      case "name-asc":
         result.sort((a, b) => a.title.localeCompare(b.title));
         break;
-      case 'name-desc':
+      case "name-desc":
         result.sort((a, b) => b.title.localeCompare(a.title));
         break;
       default:
-        // Default sorting (no change)
         break;
     }
 
@@ -86,9 +86,9 @@ export default function AllProducts() {
 
   const handlePriceChange = (e, type) => {
     const value = e.target.value;
-    setPriceRange(prev => ({
+    setPriceRange((prev) => ({
       ...prev,
-      [type]: value
+      [type]: value,
     }));
   };
 
@@ -102,7 +102,7 @@ export default function AllProducts() {
 
   const breadcrumbItems = [
     { label: "Main Page", href: "/" },
-    { label: "All Products", href: null }
+    { label: "All Products", href: null },
   ];
 
   if (loading) return <div className="loading">Loading products...</div>;
@@ -112,7 +112,7 @@ export default function AllProducts() {
     <div className="all-products-container">
       <Breadcrumbs items={breadcrumbItems} />
       <h1 className="page-title">All Products</h1>
-      
+
       <div className="filter-bar">
         <div className="price-filter">
           <span className="filter-label">Price</span>
@@ -121,17 +121,17 @@ export default function AllProducts() {
             className="filter-input"
             placeholder="from"
             value={priceRange.min}
-            onChange={(e) => handlePriceChange(e, 'min')}
+            onChange={(e) => handlePriceChange(e, "min")}
           />
           <input
             type="number"
             className="filter-input"
             placeholder="to"
             value={priceRange.max}
-            onChange={(e) => handlePriceChange(e, 'max')}
+            onChange={(e) => handlePriceChange(e, "max")}
           />
         </div>
-        
+
         <div className="discount-filter">
           <label className="filter-label">
             <input
@@ -143,10 +143,10 @@ export default function AllProducts() {
             Discounted items
           </label>
         </div>
-        
+
         <div className="sort-filter">
           <span className="filter-label">Sorted</span>
-          <select 
+          <select
             className="filter-select"
             value={sortOption}
             onChange={handleSortChange}

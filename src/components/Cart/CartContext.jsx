@@ -7,7 +7,6 @@ export const useCart = () => useContext(CartContext);
 export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
 
-  // Загрузка корзины из localStorage при инициализации
   useEffect(() => {
     const storedCart = localStorage.getItem("cart");
     if (storedCart) {
@@ -15,7 +14,6 @@ export const CartProvider = ({ children }) => {
     }
   }, []);
 
-  // Сохранение корзины в localStorage при изменении cart
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap");
 
 .all-products-container {
   max-width: 1440px;
@@ -7,7 +7,7 @@
   background: var(--bg-main);
 
   .page-title {
-    font-family: 'Montserrat', sans-serif;
+    font-family: "Montserrat", sans-serif;
     font-weight: 700;
     font-size: 64px;
     line-height: 110%;
@@ -23,14 +23,16 @@
     padding: 24px 0;
     border-bottom: 1px solid var(--border-color);
 
-    .price-filter, .sort-filter, .discount-filter {
+    .price-filter,
+    .sort-filter,
+    .discount-filter {
       display: flex;
       align-items: center;
       gap: 16px;
     }
 
     .filter-label {
-      font-family: 'Montserrat', sans-serif;
+      font-family: "Montserrat", sans-serif;
       font-weight: 600;
       font-size: 20px;
       line-height: 130%;
@@ -47,7 +49,7 @@
       border: 1px solid var(--border-color);
       border-radius: 6px;
       background: var(--card-bg-color);
-      font-family: 'Montserrat', sans-serif;
+      font-family: "Montserrat", sans-serif;
       font-size: 16px;
       color: var(--text-main);
 
@@ -59,7 +61,7 @@
     .filter-checkbox {
       width: 24px;
       height: 24px;
-      accent-color: #F26D22;
+      accent-color: #f26d22;
       border-radius: 6px;
     }
 
@@ -70,7 +72,7 @@
       border: 1px solid var(--border-color);
       border-radius: 6px;
       background: var(--card-bg-color);
-      font-family: 'Montserrat', sans-serif;
+      font-family: "Montserrat", sans-serif;
       font-size: 16px;
       color: var(--text-main);
       appearance: none;
@@ -87,8 +89,9 @@
     gap: 32px;
   }
 
-  .loading, .error {
-    font-family: 'Montserrat', sans-serif;
+  .loading,
+  .error {
+    font-family: "Montserrat", sans-serif;
     font-size: 20px;
     text-align: center;
     padding: 40px;
@@ -96,7 +99,7 @@
   }
 
   .error {
-    color: #F26D22;
+    color: #f26d22;
   }
 }
 

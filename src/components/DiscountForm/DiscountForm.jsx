@@ -6,7 +6,7 @@ export default function DiscountForm() {
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
-  const [isSubmitted, setIsSubmitted] = useState(false); // ← добавлен флаг отправки
+  const [isSubmitted, setIsSubmitted] = useState(false); 
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -24,9 +24,8 @@ export default function DiscountForm() {
     }
 
     setError("");
-    setIsSubmitted(true); // ← блокировка повторной отправки
+    setIsSubmitted(true); 
     alert("Discount request sent!");
-    // Можно оставить данные, либо сбросить — зависит от UX, тут сброс:
     setName("");
     setPhone("");
     setEmail("");
@@ -48,7 +47,7 @@ export default function DiscountForm() {
               placeholder="Name"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              disabled={isSubmitted} // ← блокируем редактирование
+              disabled={isSubmitted} 
             />
             <input
               type="tel"
@@ -72,7 +71,7 @@ export default function DiscountForm() {
           <button
             type="submit"
             className="discount-button"
-            disabled={isSubmitted} // ← блокируем кнопку
+            disabled={isSubmitted} 
           >
             {isSubmitted ? "Sent!" : "Get a discount"}
           </button>
